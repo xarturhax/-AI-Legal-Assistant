@@ -1,0 +1,17 @@
+[tool.pytest.ini_options]
+pythonpath = ["backend"]
+testpaths = ["backend/tests"]
+markers = ["mock: изолированные проверки с явно заданными тестовыми двойниками", "live_ostis: настоящая SC-память", "live_stack: настоящие OSTIS и Ollama"]
+addopts = "-ra -p no:cacheprovider"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+# Скрипт доступен из свежего checkout без предварительного editable-install.
+"scripts/evaluate.py" = ["E402"]
+

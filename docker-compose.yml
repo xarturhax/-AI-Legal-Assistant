@@ -1,0 +1,71 @@
+name: legal-ai-assistant
+services:
+  machine:
+    image: legal-ai-ostis:903e0c1
+    build:
+      context: .
+      dockerfile: ostis/Dockerfile
+    restart: unless-stopped
+    stop_grace_period: 60s
+    command: [run]
+    environment:
+      KB_PATH: /knowledge-base/repo.path
+      BINARY_PATH: /app/sc-machine/bin
+      CONFIG_PATH: /config/legislation.ini
+      EXTENSIONS_PATH: /app/build/Release/extensions;/app/sc-machine/lib/extensions
+      SC_SERVER_HOST: 0.0.0.0
+    volumes:
+      - ./ostis/upstream:/knowledge-base:ro
+      - ./ostis/runtime.ini:/config/legislation.ini:ro
+      - kb-binary:/kb.bin
+    ports:
+      - 127.0.0.1:8090:8090
+    healthcheck:
+      test: [CMD, /app/.venv/bin/python3, /app/scripts/healthcheck.py]
+      interval: 10s
+      timeout: 8s
+      retries: 6
+      start_period: 30s
+  ollama:
+    image: ollama/ollama:0.13.5
+    restart: unless-stopped
+    volumes:
+      - ollama-models:/root/.ollama
+    ports:
+      - 127.0.0.1:11434:11434
+    healthcheck:
+      test: [CMD, ollama, list]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+  app:
+    image: legal-ai-python:local
+    build:
+      context: ./backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DOCUMENT_CATALOG: /app/documents/catalog.json
+      DEV_MAIL_DIR: /app/data/dev-mail
+      APP_PORT: 5000
+    volumes:
+      - app-data:/app/data
+      - ./data/documents:/app/documents:ro
+    ports:
+      - 127.0.0.1:${APP_PORT:-5000}:5000
+    depends_on:
+      machine:
+        condition: service_healthy
+      ollama:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, python, -m, app.healthcheck]
+      interval: 20s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+volumes:
+  kb-binary:
+  app-data:
+  ollama-models:
+

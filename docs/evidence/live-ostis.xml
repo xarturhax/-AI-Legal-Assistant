@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="7.820" timestamp="2026-10-28T01:40:50.823775+03:00" hostname="WIN-989TKB6IGHV"><testcase classname="backend.tests.integration.test_ostis" name="test_real_kb_read" time="3.875"><failure message="app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.">backend\tests\integration\test_ostis.py:11: in test_real_kb_read
+    assert client.ready()["kb_loaded"]
+           ^^^^^^^^^^^^^^
+backend\app\ostis\client.py:74: in ready
+    return self.call("ready")
+           ^^^^^^^^^^^^^^^^^^
+backend\app\ostis\client.py:61: in call
+    raise ServiceError(
+E   app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.</failure></testcase><testcase classname="backend.tests.integration.test_ostis" name="test_existing_agent_single_title_link" time="3.831"><failure message="app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.">backend\tests\integration\test_ostis.py:22: in test_existing_agent_single_title_link
+    probe = client.call("single_match_probe", terms=["арендное жилье", "абитуриент", "занятость"])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend\app\ostis\client.py:61: in call
+    raise ServiceError(
+E   app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.</failure></testcase></testsuite></testsuites>

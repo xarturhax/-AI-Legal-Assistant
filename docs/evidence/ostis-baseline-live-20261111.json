@@ -1,0 +1,48 @@
+{
+  "mock": false,
+  "scope": "real OSTIS with no interpreter configured",
+  "answer_status": "grounded",
+  "runtime": {
+    "ostis_connected": true,
+    "llm_used": false,
+    "mock": false,
+    "elapsed_seconds": 2.735
+  },
+  "source_id": "concept_rental_housing_belarus",
+  "text_links": [
+    67522
+  ],
+  "trace": [
+    {
+      "term": "арендное жилье",
+      "status": "finished",
+      "method": "action_user_request",
+      "action_address": 721302,
+      "result_nodes_count": 0,
+      "source_count": 0
+    },
+    {
+      "term": "арендное жилье",
+      "method": "sc_template_search",
+      "status": "matched",
+      "reason": "agent_no_sources"
+    },
+    {
+      "term": "арендное",
+      "method": "sc_template_search",
+      "status": "matched"
+    },
+    {
+      "term": "жилье",
+      "method": "sc_template_search",
+      "status": "matched"
+    }
+  ],
+  "related_article": {
+    "id": "by_act_hk1200428_article_1",
+    "text_links": [
+      70332
+    ],
+    "has_text": true
+  }
+}

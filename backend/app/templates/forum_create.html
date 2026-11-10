@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<h1>Новая тема</h1><form method="post" class="panel"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label>Заголовок<input name="title" required maxlength="200"></label><label>Описание<textarea name="body" required maxlength="20000"></textarea></label><button>Создать тему</button></form>{% endblock %}

@@ -1,0 +1,486 @@
+{
+  "kb_sha": "903e0c1e38dec25ba2f6ab4a9d5e82fe175d8e38",
+  "note": "Разметка поиска по снимку KB, не оценка действующего законодательства.",
+  "cases": [
+    {
+      "query": "Что такое абитуриент?",
+      "expected_terms": [
+        "абитуриент"
+      ],
+      "expected_source_ids": [
+        "concept_applicant_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "education",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs",
+      "kind": "exact",
+      "id": "Q01"
+    },
+    {
+      "query": "Что такое бакалавр?",
+      "expected_terms": [
+        "бакалавр"
+      ],
+      "expected_source_ids": [
+        "concept_bachelor_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "education",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs",
+      "kind": "exact",
+      "id": "Q02"
+    },
+    {
+      "query": "Что такое воспитание?",
+      "expected_terms": [
+        "воспитание"
+      ],
+      "expected_source_ids": [
+        "concept_education_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "education",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs",
+      "kind": "exact",
+      "id": "Q03"
+    },
+    {
+      "query": "Что такое выпускник?",
+      "expected_terms": [
+        "выпускник"
+      ],
+      "expected_source_ids": [
+        "concept_graduate_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "education",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs",
+      "kind": "exact",
+      "id": "Q04"
+    },
+    {
+      "query": "Что такое грант на обучение?",
+      "expected_terms": [
+        "грант на обучение"
+      ],
+      "expected_source_ids": [
+        "concept_training_grant_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "education",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs",
+      "kind": "exact",
+      "id": "Q05"
+    },
+    {
+      "query": "Что такое качество образования?",
+      "expected_terms": [
+        "качество образования"
+      ],
+      "expected_source_ids": [
+        "concept_quality_of_education_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "education",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs",
+      "kind": "exact",
+      "id": "Q06"
+    },
+    {
+      "query": "Что такое компетенции?",
+      "expected_terms": [
+        "компетенции"
+      ],
+      "expected_source_ids": [
+        "concept_competencies_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "education",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs",
+      "kind": "exact",
+      "id": "Q07"
+    },
+    {
+      "query": "Что такое коррекционные занятия?",
+      "expected_terms": [
+        "коррекционные занятия"
+      ],
+      "expected_source_ids": [
+        "concept_correctional_classes_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "education",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs",
+      "kind": "exact",
+      "id": "Q08"
+    },
+    {
+      "query": "Что такое занятость?",
+      "expected_terms": [
+        "занятость"
+      ],
+      "expected_source_ids": [
+        "concept_employment_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "labor",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q09"
+    },
+    {
+      "query": "Что такое безработица?",
+      "expected_terms": [
+        "безработица"
+      ],
+      "expected_source_ids": [
+        "concept_unemployment_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "labor",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q10"
+    },
+    {
+      "query": "Что такое безработный?",
+      "expected_terms": [
+        "безработный"
+      ],
+      "expected_source_ids": [
+        "concept_unemployed_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "labor",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q11"
+    },
+    {
+      "query": "Что такое оплачиваемые общественные работы?",
+      "expected_terms": [
+        "оплачиваемые общественные работы"
+      ],
+      "expected_source_ids": [
+        "concept_paid_public_works_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "labor",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q12"
+    },
+    {
+      "query": "Что такое органы государственной службы занятости населения?",
+      "expected_terms": [
+        "органы государственной службы занятости населения"
+      ],
+      "expected_source_ids": [
+        "concept_bodies_of_the_state_employment_service_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "labor",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q13"
+    },
+    {
+      "query": "Что такое работники, находящиеся под угрозой увольнения,?",
+      "expected_terms": [
+        "работники, находящиеся под угрозой увольнения,"
+      ],
+      "expected_source_ids": [
+        "concept_employees_under_threat_of_dismissal_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "labor",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q14"
+    },
+    {
+      "query": "Что такое свободное рабочее место (вакансия)?",
+      "expected_terms": [
+        "свободное рабочее место (вакансия)"
+      ],
+      "expected_source_ids": [
+        "concept_free_workplace_vacancy_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "labor",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q15"
+    },
+    {
+      "query": "Что такое должность служащего?",
+      "expected_terms": [
+        "должность служащего"
+      ],
+      "expected_source_ids": [
+        "concept_employee_position_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "labor",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q16"
+    },
+    {
+      "query": "Что такое арендное жилье?",
+      "expected_terms": [
+        "арендное жилье"
+      ],
+      "expected_source_ids": [
+        "concept_rental_housing_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "housing",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q17"
+    },
+    {
+      "query": "Что такое близкие родственники?",
+      "expected_terms": [
+        "близкие родственники"
+      ],
+      "expected_source_ids": [
+        "concept_close_relatives_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "housing",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q18"
+    },
+    {
+      "query": "Что такое блокированный жилой дом?",
+      "expected_terms": [
+        "блокированный жилой дом"
+      ],
+      "expected_source_ids": [
+        "concept_blocked_residential_building_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "housing",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q19"
+    },
+    {
+      "query": "Что такое бывший член семьи?",
+      "expected_terms": [
+        "бывший член семьи"
+      ],
+      "expected_source_ids": [
+        "concept_a_former_family_member_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "housing",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q20"
+    },
+    {
+      "query": "Что такое вспомогательное помещение?",
+      "expected_terms": [
+        "вспомогательное помещение"
+      ],
+      "expected_source_ids": [
+        "concept_auxiliary_premises_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "housing",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q21"
+    },
+    {
+      "query": "Что такое вступительный взнос?",
+      "expected_terms": [
+        "вступительный взнос"
+      ],
+      "expected_source_ids": [
+        "concept_entry_fee_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "housing",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q22"
+    },
+    {
+      "query": "Что такое государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений?",
+      "expected_terms": [
+        "государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений"
+      ],
+      "expected_source_ids": [
+        "concept_state_support_for_the_construction_reconstruction_or_acquisition_of_residential_premises_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "housing",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q23"
+    },
+    {
+      "query": "Что такое жилая комната?",
+      "expected_terms": [
+        "жилая комната"
+      ],
+      "expected_source_ids": [
+        "concept_living_room_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "housing",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs",
+      "kind": "exact",
+      "id": "Q24"
+    },
+    {
+      "query": "Я поступаю в вуз. Как называют поступающего?",
+      "expected_terms": [
+        "абитуриент"
+      ],
+      "expected_source_ids": [
+        "concept_applicant_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "mixed",
+      "kind": "paraphrase",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs",
+      "id": "Q25"
+    },
+    {
+      "query": "Как называют человека, который окончил обучение?",
+      "expected_terms": [
+        "выпускник"
+      ],
+      "expected_source_ids": [
+        "concept_graduate_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "mixed",
+      "kind": "paraphrase",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs",
+      "id": "Q26"
+    },
+    {
+      "query": "У меня нет работы. Объясните понятие безработицы.",
+      "expected_terms": [
+        "безработица"
+      ],
+      "expected_source_ids": [
+        "concept_unemployment_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "mixed",
+      "kind": "paraphrase",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs",
+      "id": "Q27"
+    },
+    {
+      "query": "Работы нет, я хочу понять, кто считается безработным.",
+      "expected_terms": [
+        "безработный"
+      ],
+      "expected_source_ids": [
+        "concept_unemployed_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "mixed",
+      "kind": "paraphrase",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs",
+      "id": "Q28"
+    },
+    {
+      "query": "Как называется жильё, которое государство сдаёт гражданам в аренду?",
+      "expected_terms": [
+        "арендное жилье"
+      ],
+      "expected_source_ids": [
+        "concept_rental_housing_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "mixed",
+      "kind": "paraphrase",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs",
+      "id": "Q29"
+    },
+    {
+      "query": "Кто относится к близким родственникам?",
+      "expected_terms": [
+        "близкие родственники"
+      ],
+      "expected_source_ids": [
+        "concept_close_relatives_belarus"
+      ],
+      "expected_status": "grounded",
+      "domain": "mixed",
+      "kind": "paraphrase",
+      "annotation_source": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs",
+      "id": "Q30"
+    },
+    {
+      "query": "ксюфрагматический аброкод",
+      "expected_terms": [],
+      "expected_source_ids": [],
+      "expected_status": "no_evidence",
+      "domain": "out_of_scope",
+      "kind": "negative",
+      "annotation_source": "Отрицательный синтетический запрос, не правовая норма",
+      "id": "Q31"
+    },
+    {
+      "query": "Право квантового единорога на телепортацию",
+      "expected_terms": [],
+      "expected_source_ids": [],
+      "expected_status": "no_evidence",
+      "domain": "out_of_scope",
+      "kind": "negative",
+      "annotation_source": "Отрицательный синтетический запрос, не правовая норма",
+      "id": "Q32"
+    },
+    {
+      "query": "зюзюбрик квакозяблик",
+      "expected_terms": [],
+      "expected_source_ids": [],
+      "expected_status": "no_evidence",
+      "domain": "out_of_scope",
+      "kind": "negative",
+      "annotation_source": "Отрицательный синтетический запрос, не правовая норма",
+      "id": "Q33"
+    },
+    {
+      "query": "межгалактический нотариус о дзюброквах",
+      "expected_terms": [],
+      "expected_source_ids": [],
+      "expected_status": "no_evidence",
+      "domain": "out_of_scope",
+      "kind": "negative",
+      "annotation_source": "Отрицательный синтетический запрос, не правовая норма",
+      "id": "Q34"
+    },
+    {
+      "query": "Что мне делать?",
+      "expected_terms": [],
+      "expected_source_ids": [],
+      "expected_status": "no_evidence",
+      "domain": "unknown",
+      "kind": "insufficient",
+      "annotation_source": "Нет фактов, позволяющих выбрать правовой объект",
+      "id": "Q35"
+    },
+    {
+      "query": "Помогите разобраться в моей ситуации",
+      "expected_terms": [],
+      "expected_source_ids": [],
+      "expected_status": "no_evidence",
+      "domain": "unknown",
+      "kind": "insufficient",
+      "annotation_source": "Нет фактов, позволяющих выбрать правовой объект",
+      "id": "Q36"
+    }
+  ]
+}

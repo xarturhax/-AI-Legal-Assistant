@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% block content %}
+<h1>{{ {'auth':'Вход', 'reg':'Регистрация', 'verification':'Подтверждение аккаунта', 'recover':'Восстановление доступа'}[kind] }}</h1>
+{% if kind in ['reg','verification','recover'] %}<p class="notice">Локальный dev-режим: почта не отправляется. Владелец установки читает код в каталоге dev-mail приложения. Код действует 15 минут.</p>{% endif %}
+<form method="post" class="panel"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<label>Электронная почта<input name="email" type="email" maxlength="254" value="{{ session.get('verification_email','') if kind == 'verification' else '' }}" required autocomplete="email"></label>
+{% if kind == 'reg' %}<label>Имя<input name="display_name" maxlength="120" autocomplete="name"></label><label>Тип профиля<select name="user_type"><option value="user">Пользователь</option><option value="specialist">Специалист</option></select></label>{% endif %}
+{% if kind in ['auth','reg','recover'] %}<label>{{ 'Новый пароль (для смены)' if kind == 'recover' else 'Пароль' }}<input name="password" type="password" maxlength="256" minlength="10" autocomplete="{{ 'current-password' if kind == 'auth' else 'new-password' }}" {{ 'required' if kind != 'recover' }}></label>{% endif %}
+{% if kind in ['verification','recover'] %}<label>Одноразовый код<input name="token" maxlength="100" autocomplete="one-time-code" {{ 'required' if kind == 'verification' }}></label>{% endif %}
+<button>{{ 'Запросить код / сменить пароль по коду' if kind == 'recover' else 'Продолжить' }}</button></form>
+{% if kind == 'verification' %}<form method="post" action="/resend_code"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label>Адрес для повторного кода<input type="email" name="email" required></label><button>Выдать новый код</button></form>{% endif %}
+<p><a href="/auth">Войти</a> · <a href="/reg">Создать аккаунт</a> · <a href="/recover">Восстановить доступ</a> · <a href="/guest_mode">Продолжить гостем</a></p>{% endblock %}

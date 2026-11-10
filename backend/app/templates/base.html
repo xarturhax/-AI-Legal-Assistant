@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}"><title>{% block title %}Юридический ассистент{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}"><script src="{{ url_for('static', filename='app.js') }}" defer></script></head>
+<body><header><a class="brand" href="/">Право · локально</a><nav aria-label="Основная навигация">
+<a href="/requests">Запросы</a><a href="/directory">Справочник</a><a href="/show_calendar">Календарь</a><a href="/templates">Документы</a><a href="/test">Тесты</a><a href="/forum">Форум</a><a href="/news">Новости</a><a href="/cabinet">Кабинет</a>
+{% if current_user.is_authenticated %}<form action="/logout" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button>Выйти</button></form>{% else %}<a href="/auth">Войти</a>{% endif %}</nav></header>
+<main>{% for message in get_flashed_messages() %}<p class="notice" role="status">{{ message }}</p>{% endfor %}{% block content %}{% endblock %}</main>
+<footer>Материалы извлекаются из OSTIS. Актуальность редакции указывается у источника. Учебная система, не юридическое заключение.</footer></body></html>
+

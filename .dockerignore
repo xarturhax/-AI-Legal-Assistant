@@ -1,0 +1,17 @@
+**
+!ostis/
+!ostis/Dockerfile
+!ostis/verify_runtime.py
+!ostis/entrypoint.py
+!ostis/UPSTREAM_LICENSE
+!ostis/SC_MACHINE_LICENSE
+!ostis/upstream/
+!ostis/upstream/CMakeLists.txt
+!ostis/upstream/requirements.txt
+!ostis/upstream/cmake/
+!ostis/upstream/cmake/**
+!ostis/upstream/problem-solver/
+!ostis/upstream/problem-solver/cxx/
+!ostis/upstream/problem-solver/cxx/**
+!ostis/upstream/scripts/
+!ostis/upstream/scripts/**

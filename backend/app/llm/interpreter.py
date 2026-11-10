@@ -1,0 +1,93 @@
+import json
+
+import httpx
+from pydantic import ValidationError
+
+from app.config import local_service_url
+from app.errors import ServiceError
+from app.llm.prompts import SYSTEM_PROMPT
+from app.llm.schemas import Interpretation
+
+
+class OllamaInterpreter:
+    def __init__(self, base_url, model, timeout=120):
+        self.base_url = local_service_url(
+            base_url, "http", {"ollama", "localhost", "127.0.0.1", "host.docker.internal"}
+        )
+        if "cloud" in model.lower():
+            raise ValueError("Облачные модели запрещены. Выберите локальную модель Ollama.")
+        self.model = model
+        self.timeout = timeout
+
+    def ready(self):
+        try:
+            with httpx.Client(timeout=3, trust_env=False) as connection:
+                response = connection.get(self.base_url + "/api/tags")
+                response.raise_for_status()
+                for model in response.json().get("models", []):
+                    if model.get("name") == self.model and not model.get("remote_model"):
+                        return True
+        except (httpx.HTTPError, ValueError, TypeError):
+            pass
+        return False
+
+    def interpret(self, query, vocabulary=None):
+        if not self.ready():
+            raise ServiceError(
+                "Локальная модель недоступна. Выберите классический поиск.", "llm_unavailable"
+            )
+        schema = Interpretation.model_json_schema()
+        user_content = query
+        if vocabulary is not None:
+            if not vocabulary:
+                raise ServiceError(
+                    "В OSTIS нет доступных названий понятий.", "ostis_vocabulary_empty"
+                )
+            schema["properties"]["search_terms"]["items"]["enum"] = vocabulary
+            user_content = json.dumps(
+                {"question": query, "available_terms": vocabulary}, ensure_ascii=False
+            )
+        payload = {
+            "model": self.model,
+            "stream": False,
+            "format": schema,
+            "options": {"temperature": 0, "num_predict": 1500, "num_ctx": 4096},
+            "messages": [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_content},
+            ],
+        }
+        for attempt in range(2):
+            try:
+                with httpx.Client(timeout=self.timeout, trust_env=False) as connection:
+                    response = connection.post(self.base_url + "/api/chat", json=payload)
+                    response.raise_for_status()
+                    content = response.json()["message"]["content"]
+                if not isinstance(content, str) or len(content) > 16000:
+                    raise ValueError("Недопустимый размер ответа модели")
+                interpretation = Interpretation.model_validate_json(content).check_grounding(query)
+                if vocabulary is not None and any(
+                    term not in vocabulary for term in interpretation.search_terms
+                ):
+                    raise ValueError("Модель выбрала термин вне текущего словаря OSTIS")
+                return interpretation
+            except httpx.TimeoutException as error:
+                raise ServiceError(
+                    "Истекло время ожидания локальной модели.", "llm_timeout", 504
+                ) from error
+            except httpx.HTTPError as error:
+                raise ServiceError(
+                    "Ollama недоступен. Выберите классический поиск.", "llm_unavailable"
+                ) from error
+            except (
+                ValidationError,
+                json.JSONDecodeError,
+                KeyError,
+                ValueError,
+                TypeError,
+            ) as error:
+                if attempt:
+                    raise ServiceError(
+                        "Модель дважды вернула некорректный JSON.", "llm_format", 502
+                    ) from error
+        raise AssertionError("Недостижимая ветка")

@@ -1,0 +1,18 @@
+{
+  "version": "0.10.0",
+  "source_commit": "4ead42282b7a814edbd352f5f5650f0f4a721141",
+  "release_asset_url": "https://github.com/ostis-ai/sc-machine/releases/download/0.10.0/sc-machine-0.10.0-Linux.tar.gz",
+  "release_asset_id": 222073555,
+  "release_asset_size": 3681043,
+  "build_method": "CMAKE_PREFIX_PATH official CPack SDK; original C++ modules",
+  "root_cause": "TLSV1_ALERT_INTERNAL_ERROR on conan.ostis.net in user setup log",
+  "compose_config": "PASS",
+  "static_checks": "PASS",
+  "pytest_default": {
+    "passed": 29,
+    "skipped": 3,
+    "mock_tests": 10
+  },
+  "docker_build_from_agent": "BLOCKED: access denied before Dockerfile execution",
+  "live_kb_ws": "NOT TESTED"
+}

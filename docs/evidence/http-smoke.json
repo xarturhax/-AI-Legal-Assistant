@@ -1,0 +1,69 @@
+{
+  "scope": "real_http",
+  "mock": false,
+  "expected_offline": true,
+  "readiness_http_status": 503,
+  "readiness": {
+    "database": true,
+    "llm": false,
+    "mock": false,
+    "ostis": false
+  },
+  "checks": [
+    {
+      "route": "/",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "route": "/requests",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "route": "/directory",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "route": "/auth",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "route": "/reg",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "route": "/verification",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "route": "/recover",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "route": "/forum",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "route": "/news",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "route": "/templates",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "route": "/api/legal/query",
+      "http_status": 503,
+      "pass": true
+    }
+  ]
+}

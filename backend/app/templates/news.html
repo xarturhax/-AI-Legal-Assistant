@@ -1,0 +1,3 @@
+{% extends 'base.html' %}{% block content %}<h1>Новости</h1><p>Последние материалы подключённых RSS-источников. Время загрузки не является датой вступления нормы в силу.</p>
+{% for state in states %}<p class="notice">{{ state.source_url }} · Проверка: {{ state.checked_at }}{% if state.error %} · {{ state.error }}{% endif %}</p>{% endfor %}
+{% for item in items %}<article><h2><a href="{{ item.link }}" rel="noopener noreferrer">{{ item.title }}</a></h2><p>{{ item.excerpt }}</p><small>Источник: {{ item.source_url }} · Публикация: {{ item.published_at or 'не указана' }} · Загружено: {{ item.fetched_at }}</small></article>{% else %}<p>Загруженных новостей пока нет. RSS-источники настраивает владелец установки.</p>{% endfor %}{% endblock %}

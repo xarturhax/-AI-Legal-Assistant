@@ -1,0 +1,11 @@
+services:
+  sc-web:
+    image: ostis/sc-web:0.9.0
+    profiles: [debug]
+    ports:
+      - 127.0.0.1:8000:8000
+    command: [--server-host=machine]
+    depends_on:
+      machine:
+        condition: service_healthy
+

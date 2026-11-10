@@ -1,0 +1,624 @@
+{
+  "reviewed_at": "2026-10-28",
+  "repositories": [
+    {
+      "repository": "ostis-apps/ostis-legislation",
+      "sha": "903e0c1e38dec25ba2f6ab4a9d5e82fe175d8e38",
+      "license": "MIT",
+      "submodules": [
+        {
+          "path": "interface/sc-web",
+          "mode": "160000",
+          "type": "commit",
+          "sha": "058ed9482806d41ea3190228ea595029f2450a27"
+        },
+        {
+          "path": "knowledge-base/ims.ostis.kb",
+          "mode": "160000",
+          "type": "commit",
+          "sha": "592145835643500878d5fc837df99009cd756c24"
+        }
+      ]
+    },
+    {
+      "repository": "SharkoStepan/sc-legislation-app",
+      "sha": "f7b4dab74da2c5f289f282e8b2e9479f4d4a452f",
+      "license": null,
+      "files_copied": false
+    }
+  ],
+  "audited_files": [
+    {
+      "path": "Dockerfile",
+      "blob_sha": "41caa35b76c427b5c687499d3a4d920b33b2483d"
+    },
+    {
+      "path": "docker-compose.yml",
+      "blob_sha": "a4c2a31a76784d2d54a79f43195a1bbbf3c8ec4c"
+    },
+    {
+      "path": "scripts/docker_entrypoint.sh",
+      "blob_sha": "374e98462914a8397cf26da2b72dd0bbb617f4cc"
+    },
+    {
+      "path": "scripts/healthcheck.py",
+      "blob_sha": "487369d6389048ef76629335eac20b2e39d94a76"
+    },
+    {
+      "path": "ostis-legislation.ini",
+      "blob_sha": "c075850a7ff7d21d08cf69ec99496585e21d9037"
+    },
+    {
+      "path": "repo.path",
+      "blob_sha": "10456d89c8ee297c90503b081b822c6d0fa0c333"
+    },
+    {
+      "path": ".gitmodules",
+      "blob_sha": "d9ca6ef32afd47149c8f5ba5479b35908ef033ad"
+    },
+    {
+      "path": "problem-solver/cxx/CMakeLists.txt",
+      "blob_sha": "46acfeb511584f31604623bdeea1d5ed847a094c"
+    },
+    {
+      "path": "problem-solver/cxx/user-request-module/agent/user_request_agent.cpp",
+      "blob_sha": "b4e1460ccbd2391cafcca36b9c7fe6fbc4447eac"
+    },
+    {
+      "path": "LICENSE",
+      "blob_sha": "dfcc0d60d708ddd97872c41723bd726bbc103263"
+    }
+  ],
+  "kb_terms": [
+    {
+      "identifier": "concept_applicant_belarus",
+      "title": "абитуриент",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_bachelor_belarus",
+      "title": "бакалавр",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_education_belarus",
+      "title": "воспитание",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_graduate_belarus",
+      "title": "выпускник",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_training_grant_belarus",
+      "title": "грант на обучение",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_quality_of_education_belarus",
+      "title": "качество образования",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_competencies_belarus",
+      "title": "компетенции",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_correctional_classes_belarus",
+      "title": "коррекционные занятия",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_master_belarus",
+      "title": "магистр",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_module_belarus",
+      "title": "модуль",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_education_belarus",
+      "title": "образование",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_educational_activity_belarus",
+      "title": "образовательная деятельность",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_educational_program_belarus",
+      "title": "образовательная программа",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_educational_process_belarus",
+      "title": "образовательный процесс",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_educational_standard_belarus",
+      "title": "образовательный стандарт",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_student_belarus",
+      "title": "обучающийся",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_training_belarus",
+      "title": "обучение",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_obtaining_an_education_belarus",
+      "title": "получение образования",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_receiving_education_at_home_belarus",
+      "title": "получение образования на дому",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_specialist_belarus",
+      "title": "специалист",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_level_of_education_belarus",
+      "title": "ступень образования",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_participants_in_the_educational_process_belarus",
+      "title": "участники образовательного процесса",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_educational_institution_belarus",
+      "title": "учреждение образования",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_education_legislation_belarus/section_law_belarus_education_dict.scs"
+    },
+    {
+      "identifier": "concept_employment_belarus",
+      "title": "занятость",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_unemployment_belarus",
+      "title": "безработица",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_unemployed_belarus",
+      "title": "безработный",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_paid_public_works_belarus",
+      "title": "оплачиваемые общественные работы",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_bodies_of_the_state_employment_service_belarus",
+      "title": "органы государственной службы занятости населения",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_employees_under_threat_of_dismissal_belarus",
+      "title": "работники, находящиеся под угрозой увольнения,",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_free_workplace_vacancy_belarus",
+      "title": "свободное рабочее место (вакансия)",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_employee_position_belarus",
+      "title": "должность служащего",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_labor_legislation_belarus",
+      "title": "законодательство о труде",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_qualification_belarus",
+      "title": "квалификация",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_contract_belarus",
+      "title": "контракт",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_local_legal_acts_belarus",
+      "title": "локальные правовые акты",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_employer_belarus",
+      "title": "наниматель",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_a_separate_division_of_an_organization_belarus",
+      "title": "обособленное подразделение организации",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_association_of_employers_belarus",
+      "title": "объединение нанимателей",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_single_parent_belarus",
+      "title": "одинокий родитель",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_trade_union_belarus",
+      "title": "профессиональный союз (профсоюз)",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_workers_profession_belarus",
+      "title": "профессия рабочего",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_employee_belarus",
+      "title": "работник",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_parties_to_the_employment_contract_belarus",
+      "title": "стороны трудового договора",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_tariff_rate_belarus",
+      "title": "тарифная ставка (тарифный оклад)",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_labor_function_belarus",
+      "title": "трудовая функция",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_employment_contract_belarus",
+      "title": "трудовой договор",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_authorized_official_of_the_employer_belarus",
+      "title": "уполномоченное должностное лицо нанимателя",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_labor_legislation_belarus/section_law_belarus_labor_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_rental_housing_belarus",
+      "title": "арендное жилье",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_close_relatives_belarus",
+      "title": "близкие родственники",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_blocked_residential_building_belarus",
+      "title": "блокированный жилой дом",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_a_former_family_member_belarus",
+      "title": "бывший член семьи",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_auxiliary_premises_belarus",
+      "title": "вспомогательное помещение",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_entry_fee_belarus",
+      "title": "вступительный взнос",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_state_support_for_the_construction_reconstruction_or_acquisition_of_residential_premises_belarus",
+      "title": "государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_living_room_belarus",
+      "title": "жилая комната",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_living_space_houseroom_belarus",
+      "title": "жилая площадь",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_housing_and_communal_services_belarus",
+      "title": "жилищно-коммунальные услуги",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_housing_and_construction_cooperative_belarus",
+      "title": "жилищно-строительный кооператив",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_a_housing_cooperative_belarus",
+      "title": "жилищный кооператив",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_housing_stock_belarus",
+      "title": "жилищный фонд",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_living_space_belarus",
+      "title": "жилое помещение",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_residental_premises_in_a_dormitory_belarus",
+      "title": "жилое помещение в общежитии",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_residential_premises_of_the_maneuverable_stock_belarus",
+      "title": "жилое помещение маневренного фонда",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_residential_premises_for_social_use_belarus",
+      "title": "жилое помещение социального пользования",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_residential_premises_of_standard_consumer_qualities_belarus",
+      "title": "жилое помещение типовых потребительских качеств",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_a_residential_building_belarus",
+      "title": "жилой дом",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_isolated_living_room_belarus",
+      "title": "изолированная жилая комната",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_isolated_residential_premises_belarus",
+      "title": "изолированное жилое помещение",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_engineering_systems_belarus",
+      "title": "инженерные системы",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_major_repairs_belarus",
+      "title": "капитальный ремонт",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_an_apartment_belarus",
+      "title": "квартира",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_utilities_belarus",
+      "title": "коммунальные услуги",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_structural_elements_belarus",
+      "title": "конструктивные элементы",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_multi_apartment_residential_building_belarus",
+      "title": "многоквартирный жилой дом",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_non_residential_premises_belarus",
+      "title": "нежилое помещение",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_non_isolated_living_room_belarus",
+      "title": "неизолированная жилая комната",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_the_total_area_of_a_residential_premises_belarus",
+      "title": "общая площадь жилого помещения",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_common_property_of_joint_household_ownership_belarus",
+      "title": "общее имущество совместного домовладения",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_dormitory_belarus",
+      "title": "общежитие",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_real_estate_objects_belarus",
+      "title": "объекты недвижимого имущества",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_a_single_apartment_residential_building_belarus",
+      "title": "одноквартирный жилой дом",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_organization_of_developers_belarus",
+      "title": "организация застройщиков",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_an_organization_that_carries_out_accounting_calculation_and_charging_of_fees_for_housing_and_communal_services_and_fees_for_the_use_of_residential_premises_belarus",
+      "title": "организация, осуществляющая учет, расчет и начисление платы за жилищно-коммунальные услуги и платы за пользование жилым помещением",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_an_organization_that_operates_the_housing_stock_and_or_provides_housing_and_communal_services_belarus",
+      "title": "организация, осуществляющая эксплуатацию жилищного фонда и (или) предоставляющая жилищно-коммунальные услуги",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_share_contribution_belarus",
+      "title": "паевой взнос",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_savings_belarus",
+      "title": "паенакопления",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_redevelopment_belarus",
+      "title": "перепланировка",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_reconstruction_belarus",
+      "title": "переустройство",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_a_written_agreement_on_the_procedure_for_using_residential_premises_belarus",
+      "title": "письменное соглашение о порядке пользования жилым помещением",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_a_written_agreement_on_recognition_as_a_family_member_belarus",
+      "title": "письменное соглашение о признании членом семьи",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_utility_room_belarus",
+      "title": "подсобное помещение",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_a_room_belarus",
+      "title": "помещение",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_providing_places_for_short_term_residence_belarus",
+      "title": "предоставление мест для краткосрочного проживания",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_adjacent_territory_belarus",
+      "title": "придомовая территория",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_relatives_belarus",
+      "title": "родственники",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_unauthorized_reconstruction_and_or_redevelopment_belarus",
+      "title": "самовольные переустройство и (или) перепланировка",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_sanitary_maintenance_of_auxiliary_premises_of_a_residential_building_belarus",
+      "title": "санитарное содержание вспомогательных помещений жилого дома",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_in_laws_belarus",
+      "title": "свойственники",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_joint_homeownership_belarus",
+      "title": "совместное домовладение",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_special_residential_premises_belarus",
+      "title": "специальное жилое помещение",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_routine_repairs_belarus",
+      "title": "текущий ремонт",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_maintenance_belarus",
+      "title": "техническое обслуживание",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_elevator_maintenance_belarus",
+      "title": "техническое обслуживание лифта",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_partnership_of_owners_belarus",
+      "title": "товарищество собственников",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_management_of_common_property_of_a_joint_household_belarus",
+      "title": "управление общим имуществом совместного домовладения",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_target_contribution_belarus",
+      "title": "целевой взнос",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_membership_fee_belarus",
+      "title": "членский взнос",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_members_of_the_developer_organization_belarus",
+      "title": "члены организации застройщиков",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_family_members_of_a_citizen_who_is_a_member_of_a_developer_organization_whose_residential_building_has_not_been_completed_belarus",
+      "title": "члены семьи гражданина, являющегося членом организации застройщиков, жилой дом которой не завершен строительством (реконструкция жилого дома которой не завершена)",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    },
+    {
+      "identifier": "concept_operation_of_the_housing_stock_belarus",
+      "title": "эксплуатация жилищного фонда",
+      "path": "knowledge-base/legal/belarus/sections/section_dict_housing_legilsation_belarus/section_law_belarus_housing_legislation_dict.scs"
+    }
+  ]
+}

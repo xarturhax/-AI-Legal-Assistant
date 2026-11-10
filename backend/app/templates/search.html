@@ -1,0 +1,13 @@
+{% extends 'base.html' %}{% block content %}<h1>{{ 'Справочник понятий' if directory else 'Юридический запрос' }}</h1>
+<p>{{ 'Введите название понятия для поиска в SC-базе.' if directory else 'Результат содержит только сведения, извлечённые из OSTIS.' }}</p>
+{% if not directory %}<p>Классический поиск использует слова вопроса. Локальная LLM помогает подобрать название понятия по описанию своими словами. Тексты в обоих режимах поступают из одной базы OSTIS.</p>{% endif %}
+<form method="{{ 'get' if directory else 'post' }}" class="panel">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<label for="query">{{ 'Понятие' if directory else 'Ваш вопрос' }}</label>
+<textarea id="query" name="{{ 'term' if directory else 'query' }}" minlength="2" maxlength="{{ 200 if directory else 1500 }}" required>{{ request.values.get('term' if directory else 'query', '') }}</textarea>
+{% if not directory %}<label for="mode">Режим</label><select id="mode" name="mode"><option value="baseline" {% if selected_mode == 'baseline' %}selected{% endif %}>Классический поиск</option><option value="llm" {% if selected_mode == 'llm' %}selected{% endif %}>Локальная LLM</option></select>{% endif %}<button>Найти сведения</button></form>
+{% if result %}{% if result.answer %}<h2>{{ 'Найденные выдержки' if result.answer.status == 'grounded' else 'Нет подтверждённого ответа' }}</h2><p class="preserve">{{ result.answer.text }}</p>{% endif %}
+{% if result.interpretation %}<p><strong>Поисковые термины LLM:</strong> {{ result.interpretation.search_terms | join(', ') or 'Не определены' }}. Модель подбирает термины; выдержки поступают из OSTIS.</p>{% endif %}
+{% for item in result.matches %}<article class="panel"><p class="eyebrow">OSTIS · {{ item.sc_identifier or item.sc_address }}</p><h2><a href="{{ url_for('legal.source', identifier=item.id) }}">{{ item.title }}</a></h2><p>{{ item.excerpt or 'Текст недоступен в загруженной памяти.' }}</p><small>{{ item.currency }}</small></article>{% else %}<p>Совпадений в базе не найдено.</p>{% endfor %}
+{% if result.unmatched_terms %}<details><summary>Термины без совпадения</summary>{{ result.unmatched_terms | join(', ') }}</details>{% endif %}
+{% if result.trace %}<details><summary>Как получен результат</summary><pre>{{ result.trace | tojson(indent=2) }}</pre></details>{% endif %}{% endif %}{% endblock %}

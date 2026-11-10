@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block content %}<p class="eyebrow">Источник · OSTIS</p><h1>{{ source.title }}</h1><p><code>{{ source.sc_identifier or source.sc_address }}</code></p><p class="notice">{{ source.currency }}</p>
+<div class="panel preserve">{{ source.text or 'Текст не извлечён из SC-памяти.' }}</div>
+{% if current_user.is_authenticated %}<form method="post" action="/bookmarks/add"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="source_id" value="{{ source.id }}"><button>Добавить в закладки</button></form>{% endif %}
+{% if source.related %}<h2>Связанные элементы</h2><ul>{% for item in source.related %}<li><a href="{{ url_for('legal.source', identifier=item.sc_identifier or ('addr:' ~ item.sc_address)) }}">{{ item.title or item.sc_address }}</a> <small>{{ item.relation }}</small></li>{% endfor %}</ul>{% endif %}
+<details><summary>Происхождение текста</summary><pre>{{ source.provenance | tojson(indent=2) }}</pre></details>{% endblock %}

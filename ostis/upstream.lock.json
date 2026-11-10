@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/ostis-apps/ostis-legislation.git",
+  "sha": "903e0c1e38dec25ba2f6ab4a9d5e82fe175d8e38",
+  "submodules": {
+    "interface/sc-web": "058ed9482806d41ea3190228ea595029f2450a27",
+    "knowledge-base/ims.ostis.kb": "592145835643500878d5fc837df99009cd756c24"
+  }
+}

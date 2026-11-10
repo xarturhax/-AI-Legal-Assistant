@@ -1,0 +1,293 @@
+{
+  "created_at": "2026-11-10T22:42:32.290216+00:00",
+  "platform": "Windows-11-10.0.22621-SP0",
+  "python": "3.12.6",
+  "kb_sha": "903e0c1e38dec25ba2f6ab4a9d5e82fe175d8e38",
+  "kb_sha_role": "dataset_annotation",
+  "runtime_kb_version": "unknown",
+  "mock": false,
+  "scope": "live_search_regressions",
+  "models": {
+    "ollama": "qwen3:4b-instruct"
+  },
+  "results": [
+    {
+      "case": "Q03",
+      "mode": "baseline",
+      "query": "Что такое воспитание?",
+      "request_seconds": 1.891,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_education_belarus",
+        "concept_raising_belarus",
+        "concept_foster_care_belarus",
+        "by_act_hk9900278_article_75",
+        "concept_foster_family_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "воспитание"
+      ],
+      "seconds": 7.281487600179389,
+      "expected_source_found": true
+    },
+    {
+      "case": "Q14",
+      "mode": "baseline",
+      "query": "Что такое работники, находящиеся под угрозой увольнения,?",
+      "request_seconds": 3.078,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_employees_under_threat_of_dismissal_belarus",
+        "concept_state_support_for_the_construction_reconstruction_or_acquisition_of_residential_premises_belarus",
+        "concept_utility_room_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "работники, находящиеся под угрозой увольнения,",
+        "работники находящиеся под угрозой",
+        "находящиеся под угрозой увольнения",
+        "работники находящиеся под",
+        "находящиеся под угрозой",
+        "под угрозой увольнения",
+        "работники находящиеся",
+        "находящиеся под",
+        "под угрозой",
+        "угрозой увольнения",
+        "работники",
+        "находящиеся",
+        "под",
+        "угрозой",
+        "увольнения"
+      ],
+      "seconds": 6.282486099982634,
+      "expected_source_found": true
+    },
+    {
+      "case": "Q15",
+      "mode": "baseline",
+      "query": "Что такое свободное рабочее место (вакансия)?",
+      "request_seconds": 2.125,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_free_workplace_vacancy_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "свободное рабочее место (вакансия)",
+        "свободное рабочее место вакансия",
+        "свободное рабочее место",
+        "рабочее место вакансия",
+        "свободное рабочее",
+        "рабочее место",
+        "место вакансия",
+        "свободное",
+        "рабочее",
+        "место",
+        "вакансия"
+      ],
+      "seconds": 3.2395321000367403,
+      "expected_source_found": true
+    },
+    {
+      "case": "Q23",
+      "mode": "baseline",
+      "query": "Что такое государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений?",
+      "request_seconds": 2.563,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_state_support_for_the_construction_reconstruction_or_acquisition_of_residential_premises_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений",
+        "государственная поддержка при строительстве",
+        "поддержка при строительстве реконструкции",
+        "при строительстве реконструкции приобретении",
+        "строительстве реконструкции приобретении жилых",
+        "реконструкции приобретении жилых помещений",
+        "государственная поддержка при",
+        "поддержка при строительстве",
+        "при строительстве реконструкции",
+        "строительстве реконструкции приобретении",
+        "реконструкции приобретении жилых",
+        "приобретении жилых помещений",
+        "государственная поддержка",
+        "поддержка при",
+        "при строительстве",
+        "строительстве реконструкции"
+      ],
+      "seconds": 3.675861599855125,
+      "expected_source_found": true
+    },
+    {
+      "case": "Q25",
+      "mode": "baseline",
+      "query": "Я поступаю в вуз. Как называют поступающего?",
+      "request_seconds": 1.094,
+      "answer_status": "no_evidence",
+      "status_matches_gold": false,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "я поступаю в вуз. как называют поступающего",
+        "поступаю вуз называют поступающего",
+        "поступаю вуз называют",
+        "вуз называют поступающего",
+        "поступаю вуз",
+        "вуз называют",
+        "называют поступающего",
+        "поступаю",
+        "вуз",
+        "называют",
+        "поступающего"
+      ],
+      "seconds": 1.0806618998758495,
+      "expected_source_found": false
+    },
+    {
+      "case": "Q03",
+      "mode": "llm",
+      "query": "Что такое воспитание?",
+      "request_seconds": 36.797,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_education_belarus",
+        "concept_raising_belarus",
+        "concept_foster_care_belarus",
+        "by_act_hk9900278_article_75",
+        "concept_foster_family_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "воспитание"
+      ],
+      "seconds": 42.00998930004425,
+      "expected_source_found": true
+    },
+    {
+      "case": "Q14",
+      "mode": "llm",
+      "query": "Что такое работники, находящиеся под угрозой увольнения,?",
+      "request_seconds": 13.375,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_employees_under_threat_of_dismissal_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "работники, находящиеся под угрозой увольнения,"
+      ],
+      "seconds": 14.375639599980786,
+      "expected_source_found": true
+    },
+    {
+      "case": "Q15",
+      "mode": "llm",
+      "query": "Что такое свободное рабочее место (вакансия)?",
+      "request_seconds": 12.562,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_free_workplace_vacancy_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "свободное рабочее место (вакансия)"
+      ],
+      "seconds": 13.529137299861759,
+      "expected_source_found": true
+    },
+    {
+      "case": "Q23",
+      "mode": "llm",
+      "query": "Что такое государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений?",
+      "request_seconds": 13.891,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_state_support_for_the_construction_reconstruction_or_acquisition_of_residential_premises_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений"
+      ],
+      "seconds": 14.932861799839884,
+      "expected_source_found": true
+    },
+    {
+      "case": "Q25",
+      "mode": "llm",
+      "query": "Я поступаю в вуз. Как называют поступающего?",
+      "request_seconds": 14.187,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_applicant_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "абитуриент"
+      ],
+      "seconds": 15.1789771001786,
+      "expected_source_found": true
+    }
+  ],
+  "status": "PASS",
+  "metrics": {
+    "baseline": {
+      "term_micro": {
+        "precision": 0.07407407407407407,
+        "recall": 0.8,
+        "f1": 0.13559322033898305
+      },
+      "counts": {
+        "tp": 4,
+        "fp": 50,
+        "fn": 1
+      },
+      "cases": 5,
+      "failures": 0,
+      "p50_seconds": 3.675861599855125,
+      "p95_seconds": 7.081687300140038,
+      "request_p50_seconds": 2.125,
+      "request_p95_seconds": 2.9749999999999996,
+      "timeout_rate": 0.0,
+      "linked_candidate_fraction": 0.5185185185185185,
+      "unsupported_reference_fraction": 0.0,
+      "expected_source_precision": 0.4,
+      "references": 10,
+      "status_agreement_fraction": 0.8
+    },
+    "llm": {
+      "term_micro": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "counts": {
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "cases": 5,
+      "failures": 0,
+      "p50_seconds": 14.932861799839884,
+      "p95_seconds": 36.64378686007112,
+      "request_p50_seconds": 13.891,
+      "request_p95_seconds": 32.27499999999999,
+      "timeout_rate": 0.0,
+      "linked_candidate_fraction": 1.0,
+      "unsupported_reference_fraction": 0.0,
+      "expected_source_precision": 0.5555555555555556,
+      "references": 9,
+      "status_agreement_fraction": 1.0
+    }
+  }
+}

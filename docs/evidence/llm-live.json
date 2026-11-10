@@ -1,0 +1,48 @@
+{
+  "component": "OllamaInterpreter",
+  "mock": false,
+  "model": "qwen3:4b-instruct",
+  "base_url": "http://127.0.0.1:11434",
+  "query": "Что такое арендное жилье?",
+  "status": "PASS",
+  "elapsed_seconds": 53.203,
+  "interpretation": {
+    "intent": "definition",
+    "domain_hints": [
+      "аренда",
+      "жилье",
+      "недвижимость",
+      "дом",
+      "квартира"
+    ],
+    "search_terms": [
+      "арендное жилье",
+      "аренда жилья",
+      "жилье в аренду",
+      "недвижимость в аренду",
+      "квартира в аренду",
+      "дом в аренду",
+      "аренда жилья по договору",
+      "аренда жилья для проживания",
+      "аренда жилья по правилам",
+      "аренда жилья в россии"
+    ],
+    "entities": [
+      {
+        "name": "арендное жилье",
+        "type": "document",
+        "original_text": "Что такое арендное жилье?"
+      }
+    ],
+    "facts": [
+      {
+        "key": "present_in_user_text",
+        "value": "Что такое арендное жилье?",
+        "present_in_user_text": true
+      }
+    ],
+    "missing_information": [],
+    "needs_clarification": false
+  },
+  "scope": "Только локальная JSON-интерпретация; правовой ответ с OSTIS не проверен"
+}
