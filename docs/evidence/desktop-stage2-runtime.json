@@ -1,0 +1,22 @@
+{
+  "url": "http://127.0.0.1:5000",
+  "health_status": 200,
+  "health": {
+    "database": true,
+    "llm": true,
+    "mock": false,
+    "ostis": true
+  },
+  "home_status": 200,
+  "directory_has_new_design": true,
+  "documents_have_new_design": true,
+  "mobile_toggle_absent": true,
+  "assets_match_workspace": {
+    "app.css": true,
+    "concept.css": true,
+    "app.js": true,
+    "favicon.svg": true
+  },
+  "protected_files": 45,
+  "changed_backend_or_infrastructure": []
+}

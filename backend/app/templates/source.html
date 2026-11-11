@@ -1,5 +1,15 @@
-{% extends 'base.html' %}{% block content %}<p class="eyebrow">Источник · OSTIS</p><h1>{{ source.title }}</h1><p><code>{{ source.sc_identifier or source.sc_address }}</code></p><p class="notice">{{ source.currency }}</p>
-<div class="panel preserve">{{ source.text or 'Текст не извлечён из SC-памяти.' }}</div>
-{% if current_user.is_authenticated %}<form method="post" action="/bookmarks/add"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="source_id" value="{{ source.id }}"><button>Добавить в закладки</button></form>{% endif %}
-{% if source.related %}<h2>Связанные элементы</h2><ul>{% for item in source.related %}<li><a href="{{ url_for('legal.source', identifier=item.sc_identifier or ('addr:' ~ item.sc_address)) }}">{{ item.title or item.sc_address }}</a> <small>{{ item.relation }}</small></li>{% endfor %}</ul>{% endif %}
-<details><summary>Происхождение текста</summary><pre>{{ source.provenance | tojson(indent=2) }}</pre></details>{% endblock %}
+{% extends 'base.html' %}
+{% block title %}{{ source.title }}{% endblock %}
+{% block content %}
+<header class="c-page-heading c-source-heading"><a class="back-link" href="/directory">Вернуться в справочник</a><p class="c-page-category">Источник OSTIS</p><h1>{{ source.title }}</h1><p class="c-heading-identifier">{{ source.sc_identifier or source.sc_address }}</p></header>
+<div class="c-work-area">
+  <div class="c-source-reader">
+    <article class="document-sheet"><div class="legal-text preserve">{{ source.text or 'Текст не извлечён из SC-памяти.' }}</div></article>
+    <aside class="c-reader-aside"><h2>Об источнике</h2><p class="notice">{{ source.currency }}</p>
+      {% if current_user.is_authenticated %}<form class="source-actions" method="post" action="/bookmarks/add"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="source_id" value="{{ source.id }}"><button>Добавить в закладки</button></form>{% endif %}
+    </aside>
+  </div>
+  {% if source.related %}<section class="related-section"><h2>Связанные элементы</h2><ul class="related-list">{% for item in source.related %}<li><a href="{{ url_for('legal.source', identifier=item.sc_identifier or ('addr:' ~ item.sc_address)) }}">{{ item.title or item.sc_address }}</a><small>{{ item.relation }}</small></li>{% endfor %}</ul></section>{% endif %}
+  <details class="c-detail"><summary>Происхождение текста</summary><pre>{{ source.provenance | tojson(indent=2) }}</pre></details>
+</div>
+{% endblock %}

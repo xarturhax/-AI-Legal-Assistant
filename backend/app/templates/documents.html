@@ -1,1 +1,9 @@
-{% extends 'base.html' %}{% block content %}<h1>Шаблоны документов</h1><p>Бланки с указанием источника и условий использования.</p>{% for item in documents %}<article><h2><a href="/templates/{{ item.id }}">{{ item.title }}</a></h2><a href="{{ item.source_url }}" rel="noopener noreferrer">Источник бланка</a><p>{{ item.license }}</p></article>{% else %}<p class="notice">Подтверждённые бланки пока не подключены. Исходный сайт не содержал файлов для скачивания. Каталог появится после добавления документов с источниками.</p>{% endfor %}{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Шаблоны документов{% endblock %}
+{% block content %}
+<header class="c-page-heading"><h1>Шаблоны документов</h1><p>Выберите бланк, проверьте источник и заполните необходимые поля.</p></header>
+<div class="c-work-area">
+  <div class="catalog-toolbar"><span>Каталог бланков</span><span>Источники и условия использования</span></div>
+  <div class="document-catalog">{% for item in documents %}<article class="catalog-row"><div><h2><a href="/templates/{{ item.id }}">{{ item.title }}</a></h2><p>{{ item.license }}</p><a class="catalog-source" href="{{ item.source_url }}" rel="noopener noreferrer">Источник бланка</a></div><a class="button-secondary button" href="/templates/{{ item.id }}">Открыть и заполнить</a></article>{% else %}<p class="notice">Подтверждённые бланки пока не подключены. Исходный сайт не содержал файлов для скачивания. Каталог появится после добавления документов с источниками.</p>{% endfor %}</div>
+</div>
+{% endblock %}

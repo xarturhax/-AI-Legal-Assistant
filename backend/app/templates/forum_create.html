@@ -1,1 +1,6 @@
-{% extends 'base.html' %}{% block content %}<h1>Новая тема</h1><form method="post" class="panel"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label>Заголовок<input name="title" required maxlength="200"></label><label>Описание<textarea name="body" required maxlength="20000"></textarea></label><button>Создать тему</button></form>{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Новая тема{% endblock %}
+{% block content %}
+<header class="c-page-heading"><a class="back-link" href="/forum">Все обсуждения</a><h1>Начните разговор</h1><p>Сформулируйте тему и опишите вопрос так, чтобы другие участники могли понять контекст.</p></header>
+<div class="c-work-area"><form method="post" class="form-panel reading-form"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label>Заголовок<input name="title" required maxlength="200"></label><label>Описание<textarea name="body" required maxlength="20000" rows="8"></textarea></label><button>Создать тему</button></form></div>
+{% endblock %}

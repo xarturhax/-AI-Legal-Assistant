@@ -1,3 +1,11 @@
-{% extends 'base.html' %}{% block content %}<h1>Календарь</h1><p>Личные события. Даты в указанном часовом поясе.</p>
-<form class="panel" method="post" action="/cabinet/calendar"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="action" value="add"><label>Название<input name="title" required maxlength="200"></label><label>Дата и время<input name="starts_at" type="datetime-local" required></label><label>Часовой пояс<input name="timezone" value="{{ timezone }}" required></label><label>Описание<textarea name="description" maxlength="5000"></textarea></label><button>Добавить событие</button></form>
-{% for event in events %}<article class="panel"><h2>{{ event.title }}</h2><p>{{ event.starts_at }} · {{ event.timezone }}</p><p>{{ event.description }}</p><form method="post" action="/cabinet/calendar"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="{{ event.id }}"><button>Удалить событие</button></form></article>{% else %}<p>Событий пока нет.</p>{% endfor %}{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Календарь{% endblock %}
+{% block content %}
+<header class="c-page-heading"><h1>Календарь</h1><p>Важные даты и личные события. Время — в указанном вами часовом поясе.</p></header>
+<div class="c-work-area split-layout">
+  <section class="event-list" aria-label="Ваши события"><h2>Ваше расписание</h2>
+    {% for event in events %}<article class="event-record"><p class="event-date"><time>{{ event.starts_at }}</time> / {{ event.timezone }}</p><h3>{{ event.title }}</h3><p class="preserve">{{ event.description }}</p><form method="post" action="/cabinet/calendar"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="{{ event.id }}"><button class="text-button">Удалить событие</button></form></article>{% else %}<div class="empty-state"><h3>Пока без событий</h3><p>Добавьте важную дату и описание — событие появится в этом списке.</p></div>{% endfor %}
+  </section>
+  <form class="form-panel" method="post" action="/cabinet/calendar"><h2>Новое событие</h2><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="action" value="add"><label>Название<input name="title" required maxlength="200"></label><label>Дата и время<input name="starts_at" type="datetime-local" required></label><label>Часовой пояс<input name="timezone" value="{{ timezone }}" required></label><label>Описание<textarea name="description" maxlength="5000"></textarea></label><button>Добавить событие</button></form>
+</div>
+{% endblock %}

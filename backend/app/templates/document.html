@@ -1,1 +1,9 @@
-{% extends 'base.html' %}{% block content %}<h1>{{ document.title }}</h1><p><a href="{{ document.source_url }}" rel="noopener noreferrer">Источник</a> · {{ document.license }}</p><pre class="panel">{{ content }}</pre><form method="post" class="panel"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">{% for field in fields %}<label>{{ field.replace('_',' ') }}<input name="{{ field }}" maxlength="1000" required></label>{% endfor %}<button>Скачать заполненный документ</button></form>{% endblock %}
+{% extends 'base.html' %}
+{% block title %}{{ document.title }}{% endblock %}
+{% block content %}
+<header class="c-page-heading"><a class="back-link" href="/templates">Все шаблоны документов</a><h1>{{ document.title }}</h1><p class="c-document-license"><a href="{{ document.source_url }}" rel="noopener noreferrer">Источник бланка</a><span>{{ document.license }}</span></p></header>
+<div class="c-work-area split-layout document-workbench">
+  <section aria-label="Текст бланка"><h2>Предварительный просмотр</h2><pre class="document-sheet document-preview">{{ content }}</pre></section>
+  <form method="post" class="form-panel document-form"><h2>Заполните поля</h2><p class="field-help">Данные подставятся в бланк. Готовый документ скачается в формате TXT.</p><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">{% for field in fields %}<label>{{ field.replace('_',' ') }}<input name="{{ field }}" maxlength="1000" required></label>{% endfor %}<button>Скачать заполненный документ</button></form>
+</div>
+{% endblock %}

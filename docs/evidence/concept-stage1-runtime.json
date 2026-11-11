@@ -1,0 +1,37 @@
+{
+  "url": "http://127.0.0.1:5000",
+  "checks": [
+    {
+      "label": "real running app source identifier",
+      "status": "PASS",
+      "detail": [
+        "concept_rental_housing_belarus"
+      ]
+    },
+    {
+      "label": "empty search revised and no overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "running dependencies healthy",
+      "status": "PASS",
+      "detail": {
+        "database": true,
+        "llm": true,
+        "mock": false,
+        "ostis": true
+      }
+    },
+    {
+      "label": "running concept CSS matches workspace",
+      "status": "PASS"
+    }
+  ],
+  "health": {
+    "database": true,
+    "llm": true,
+    "mock": false,
+    "ostis": true
+  },
+  "scope": "stage 1 only"
+}

@@ -1,0 +1,683 @@
+{
+  "date": "2026-11-11",
+  "browser": "Microsoft Edge headless",
+  "isolatedApplicationDatabase": true,
+  "mockLegalData": false,
+  "checks": [
+    {
+      "label": "1280px /: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Правона ясность.",
+        "width": 1280,
+        "scrollWidth": 1265,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /requests: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Юридическийпоиск",
+        "width": 1280,
+        "scrollWidth": 1280,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /directory: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Справочникпонятий",
+        "width": 1280,
+        "scrollWidth": 1280,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /templates: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Шаблоны документов",
+        "width": 1280,
+        "scrollWidth": 1265,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /templates/archive-study: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Архивный запрос о подтверждении учёбы",
+        "width": 1280,
+        "scrollWidth": 1265,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /forum: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Форум",
+        "width": 1280,
+        "scrollWidth": 1265,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /forum/topic/1: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Как вы организуете работу с источниками?",
+        "width": 1280,
+        "scrollWidth": 1265,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /forum/create_topic: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Начните разговор",
+        "width": 1280,
+        "scrollWidth": 1265,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /news: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Новости",
+        "width": 1280,
+        "scrollWidth": 1280,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /cabinet: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Личный кабинет",
+        "width": 1280,
+        "scrollWidth": 1265,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /show_calendar: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Календарь",
+        "width": 1280,
+        "scrollWidth": 1265,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /test: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Учебные тесты",
+        "width": 1280,
+        "scrollWidth": 1280,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /auth: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "С возвращением.",
+        "width": 1280,
+        "scrollWidth": 1280,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /reg: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Ваше место для исследования.",
+        "width": 1280,
+        "scrollWidth": 1265,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /recover: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Восстановление доступа.",
+        "width": 1280,
+        "scrollWidth": 1280,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /verification: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Подтвердите аккаунт.",
+        "width": 1280,
+        "scrollWidth": 1265,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1280px /missing-ui-page: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Не удалось выполнить действие",
+        "width": 1280,
+        "scrollWidth": 1280,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Правона ясность.",
+        "width": 1600,
+        "scrollWidth": 1585,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /requests: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Юридическийпоиск",
+        "width": 1600,
+        "scrollWidth": 1600,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /directory: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Справочникпонятий",
+        "width": 1600,
+        "scrollWidth": 1600,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /templates: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Шаблоны документов",
+        "width": 1600,
+        "scrollWidth": 1585,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /templates/archive-study: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Архивный запрос о подтверждении учёбы",
+        "width": 1600,
+        "scrollWidth": 1585,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /forum: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Форум",
+        "width": 1600,
+        "scrollWidth": 1585,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /forum/topic/1: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Как вы организуете работу с источниками?",
+        "width": 1600,
+        "scrollWidth": 1585,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /forum/create_topic: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Начните разговор",
+        "width": 1600,
+        "scrollWidth": 1585,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /news: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Новости",
+        "width": 1600,
+        "scrollWidth": 1600,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /cabinet: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Личный кабинет",
+        "width": 1600,
+        "scrollWidth": 1585,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /show_calendar: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Календарь",
+        "width": 1600,
+        "scrollWidth": 1585,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /test: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Учебные тесты",
+        "width": 1600,
+        "scrollWidth": 1600,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /auth: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "С возвращением.",
+        "width": 1600,
+        "scrollWidth": 1600,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /reg: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Ваше место для исследования.",
+        "width": 1600,
+        "scrollWidth": 1585,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /recover: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Восстановление доступа.",
+        "width": 1600,
+        "scrollWidth": 1600,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /verification: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Подтвердите аккаунт.",
+        "width": 1600,
+        "scrollWidth": 1585,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1600px /missing-ui-page: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Не удалось выполнить действие",
+        "width": 1600,
+        "scrollWidth": 1600,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Правона ясность.",
+        "width": 1920,
+        "scrollWidth": 1905,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /requests: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Юридическийпоиск",
+        "width": 1920,
+        "scrollWidth": 1920,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /directory: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Справочникпонятий",
+        "width": 1920,
+        "scrollWidth": 1920,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /templates: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Шаблоны документов",
+        "width": 1920,
+        "scrollWidth": 1905,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /templates/archive-study: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Архивный запрос о подтверждении учёбы",
+        "width": 1920,
+        "scrollWidth": 1905,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /forum: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Форум",
+        "width": 1920,
+        "scrollWidth": 1905,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /forum/topic/1: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Как вы организуете работу с источниками?",
+        "width": 1920,
+        "scrollWidth": 1905,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /forum/create_topic: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Начните разговор",
+        "width": 1920,
+        "scrollWidth": 1905,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /news: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Новости",
+        "width": 1920,
+        "scrollWidth": 1920,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /cabinet: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Личный кабинет",
+        "width": 1920,
+        "scrollWidth": 1905,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /show_calendar: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Календарь",
+        "width": 1920,
+        "scrollWidth": 1905,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /test: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Учебные тесты",
+        "width": 1920,
+        "scrollWidth": 1920,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /auth: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "С возвращением.",
+        "width": 1920,
+        "scrollWidth": 1920,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /reg: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Ваше место для исследования.",
+        "width": 1920,
+        "scrollWidth": 1905,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /recover: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Восстановление доступа.",
+        "width": 1920,
+        "scrollWidth": 1920,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /verification: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Подтвердите аккаунт.",
+        "width": 1920,
+        "scrollWidth": 1905,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "1920px /missing-ui-page: render, encoding, overflow",
+      "status": "PASS",
+      "detail": {
+        "title": "Не удалось выполнить действие",
+        "width": 1920,
+        "scrollWidth": 1920,
+        "overflowing": [],
+        "invalidEncoding": false
+      }
+    },
+    {
+      "label": "query fields, default mode and CSRF present",
+      "status": "PASS"
+    },
+    {
+      "label": "reduced motion removes transitions",
+      "status": "PASS"
+    },
+    {
+      "label": "native search submission shows loading state",
+      "status": "PASS"
+    },
+    {
+      "label": "live OSTIS query rendered source register",
+      "status": "PASS",
+      "detail": {
+        "sources": 1
+      }
+    },
+    {
+      "label": "live results do not overflow at 1600px",
+      "status": "PASS"
+    },
+    {
+      "label": "live source text rendered",
+      "status": "PASS"
+    },
+    {
+      "label": "bookmark source through native UI",
+      "status": "PASS"
+    },
+    {
+      "label": "add note through native UI",
+      "status": "PASS"
+    },
+    {
+      "label": "edit note retains submitter action=edit",
+      "status": "PASS"
+    },
+    {
+      "label": "delete note retains submitter action=delete",
+      "status": "PASS"
+    },
+    {
+      "label": "save profile through native UI",
+      "status": "PASS"
+    },
+    {
+      "label": "saved search preference reaches server-rendered selector",
+      "status": "PASS"
+    },
+    {
+      "label": "live LLM empty result and clarification rendered without invented sources",
+      "status": "PASS"
+    },
+    {
+      "label": "LLM context does not overflow at 1600px",
+      "status": "PASS"
+    },
+    {
+      "label": "add calendar event through native UI",
+      "status": "PASS"
+    },
+    {
+      "label": "delete calendar event through native UI",
+      "status": "PASS"
+    },
+    {
+      "label": "forum vote preserves submitter value",
+      "status": "PASS"
+    },
+    {
+      "label": "forum reply through native UI",
+      "status": "PASS"
+    },
+    {
+      "label": "live OSTIS quiz question and radio answers",
+      "status": "PASS"
+    },
+    {
+      "label": "quiz answers do not overflow at 1600px",
+      "status": "PASS"
+    },
+    {
+      "label": "quiz native answer submits action and IDs",
+      "status": "PASS"
+    },
+    {
+      "label": "native document form still downloads filled TXT",
+      "status": "PASS"
+    },
+    {
+      "label": "navigation and query form accessible without JavaScript",
+      "status": "PASS"
+    },
+    {
+      "label": "desktop layout retained in a narrow window; no mobile version",
+      "status": "PASS",
+      "detail": {
+        "minimum": "1180px",
+        "navigation": "flex",
+        "mobileButton": false,
+        "columns": "169px 169px 169px"
+      }
+    },
+    {
+      "label": "desktop section menu closes with Escape and restores focus",
+      "status": "PASS"
+    },
+    {
+      "label": "no uncaught browser JavaScript errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ]
+}

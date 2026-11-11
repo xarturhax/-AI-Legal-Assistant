@@ -1,0 +1,30 @@
+{
+  "scope": "live OSTIS",
+  "checks": [
+    {
+      "label": "native GET directory form returns real OSTIS source",
+      "status": "PASS"
+    },
+    {
+      "label": "source 1280px no overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "source 1600px no overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "source 1920px no overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "related source content retained with bounded reading measure",
+      "status": "PASS",
+      "detail": {
+        "length": 157,
+        "isFilePath": true,
+        "maxWidth": "952.128px"
+      }
+    }
+  ]
+}

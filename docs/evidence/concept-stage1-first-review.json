@@ -1,0 +1,60 @@
+{
+  "checks": [
+    {
+      "label": "home query retains native POST and loading",
+      "status": "PASS"
+    },
+    {
+      "label": "real OSTIS rental-housing result",
+      "status": "PASS",
+      "detail": {
+        "sources": [
+          {
+            "title": "арендное жилье",
+            "identifier": "concept_rental_housing_belarus",
+            "href": "/article/concept_rental_housing_belarus"
+          }
+        ],
+        "mode": "baseline",
+        "query": "Что такое арендное жилье?"
+      }
+    },
+    {
+      "label": "live result 1920px overflow",
+      "status": "PASS",
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1905,
+        "offenders": []
+      }
+    },
+    {
+      "label": "live result 1280px overflow",
+      "status": "PASS",
+      "detail": {
+        "width": 1280,
+        "scrollWidth": 1265,
+        "offenders": []
+      }
+    },
+    {
+      "label": "live result 768px overflow",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scrollWidth": 753,
+        "offenders": []
+      }
+    },
+    {
+      "label": "live result 360px overflow",
+      "status": "PASS",
+      "detail": {
+        "width": 360,
+        "scrollWidth": 345,
+        "offenders": []
+      }
+    }
+  ],
+  "errors": []
+}

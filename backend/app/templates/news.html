@@ -1,3 +1,9 @@
-{% extends 'base.html' %}{% block content %}<h1>Новости</h1><p>Последние материалы подключённых RSS-источников. Время загрузки не является датой вступления нормы в силу.</p>
-{% for state in states %}<p class="notice">{{ state.source_url }} · Проверка: {{ state.checked_at }}{% if state.error %} · {{ state.error }}{% endif %}</p>{% endfor %}
-{% for item in items %}<article><h2><a href="{{ item.link }}" rel="noopener noreferrer">{{ item.title }}</a></h2><p>{{ item.excerpt }}</p><small>Источник: {{ item.source_url }} · Публикация: {{ item.published_at or 'не указана' }} · Загружено: {{ item.fetched_at }}</small></article>{% else %}<p>Загруженных новостей пока нет. RSS-источники настраивает владелец установки.</p>{% endfor %}{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Новости{% endblock %}
+{% block content %}
+<header class="c-page-heading"><h1>Новости</h1><p>Последние материалы подключённых RSS-источников. Время загрузки не является датой вступления нормы в силу.</p></header>
+<div class="c-work-area">
+  {% if states %}<details class="feed-states c-detail" {% if states | selectattr('error') | list %}open{% endif %}><summary>Состояние источников RSS</summary>{% for state in states %}<p class="notice">{{ state.source_url }} / Проверка: {{ state.checked_at }}{% if state.error %} / {{ state.error }}{% endif %}</p>{% endfor %}</details>{% endif %}
+  <section class="news-list" aria-label="Публикации">{% for item in items %}<article class="news-record"><div class="news-date">{{ item.published_at or 'Дата публикации не указана' }}</div><div><h2><a href="{{ item.link }}" rel="noopener noreferrer">{{ item.title }}</a></h2><p>{{ item.excerpt }}</p><div class="news-meta"><span>Источник: {{ item.source_url }}</span><span>Публикация: {{ item.published_at or 'не указана' }} / Загружено: {{ item.fetched_at }}</span></div></div></article>{% else %}<div class="empty-state"><h2>Публикаций пока нет</h2><p>Загруженных новостей пока нет. RSS-источники настраивает владелец установки.</p></div>{% endfor %}</section>
+</div>
+{% endblock %}

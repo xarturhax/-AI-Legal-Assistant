@@ -1,6 +1,25 @@
-{% extends 'base.html' %}{% block content %}
-<p class="eyebrow">Семантическая база знаний + локальная модель</p><h1>Найдите сведения.<br>Проверьте источник.</h1>
-<p class="lead">Русскоязычный поиск по юридической базе OSTIS. Классический режим работает без модели; нейросетевой помогает выделить термины из вопроса.</p>
-<a class="button" href="/requests">Задать вопрос</a> <a href="/directory">Открыть справочник</a>
-<div class="cards"><article><h2>Подтверждённые материалы</h2><p>У каждого результата — SC-идентификатор, текст и доступные связи.</p></article><article><h2>Данные на вашем устройстве</h2><p>Поиск, учётная запись и обработка запросов работают в локальных службах.</p></article></div>
+{% extends 'concept_base.html' %}
+{% block title %}Право на ясность{% endblock %}
+{% block body_class %}c-home{% endblock %}
+{% block content %}
+<section class="c-hero" aria-labelledby="home-title">
+  <div class="c-hero-inner">
+    <div class="c-hero-copy">
+      <h1 id="home-title">Право<br>на ясность.</h1>
+      <p class="c-hero-description">Разобраться в вопросе.<br>Найти основание. Проверить источник.</p>
+      <form class="c-home-query" method="post" action="/requests" data-loading-form>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label for="home-query">Что вы хотите узнать?</label>
+        <textarea id="home-query" name="query" minlength="2" maxlength="1500" required rows="2" placeholder="Опишите юридический вопрос или ситуацию" aria-describedby="home-query-help"></textarea>
+        <div class="c-home-query-bottom"><a href="/requests" id="home-query-help">Выбрать режим поиска</a><button class="c-button">Найти сведения</button></div>
+        <p class="loading-status c-loading" role="status" hidden>Ищем сведения в локальной базе. Дождитесь результата…</p>
+      </form>
+    </div>
+    <figure class="c-hero-art"><img src="{{ url_for('static', filename='concept-themis.png') }}" width="1200" height="1312" alt="Скульптурный образ Фемиды с повязкой на глазах и уравновешенными весами" fetchpriority="high"></figure>
+  </div>
+</section>
+<section class="c-home-tools" aria-labelledby="tools-title">
+  <div class="c-tools-intro"><h2 id="tools-title">Для внимательной<br>работы с правом.</h2><p>Юридические понятия и тексты из базы знаний OSTIS. Локальная модель помогает подобрать термины для поиска.</p></div>
+  <div class="c-tool-links"><a href="/directory"><span>Справочник</span><p>Определения и связи между понятиями.</p></a><a href="/templates"><span>Документы</span><p>Бланки с источниками и полями для заполнения.</p></a><a href="/cabinet"><span>Личный архив</span><p>История запросов, закладки и ваши заметки.</p></a></div>
+</section>
 {% endblock %}

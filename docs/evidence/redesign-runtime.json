@@ -1,0 +1,15 @@
+{
+  "url": "http://127.0.0.1:5000",
+  "home_status": 200,
+  "redesign_present": true,
+  "ready_status": 200,
+  "ready": {
+    "database": true,
+    "llm": true,
+    "mock": false,
+    "ostis": true
+  },
+  "css_matches_workspace": true,
+  "js_matches_workspace": true,
+  "runtime_python_changed": false
+}

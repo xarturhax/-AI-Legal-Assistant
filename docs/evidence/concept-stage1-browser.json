@@ -1,0 +1,143 @@
+{
+  "checks": [
+    {
+      "label": "home query retains native POST and loading",
+      "status": "PASS"
+    },
+    {
+      "label": "real OSTIS rental-housing result",
+      "status": "PASS",
+      "detail": {
+        "sources": [
+          {
+            "title": "арендное жилье",
+            "identifier": "concept_rental_housing_belarus",
+            "href": "/article/concept_rental_housing_belarus"
+          }
+        ],
+        "mode": "baseline",
+        "query": "Что такое арендное жилье?"
+      }
+    },
+    {
+      "label": "live result 1920px overflow",
+      "status": "PASS",
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1905,
+        "offenders": []
+      }
+    },
+    {
+      "label": "live result 1280px overflow",
+      "status": "PASS",
+      "detail": {
+        "width": 1280,
+        "scrollWidth": 1265,
+        "offenders": []
+      }
+    },
+    {
+      "label": "live result 768px overflow",
+      "status": "PASS",
+      "detail": {
+        "width": 768,
+        "scrollWidth": 753,
+        "offenders": []
+      }
+    },
+    {
+      "label": "live result 360px overflow",
+      "status": "PASS",
+      "detail": {
+        "width": 360,
+        "scrollWidth": 345,
+        "offenders": []
+      }
+    },
+    {
+      "label": "/ 360px no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "/requests 360px no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "/ 768px no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "/requests 768px no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "/ 1280px no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "/requests 1280px no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "/ 1920px no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "/requests 1920px no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "mobile navigation starts closed",
+      "status": "PASS"
+    },
+    {
+      "label": "mobile navigation opens",
+      "status": "PASS"
+    },
+    {
+      "label": "Escape closes menu and restores keyboard focus",
+      "status": "PASS"
+    },
+    {
+      "label": "all existing sections reachable",
+      "status": "PASS"
+    },
+    {
+      "label": "reduced motion respected",
+      "status": "PASS"
+    },
+    {
+      "label": "live LLM situation displays grounded sources and context",
+      "status": "PASS",
+      "detail": {
+        "context": true,
+        "ids": [
+          "concept_rental_housing_belarus",
+          "concept_graduate_belarus",
+          "concept_underage_belarus",
+          "concept_employer_belarus"
+        ],
+        "mode": "llm"
+      }
+    },
+    {
+      "label": "LLM context mobile does not overflow",
+      "status": "PASS"
+    },
+    {
+      "label": "vague real LLM request shows questions and no invented source",
+      "status": "PASS"
+    },
+    {
+      "label": "navigation and native form work without JavaScript",
+      "status": "PASS"
+    },
+    {
+      "label": "no uncaught browser JavaScript errors",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "errors": []
+}
