@@ -48,7 +48,8 @@ def test_existing_agent_single_title_link():
     if probe["result_nodes_count"] == 0 and not probe["matches"]:
         pytest.xfail(
             "Известное ограничение upstream action_user_request: завершение без источников; "
-            f"term={probe['term']}, result_nodes={probe['result_nodes_count']}. "
+            f"term={probe['term']}, result_nodes={probe['result_nodes_count']}, "
+            f"diagnostics={probe['diagnostics']}. "
             "Fallback к настоящей KB проверяется отдельным тестом."
         )
     assert probe["matches"], "Агент не вернул источники; проверить singular/plural и шаблоны"

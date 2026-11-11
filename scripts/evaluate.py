@@ -46,14 +46,15 @@ def evaluate(dataset, terms_only, *, progress=False):
             service.ostis.ready()
         except ServiceError as error:
             failures.append(error.code)
-        if not service.interpreter.ready():
-            failures.append("llm_unavailable")
         if failures:
             report.update(status="SKIPPED", reason=failures, metrics=None)
             return report
         report["models"]["ollama"] = service.interpreter.model
     summaries = {}
     for mode in ["baseline"] if terms_only else ["baseline", "llm"]:
+        if mode == "llm" and not service.interpreter.ready():
+            summaries[mode] = {"status": "SKIPPED", "reason": "llm_unavailable"}
+            continue
         tp = fp = fn = references = unsupported = expected_hits = errors = timeouts = 0
         candidates = linked = 0
         times = []
@@ -69,9 +70,7 @@ def evaluate(dataset, terms_only, *, progress=False):
                     row["request_seconds"] = result["runtime"]["elapsed_seconds"]
                     request_times.append(row["request_seconds"])
                     terms = (
-                        result["interpretation"]["search_terms"]
-                        if mode == "llm"
-                        else extract_terms(case["query"])
+                        result["search_terms"] if mode == "llm" else extract_terms(case["query"])
                     )
                     row["answer_status"] = result["answer"]["status"]
                     row["status_matches_gold"] = row["answer_status"] == case["expected_status"]
@@ -133,7 +132,13 @@ def evaluate(dataset, terms_only, *, progress=False):
             else None,
         }
     report.update(
-        status="FAIL" if any(row["status"] == "FAIL" for row in report["results"]) else "PASS",
+        status=(
+            "FAIL"
+            if any(row["status"] == "FAIL" for row in report["results"])
+            else "SKIPPED"
+            if any(v.get("status") == "SKIPPED" for v in summaries.values())
+            else "PASS"
+        ),
         metrics=summaries,
     )
     return report
@@ -145,9 +150,10 @@ def main():
         "--terms-only", action="store_true", help="Только извлечение baseline, без SC-поиска и LLM"
     )
     parser.add_argument("--output", type=Path, default=root / "reports/evaluation.json")
+    parser.add_argument("--dataset", type=Path, default=root / "data/evaluation/queries.json")
     parser.add_argument("--progress", action="store_true", help="Показывать ход проверки")
     options = parser.parse_args()
-    dataset = json.loads((root / "data/evaluation/queries.json").read_text(encoding="utf-8"))
+    dataset = json.loads(options.dataset.read_text(encoding="utf-8"))
     report = evaluate(dataset, options.terms_only, progress=options.progress)
     options.output.parent.mkdir(parents=True, exist_ok=True)
     options.output.write_text(

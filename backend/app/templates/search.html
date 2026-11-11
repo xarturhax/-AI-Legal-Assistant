@@ -7,7 +7,12 @@
 <textarea id="query" name="{{ 'term' if directory else 'query' }}" minlength="2" maxlength="{{ 200 if directory else 1500 }}" required>{{ request.values.get('term' if directory else 'query', '') }}</textarea>
 {% if not directory %}<label for="mode">Режим</label><select id="mode" name="mode"><option value="baseline" {% if selected_mode == 'baseline' %}selected{% endif %}>Классический поиск</option><option value="llm" {% if selected_mode == 'llm' %}selected{% endif %}>Локальная LLM</option></select>{% endif %}<button>Найти сведения</button></form>
 {% if result %}{% if result.answer %}<h2>{{ 'Найденные выдержки' if result.answer.status == 'grounded' else 'Нет подтверждённого ответа' }}</h2><p class="preserve">{{ result.answer.text }}</p>{% endif %}
-{% if result.interpretation %}<p><strong>Поисковые термины LLM:</strong> {{ result.interpretation.search_terms | join(', ') or 'Не определены' }}. Модель подбирает термины; выдержки поступают из OSTIS.</p>{% endif %}
+{% if result.interpretation and result.search_terms %}<p><strong>Поисковые термины LLM:</strong> {{ result.search_terms | join(', ') }}. Модель подбирает термины; выдержки поступают из OSTIS.</p>{% endif %}
 {% for item in result.matches %}<article class="panel"><p class="eyebrow">OSTIS · {{ item.sc_identifier or item.sc_address }}</p><h2><a href="{{ url_for('legal.source', identifier=item.id) }}">{{ item.title }}</a></h2><p>{{ item.excerpt or 'Текст недоступен в загруженной памяти.' }}</p><small>{{ item.currency }}</small></article>{% else %}<p>Совпадений в базе не найдено.</p>{% endfor %}
+{% if result.situation %}
+<section class="panel"><h2>Контекст ситуации</h2><p>{{ result.situation.notice }}</p>
+{% for item in result.situation['items'] %}<p>{{ item.text }} — {{ 'связано с источниками OSTIS' if item.status == 'linked' else 'связь с OSTIS не найдена' }}{% for source_id in item.source_ids %} <a href="{{ url_for('legal.source', identifier=source_id) }}">Источник</a>{% endfor %}</p>{% endfor %}
+{% if result.situation.needs_clarification %}<h3>Уточните обстоятельства</h3><ul>{% for question in result.situation.clarification_questions %}<li>{{ question }}</li>{% else %}<li>Опишите подробнее обстоятельства и желаемый результат.</li>{% endfor %}</ul>{% endif %}</section>
+{% endif %}
 {% if result.unmatched_terms %}<details><summary>Термины без совпадения</summary>{{ result.unmatched_terms | join(', ') }}</details>{% endif %}
 {% if result.trace %}<details><summary>Как получен результат</summary><pre>{{ result.trace | tojson(indent=2) }}</pre></details>{% endif %}{% endif %}{% endblock %}

@@ -3,13 +3,14 @@ from app.ostis.memory import Memory
 
 
 @pytest.mark.mock
-def test_action_nodes_without_usable_sources_do_not_block_template_search(monkeypatch):
+@pytest.mark.parametrize("agent_nodes", [[], ["unusable-agent-node"]])
+def test_action_nodes_without_usable_sources_do_not_block_template_search(monkeypatch, agent_nodes):
     memory = Memory()
     monkeypatch.setattr(
         memory,
         "user_request",
         lambda term: (
-            ["unusable-agent-node"],
+            agent_nodes,
             {"status": "finished", "method": "action_user_request"},
         ),
     )
@@ -23,7 +24,7 @@ def test_action_nodes_without_usable_sources_do_not_block_template_search(monkey
     )
     result = memory.lookup(["test-only-term"])
     assert result["matches"][0]["id"] == "test-only-source"
-    assert result["trace"][0]["result_nodes_count"] == 1
+    assert result["trace"][0]["result_nodes_count"] == len(agent_nodes)
     assert result["trace"][0]["source_count"] == 0
     assert result["trace"][1]["reason"] == "agent_no_sources"
     assert result["trace"][1]["status"] == "matched"

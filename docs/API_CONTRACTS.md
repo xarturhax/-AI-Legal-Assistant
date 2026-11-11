@@ -40,6 +40,21 @@ sc_address, id, title, excerpt, text, source_document, revision, currency, relat
 `revision=null` означает неизвестную редакцию. Нет подтверждённых выдержек — answer.status=no_evidence,
 без юридических утверждений. При отказе OSTIS ответ 503/504 не содержит answer.
 
+`search_terms` верхнего уровня содержит кандидаты, фактически отправленные в поиск,
+включая термины из контекста. `interpretation.search_terms` сохраняет список модели.
+В LLM-режиме `situation.items` связывает цитаты entities и явно присутствующих facts
+с `terms` из текущего словаря и `source_ids` из найденных результатов. `status` каждого
+элемента принимает `linked` или `unlinked`. Эта связь означает поиск понятия, применимость
+нормы к обстоятельствам не установлена. `assessment_status=not_performed`.
+`clarification_questions` содержит missing_information модели, `needs_clarification`
+учитывает как исходный флаг, так и наличие вопросов. В baseline `situation=null`.
+`situation.search_allowed=false` означает, что исходный запрос содержит только общую
+просьбу без предмета или обстоятельств. В этом случае поиск и action не запускаются,
+`search_terms=[]`, `matches=[]`, `answer.status=no_evidence`, а trace содержит
+`query_interpretation` с `reason=insufficient_context`. Уточнение обязательно,
+вопросы не предполагают выдуманный договор или событие. При наличии предмета либо
+события `needs_clarification=true` допускает частичный поиск вместе с вопросами.
+
 Событие action_user_request в trace содержит result_nodes_count и source_count:
 status=finished означает завершение действия, но не гарантирует непустой ответ.
 При отсутствии пригодных источников SC-template событие помечено reason=agent_no_sources.

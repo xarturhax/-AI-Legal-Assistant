@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-11T09:38:13.056164+00:00",
+  "platform": "Windows-11-10.0.22621-SP0",
+  "python": "3.12.6",
+  "kb_sha": "903e0c1e38dec25ba2f6ab4a9d5e82fe175d8e38",
+  "kb_sha_role": "dataset_annotation",
+  "runtime_kb_version": "unknown",
+  "mock": false,
+  "scope": "live_stack",
+  "models": {},
+  "results": [],
+  "status": "SKIPPED",
+  "reason": [
+    "ostis_unavailable"
+  ],
+  "metrics": null
+}

@@ -408,6 +408,7 @@ class Memory:
                 sources = [source for node in nodes if (source := self.source(node))]
                 return {
                     "term": term,
+                    "diagnostics": self.agent_diagnostics(term),
                     "title_link_count": len(title_links),
                     "links_before_action": len(links),
                     "links_after_action": len(client.search_links_by_contents(term)[0]),
@@ -416,3 +417,20 @@ class Memory:
                     "matches": sources,
                 }
         return None
+
+    def agent_diagnostics(self, term):
+        """Наличие обязательных частей upstream-шаблона в реальной памяти."""
+        return [
+            {
+                "sc_identifier": self.system_identifier(node),
+                "definition_count": len(self.definition(node)),
+                "singular_article_count": len(self.relation(node, "nrel_related_article")),
+                "plural_article_count": len(self.relation(node, "nrel_related_articles")),
+                "singular_concept_out": len(self.relation(node, "nrel_related_concept")),
+                "singular_concept_in": len(
+                    self.relation(node, "nrel_related_concept", reverse=True)
+                ),
+                "plural_concept_out": len(self.relation(node, "nrel_related_concepts")),
+            }
+            for node in self.concepts(term, exact_only=True)
+        ]

@@ -1,6 +1,9 @@
 import json
+import runpy
 from pathlib import Path
+from types import SimpleNamespace
 
+import pytest
 from app.evaluation import percentile, precision_recall_f1, term_counts
 
 
@@ -15,3 +18,44 @@ def test_metrics_and_dataset_provenance():
     assert len(data["cases"]) >= 30
     for case in data["cases"]:
         assert set(case["expected_source_ids"]) <= known
+
+
+@pytest.mark.mock
+def test_live_evaluation_still_runs_baseline_without_ollama(monkeypatch):
+    root = Path(__file__).resolve().parents[3]
+    evaluate = runpy.run_path(str(root / "scripts/evaluate.py"))["evaluate"]
+
+    def query(text, mode):
+        assert mode == "baseline"
+        return {
+            "matches": [],
+            "linked_terms": [],
+            "answer": {"status": "no_evidence"},
+            "runtime": {"elapsed_seconds": 0.1},
+        }
+
+    service = SimpleNamespace(
+        ostis=SimpleNamespace(ready=lambda: True),
+        interpreter=SimpleNamespace(ready=lambda: False, model="test-only"),
+        query=query,
+    )
+    monkeypatch.setitem(evaluate.__globals__, "LegalService", lambda *args: service)
+    result = evaluate(
+        {
+            "kb_sha": "test-only",
+            "cases": [
+                {
+                    "id": "test-only",
+                    "query": "неизвестно",
+                    "expected_terms": [],
+                    "expected_source_ids": [],
+                    "expected_status": "no_evidence",
+                }
+            ],
+        },
+        False,
+    )
+    assert result["status"] == "SKIPPED"
+    assert result["results"][0]["mode"] == "baseline"
+    assert result["results"][0]["status"] == "PASS"
+    assert result["metrics"]["llm"]["reason"] == "llm_unavailable"

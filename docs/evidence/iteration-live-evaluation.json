@@ -1,0 +1,1453 @@
+{
+  "created_at": "2026-11-11T10:21:25.265055+00:00",
+  "platform": "Windows-11-10.0.22621-SP0",
+  "python": "3.12.6",
+  "kb_sha": "903e0c1e38dec25ba2f6ab4a9d5e82fe175d8e38",
+  "kb_sha_role": "dataset_annotation",
+  "runtime_kb_version": "unknown",
+  "mock": false,
+  "scope": "live_stack",
+  "models": {
+    "ollama": "qwen3:4b-instruct"
+  },
+  "results": [
+    {
+      "case": "Q01",
+      "mode": "baseline",
+      "query": "Что такое абитуриент?",
+      "request_seconds": 1.328,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_applicant_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "абитуриент"
+      ],
+      "seconds": 2.401230999999825
+    },
+    {
+      "case": "Q02",
+      "mode": "baseline",
+      "query": "Что такое бакалавр?",
+      "request_seconds": 1.328,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_bachelor_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "бакалавр"
+      ],
+      "seconds": 2.3112723000003825
+    },
+    {
+      "case": "Q03",
+      "mode": "baseline",
+      "query": "Что такое воспитание?",
+      "request_seconds": 1.86,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_education_belarus",
+        "concept_raising_belarus",
+        "concept_foster_care_belarus",
+        "by_act_hk9900278_article_75",
+        "concept_foster_family_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "воспитание"
+      ],
+      "seconds": 7.126312499999585
+    },
+    {
+      "case": "Q04",
+      "mode": "baseline",
+      "query": "Что такое выпускник?",
+      "request_seconds": 1.282,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_graduate_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "выпускник"
+      ],
+      "seconds": 2.2525864999997793
+    },
+    {
+      "case": "Q05",
+      "mode": "baseline",
+      "query": "Что такое грант на обучение?",
+      "request_seconds": 1.407,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_training_grant_belarus",
+        "concept_training_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "грант на обучение",
+        "грант обучение",
+        "грант",
+        "обучение"
+      ],
+      "seconds": 3.3601142999996227
+    },
+    {
+      "case": "Q06",
+      "mode": "baseline",
+      "query": "Что такое качество образования?",
+      "request_seconds": 1.797,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_quality_of_education_belarus",
+        "concept_obtaining_an_education_belarus",
+        "concept_receiving_education_at_home_belarus",
+        "concept_level_of_education_belarus",
+        "concept_educational_institution_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "качество образования",
+        "качество",
+        "образования"
+      ],
+      "seconds": 7.046833399999741
+    },
+    {
+      "case": "Q07",
+      "mode": "baseline",
+      "query": "Что такое компетенции?",
+      "request_seconds": 1.281,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_competencies_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "компетенции"
+      ],
+      "seconds": 2.2470628000000943
+    },
+    {
+      "case": "Q08",
+      "mode": "baseline",
+      "query": "Что такое коррекционные занятия?",
+      "request_seconds": 1.421,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_correctional_classes_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "коррекционные занятия",
+        "коррекционные",
+        "занятия"
+      ],
+      "seconds": 2.4130537000000913
+    },
+    {
+      "case": "Q09",
+      "mode": "baseline",
+      "query": "Что такое занятость?",
+      "request_seconds": 1.391,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_employment_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "занятость"
+      ],
+      "seconds": 2.46182140000019
+    },
+    {
+      "case": "Q10",
+      "mode": "baseline",
+      "query": "Что такое безработица?",
+      "request_seconds": 1.265,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_unemployment_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "безработица"
+      ],
+      "seconds": 2.2760889999999563
+    },
+    {
+      "case": "Q11",
+      "mode": "baseline",
+      "query": "Что такое безработный?",
+      "request_seconds": 1.234,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_unemployed_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "безработный"
+      ],
+      "seconds": 2.215453300000263
+    },
+    {
+      "case": "Q12",
+      "mode": "baseline",
+      "query": "Что такое оплачиваемые общественные работы?",
+      "request_seconds": 1.906,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_paid_public_works_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "оплачиваемые общественные работы",
+        "оплачиваемые общественные",
+        "общественные работы",
+        "оплачиваемые",
+        "общественные",
+        "работы"
+      ],
+      "seconds": 2.910694700000022
+    },
+    {
+      "case": "Q13",
+      "mode": "baseline",
+      "query": "Что такое органы государственной службы занятости населения?",
+      "request_seconds": 2.812,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_bodies_of_the_state_employment_service_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "органы государственной службы занятости населения",
+        "органы государственной службы занятости",
+        "государственной службы занятости населения",
+        "органы государственной службы",
+        "государственной службы занятости",
+        "службы занятости населения",
+        "органы государственной",
+        "государственной службы",
+        "службы занятости",
+        "занятости населения",
+        "органы",
+        "государственной",
+        "службы",
+        "занятости",
+        "населения"
+      ],
+      "seconds": 3.8006866000005175
+    },
+    {
+      "case": "Q14",
+      "mode": "baseline",
+      "query": "Что такое работники, находящиеся под угрозой увольнения,?",
+      "request_seconds": 2.718,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_employees_under_threat_of_dismissal_belarus",
+        "concept_state_support_for_the_construction_reconstruction_or_acquisition_of_residential_premises_belarus",
+        "concept_utility_room_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "работники, находящиеся под угрозой увольнения,",
+        "работники находящиеся под угрозой",
+        "находящиеся под угрозой увольнения",
+        "работники находящиеся под",
+        "находящиеся под угрозой",
+        "под угрозой увольнения",
+        "работники находящиеся",
+        "находящиеся под",
+        "под угрозой",
+        "угрозой увольнения",
+        "работники",
+        "находящиеся",
+        "под",
+        "угрозой",
+        "увольнения"
+      ],
+      "seconds": 5.942075099999784
+    },
+    {
+      "case": "Q15",
+      "mode": "baseline",
+      "query": "Что такое свободное рабочее место (вакансия)?",
+      "request_seconds": 1.938,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_free_workplace_vacancy_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "свободное рабочее место (вакансия)",
+        "свободное рабочее место вакансия",
+        "свободное рабочее место",
+        "рабочее место вакансия",
+        "свободное рабочее",
+        "рабочее место",
+        "место вакансия",
+        "свободное",
+        "рабочее",
+        "место",
+        "вакансия"
+      ],
+      "seconds": 2.899225699999988
+    },
+    {
+      "case": "Q16",
+      "mode": "baseline",
+      "query": "Что такое должность служащего?",
+      "request_seconds": 2.0,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_employee_position_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "должность служащего",
+        "должность",
+        "служащего"
+      ],
+      "seconds": 3.210521100000733
+    },
+    {
+      "case": "Q17",
+      "mode": "baseline",
+      "query": "Что такое арендное жилье?",
+      "request_seconds": 2.187,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_rental_housing_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "арендное жилье",
+        "арендное",
+        "жилье"
+      ],
+      "seconds": 3.3400351999998747
+    },
+    {
+      "case": "Q18",
+      "mode": "baseline",
+      "query": "Что такое близкие родственники?",
+      "request_seconds": 1.625,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_close_relatives_belarus",
+        "concept_relatives_belarus",
+        "concept_relatives_family_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "близкие родственники",
+        "близкие",
+        "родственники"
+      ],
+      "seconds": 4.685281699999905
+    },
+    {
+      "case": "Q19",
+      "mode": "baseline",
+      "query": "Что такое блокированный жилой дом?",
+      "request_seconds": 4.547,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_blocked_residential_building_belarus",
+        "concept_a_residential_building_belarus",
+        "concept_multi_apartment_residential_building_belarus",
+        "concept_a_single_apartment_residential_building_belarus",
+        "concept_family_members_of_a_citizen_who_is_a_member_of_a_developer_organization_whose_residential_building_has_not_been_completed_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "блокированный жилой дом",
+        "блокированный жилой",
+        "жилой дом",
+        "блокированный",
+        "жилой",
+        "дом"
+      ],
+      "seconds": 10.93761859999995
+    },
+    {
+      "case": "Q20",
+      "mode": "baseline",
+      "query": "Что такое бывший член семьи?",
+      "request_seconds": 4.5,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_a_former_family_member_belarus",
+        "concept_a_written_agreement_on_recognition_as_a_family_member_belarus",
+        "concept_membership_fee_belarus",
+        "concept_members_of_the_developer_organization_belarus",
+        "concept_family_members_of_a_citizen_who_is_a_member_of_a_developer_organization_whose_residential_building_has_not_been_completed_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "бывший член семьи",
+        "бывший член",
+        "член семьи",
+        "бывший",
+        "член",
+        "семьи"
+      ],
+      "seconds": 10.381582900000467
+    },
+    {
+      "case": "Q21",
+      "mode": "baseline",
+      "query": "Что такое вспомогательное помещение?",
+      "request_seconds": 2.094,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_auxiliary_premises_belarus",
+        "concept_a_room_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "вспомогательное помещение",
+        "вспомогательное",
+        "помещение"
+      ],
+      "seconds": 4.4135942000002615
+    },
+    {
+      "case": "Q22",
+      "mode": "baseline",
+      "query": "Что такое вступительный взнос?",
+      "request_seconds": 2.281,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_entry_fee_belarus",
+        "concept_share_contribution_belarus",
+        "concept_target_contribution_belarus",
+        "concept_membership_fee_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "вступительный взнос",
+        "вступительный",
+        "взнос"
+      ],
+      "seconds": 6.521256500000163
+    },
+    {
+      "case": "Q23",
+      "mode": "baseline",
+      "query": "Что такое государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений?",
+      "request_seconds": 2.437,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_state_support_for_the_construction_reconstruction_or_acquisition_of_residential_premises_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений",
+        "государственная поддержка при строительстве",
+        "поддержка при строительстве реконструкции",
+        "при строительстве реконструкции приобретении",
+        "строительстве реконструкции приобретении жилых",
+        "реконструкции приобретении жилых помещений",
+        "государственная поддержка при",
+        "поддержка при строительстве",
+        "при строительстве реконструкции",
+        "строительстве реконструкции приобретении",
+        "реконструкции приобретении жилых",
+        "приобретении жилых помещений",
+        "государственная поддержка",
+        "поддержка при",
+        "при строительстве",
+        "строительстве реконструкции"
+      ],
+      "seconds": 3.460593100000551
+    },
+    {
+      "case": "Q24",
+      "mode": "baseline",
+      "query": "Что такое жилая комната?",
+      "request_seconds": 2.343,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_living_room_belarus",
+        "concept_living_space_houseroom_belarus",
+        "concept_isolated_living_room_belarus",
+        "concept_non_isolated_living_room_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "жилая комната",
+        "жилая",
+        "комната"
+      ],
+      "seconds": 6.504232399999637
+    },
+    {
+      "case": "Q25",
+      "mode": "baseline",
+      "query": "Я поступаю в вуз. Как называют поступающего?",
+      "request_seconds": 1.187,
+      "answer_status": "no_evidence",
+      "status_matches_gold": false,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "я поступаю в вуз. как называют поступающего",
+        "поступаю вуз называют поступающего",
+        "поступаю вуз называют",
+        "вуз называют поступающего",
+        "поступаю вуз",
+        "вуз называют",
+        "называют поступающего",
+        "поступаю",
+        "вуз",
+        "называют",
+        "поступающего"
+      ],
+      "seconds": 1.1824281999997766
+    },
+    {
+      "case": "Q26",
+      "mode": "baseline",
+      "query": "Как называют человека, который окончил обучение?",
+      "request_seconds": 1.344,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_training_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "как называют человека, который окончил обучение",
+        "называют человека который окончил",
+        "человека который окончил обучение",
+        "называют человека который",
+        "человека который окончил",
+        "который окончил обучение",
+        "называют человека",
+        "человека который",
+        "который окончил",
+        "окончил обучение",
+        "называют",
+        "человека",
+        "который",
+        "окончил",
+        "обучение"
+      ],
+      "seconds": 2.3269602999998824
+    },
+    {
+      "case": "Q27",
+      "mode": "baseline",
+      "query": "У меня нет работы. Объясните понятие безработицы.",
+      "request_seconds": 1.422,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_paid_public_works_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "у меня нет работы. объясните понятие безработицы",
+        "нет работы объясните понятие",
+        "работы объясните понятие безработицы",
+        "нет работы объясните",
+        "работы объясните понятие",
+        "объясните понятие безработицы",
+        "нет работы",
+        "работы объясните",
+        "объясните понятие",
+        "понятие безработицы",
+        "нет",
+        "работы",
+        "объясните",
+        "понятие",
+        "безработицы"
+      ],
+      "seconds": 2.4719214000006104
+    },
+    {
+      "case": "Q28",
+      "mode": "baseline",
+      "query": "Работы нет, я хочу понять, кто считается безработным.",
+      "request_seconds": 1.125,
+      "answer_status": "no_evidence",
+      "status_matches_gold": false,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "работы нет, я хочу понять, кто считается безработным",
+        "работы нет хочу понять",
+        "нет хочу понять кто",
+        "хочу понять кто считается",
+        "понять кто считается безработным",
+        "работы нет хочу",
+        "нет хочу понять",
+        "хочу понять кто",
+        "понять кто считается",
+        "кто считается безработным",
+        "работы нет",
+        "нет хочу",
+        "хочу понять",
+        "понять кто",
+        "кто считается",
+        "считается безработным"
+      ],
+      "seconds": 1.1317870000002586
+    },
+    {
+      "case": "Q29",
+      "mode": "baseline",
+      "query": "Как называется жильё, которое государство сдаёт гражданам в аренду?",
+      "request_seconds": 1.141,
+      "answer_status": "no_evidence",
+      "status_matches_gold": false,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "как называется жильё, которое государство сдаёт гражданам в аренду",
+        "называется жильё которое государство",
+        "жильё которое государство сдаёт",
+        "которое государство сдаёт гражданам",
+        "государство сдаёт гражданам аренду",
+        "называется жильё которое",
+        "жильё которое государство",
+        "которое государство сдаёт",
+        "государство сдаёт гражданам",
+        "сдаёт гражданам аренду",
+        "называется жильё",
+        "жильё которое",
+        "которое государство",
+        "государство сдаёт",
+        "сдаёт гражданам",
+        "гражданам аренду"
+      ],
+      "seconds": 1.1397502999998324
+    },
+    {
+      "case": "Q30",
+      "mode": "baseline",
+      "query": "Кто относится к близким родственникам?",
+      "request_seconds": 1.125,
+      "answer_status": "no_evidence",
+      "status_matches_gold": false,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "кто относится к близким родственникам",
+        "кто относится к близким",
+        "относится к близким родственникам",
+        "кто относится к",
+        "относится к близким",
+        "к близким родственникам",
+        "кто относится",
+        "относится к",
+        "к близким",
+        "близким родственникам",
+        "кто",
+        "относится",
+        "близким",
+        "родственникам"
+      ],
+      "seconds": 1.124036100000012
+    },
+    {
+      "case": "Q31",
+      "mode": "baseline",
+      "query": "ксюфрагматический аброкод",
+      "request_seconds": 0.968,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "ксюфрагматический аброкод",
+        "ксюфрагматический",
+        "аброкод"
+      ],
+      "seconds": 0.95896570000059
+    },
+    {
+      "case": "Q32",
+      "mode": "baseline",
+      "query": "Право квантового единорога на телепортацию",
+      "request_seconds": 1.0,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "право квантового единорога на телепортацию",
+        "право квантового единорога телепортацию",
+        "право квантового единорога",
+        "квантового единорога телепортацию",
+        "право квантового",
+        "квантового единорога",
+        "единорога телепортацию",
+        "право",
+        "квантового",
+        "единорога",
+        "телепортацию"
+      ],
+      "seconds": 1.0074169000008624
+    },
+    {
+      "case": "Q33",
+      "mode": "baseline",
+      "query": "зюзюбрик квакозяблик",
+      "request_seconds": 0.953,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "зюзюбрик квакозяблик",
+        "зюзюбрик",
+        "квакозяблик"
+      ],
+      "seconds": 0.9533020999997461
+    },
+    {
+      "case": "Q34",
+      "mode": "baseline",
+      "query": "межгалактический нотариус о дзюброквах",
+      "request_seconds": 0.985,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "межгалактический нотариус о дзюброквах",
+        "межгалактический нотариус дзюброквах",
+        "межгалактический нотариус",
+        "нотариус дзюброквах",
+        "межгалактический",
+        "нотариус",
+        "дзюброквах"
+      ],
+      "seconds": 0.9847301999998308
+    },
+    {
+      "case": "Q35",
+      "mode": "baseline",
+      "query": "Что мне делать?",
+      "request_seconds": 0.937,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "что мне делать",
+        "делать"
+      ],
+      "seconds": 0.9411732999997184
+    },
+    {
+      "case": "Q36",
+      "mode": "baseline",
+      "query": "Помогите разобраться в моей ситуации",
+      "request_seconds": 1.094,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [
+        "помогите разобраться в моей ситуации",
+        "помогите разобраться моей ситуации",
+        "помогите разобраться моей",
+        "разобраться моей ситуации",
+        "помогите разобраться",
+        "разобраться моей",
+        "моей ситуации",
+        "помогите",
+        "разобраться",
+        "моей",
+        "ситуации"
+      ],
+      "seconds": 1.0837861999998495
+    },
+    {
+      "case": "Q01",
+      "mode": "llm",
+      "query": "Что такое абитуриент?",
+      "request_seconds": 11.828,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_applicant_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "абитуриент"
+      ],
+      "seconds": 12.88778209999964
+    },
+    {
+      "case": "Q02",
+      "mode": "llm",
+      "query": "Что такое бакалавр?",
+      "request_seconds": 12.422,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_bachelor_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "бакалавр"
+      ],
+      "seconds": 13.414478800000325
+    },
+    {
+      "case": "Q03",
+      "mode": "llm",
+      "query": "Что такое воспитание?",
+      "request_seconds": 12.843,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_education_belarus",
+        "concept_raising_belarus",
+        "concept_foster_care_belarus",
+        "by_act_hk9900278_article_75",
+        "concept_foster_family_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "воспитание"
+      ],
+      "seconds": 18.388189400000556
+    },
+    {
+      "case": "Q04",
+      "mode": "llm",
+      "query": "Что такое выпускник?",
+      "request_seconds": 11.953,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_graduate_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "выпускник"
+      ],
+      "seconds": 13.198341700000128
+    },
+    {
+      "case": "Q05",
+      "mode": "llm",
+      "query": "Что такое грант на обучение?",
+      "request_seconds": 15.5,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_training_grant_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "грант на обучение"
+      ],
+      "seconds": 16.54263489999994
+    },
+    {
+      "case": "Q06",
+      "mode": "llm",
+      "query": "Что такое качество образования?",
+      "request_seconds": 12.265,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_quality_of_education_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "качество образования"
+      ],
+      "seconds": 13.325705399999606
+    },
+    {
+      "case": "Q07",
+      "mode": "llm",
+      "query": "Что такое компетенции?",
+      "request_seconds": 12.672,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_competencies_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "компетенции"
+      ],
+      "seconds": 13.78049800000008
+    },
+    {
+      "case": "Q08",
+      "mode": "llm",
+      "query": "Что такое коррекционные занятия?",
+      "request_seconds": 16.016,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_correctional_classes_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "коррекционные занятия"
+      ],
+      "seconds": 17.076408599999922
+    },
+    {
+      "case": "Q09",
+      "mode": "llm",
+      "query": "Что такое занятость?",
+      "request_seconds": 13.0,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_employment_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "занятость"
+      ],
+      "seconds": 14.099083000000064
+    },
+    {
+      "case": "Q10",
+      "mode": "llm",
+      "query": "Что такое безработица?",
+      "request_seconds": 12.781,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_unemployment_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "безработица"
+      ],
+      "seconds": 13.911497099999906
+    },
+    {
+      "case": "Q11",
+      "mode": "llm",
+      "query": "Что такое безработный?",
+      "request_seconds": 12.328,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_unemployed_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "безработный"
+      ],
+      "seconds": 13.416264399999818
+    },
+    {
+      "case": "Q12",
+      "mode": "llm",
+      "query": "Что такое оплачиваемые общественные работы?",
+      "request_seconds": 15.703,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_paid_public_works_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "оплачиваемые общественные работы"
+      ],
+      "seconds": 16.729734499999722
+    },
+    {
+      "case": "Q13",
+      "mode": "llm",
+      "query": "Что такое органы государственной службы занятости населения?",
+      "request_seconds": 13.094,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_bodies_of_the_state_employment_service_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "органы государственной службы занятости населения"
+      ],
+      "seconds": 14.232614300000023
+    },
+    {
+      "case": "Q14",
+      "mode": "llm",
+      "query": "Что такое работники, находящиеся под угрозой увольнения,?",
+      "request_seconds": 16.406,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_employees_under_threat_of_dismissal_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "работники, находящиеся под угрозой увольнения,"
+      ],
+      "seconds": 17.410129399999278
+    },
+    {
+      "case": "Q15",
+      "mode": "llm",
+      "query": "Что такое свободное рабочее место (вакансия)?",
+      "request_seconds": 16.266,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_free_workplace_vacancy_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "свободное рабочее место (вакансия)"
+      ],
+      "seconds": 17.285228700000516
+    },
+    {
+      "case": "Q16",
+      "mode": "llm",
+      "query": "Что такое должность служащего?",
+      "request_seconds": 14.875,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_employee_position_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "должность служащего"
+      ],
+      "seconds": 16.06841170000007
+    },
+    {
+      "case": "Q17",
+      "mode": "llm",
+      "query": "Что такое арендное жилье?",
+      "request_seconds": 15.516,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_rental_housing_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "арендное жилье"
+      ],
+      "seconds": 16.793685799999366
+    },
+    {
+      "case": "Q18",
+      "mode": "llm",
+      "query": "Что такое близкие родственники?",
+      "request_seconds": 13.61,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_close_relatives_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "близкие родственники"
+      ],
+      "seconds": 14.637149499999396
+    },
+    {
+      "case": "Q19",
+      "mode": "llm",
+      "query": "Что такое блокированный жилой дом?",
+      "request_seconds": 13.922,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_blocked_residential_building_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "блокированный жилой дом"
+      ],
+      "seconds": 15.202041699999427
+    },
+    {
+      "case": "Q20",
+      "mode": "llm",
+      "query": "Что такое бывший член семьи?",
+      "request_seconds": 13.719,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_a_former_family_member_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "бывший член семьи"
+      ],
+      "seconds": 15.078051199999209
+    },
+    {
+      "case": "Q21",
+      "mode": "llm",
+      "query": "Что такое вспомогательное помещение?",
+      "request_seconds": 12.718,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_auxiliary_premises_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "вспомогательное помещение"
+      ],
+      "seconds": 14.046368399999665
+    },
+    {
+      "case": "Q22",
+      "mode": "llm",
+      "query": "Что такое вступительный взнос?",
+      "request_seconds": 15.532,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_entry_fee_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "вступительный взнос"
+      ],
+      "seconds": 16.60984180000014
+    },
+    {
+      "case": "Q23",
+      "mode": "llm",
+      "query": "Что такое государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений?",
+      "request_seconds": 22.672,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_state_support_for_the_construction_reconstruction_or_acquisition_of_residential_premises_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "государственная поддержка при строительстве (реконструкции) или приобретении жилых помещений"
+      ],
+      "seconds": 23.758698200000254
+    },
+    {
+      "case": "Q24",
+      "mode": "llm",
+      "query": "Что такое жилая комната?",
+      "request_seconds": 13.485,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_living_room_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "жилая комната"
+      ],
+      "seconds": 14.631025300000147
+    },
+    {
+      "case": "Q25",
+      "mode": "llm",
+      "query": "Я поступаю в вуз. Как называют поступающего?",
+      "request_seconds": 18.375,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_applicant_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "абитуриент"
+      ],
+      "seconds": 19.462814700000308
+    },
+    {
+      "case": "Q26",
+      "mode": "llm",
+      "query": "Как называют человека, который окончил обучение?",
+      "request_seconds": 19.016,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_graduate_belarus",
+        "concept_training_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "выпускник",
+        "обучение"
+      ],
+      "seconds": 21.306346999999732
+    },
+    {
+      "case": "Q27",
+      "mode": "llm",
+      "query": "У меня нет работы. Объясните понятие безработицы.",
+      "request_seconds": 16.547,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_unemployment_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "безработица"
+      ],
+      "seconds": 17.583512399999563
+    },
+    {
+      "case": "Q28",
+      "mode": "llm",
+      "query": "Работы нет, я хочу понять, кто считается безработным.",
+      "request_seconds": 21.25,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_unemployed_belarus",
+        "concept_unemployment_belarus",
+        "concept_employment_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "безработный",
+        "безработица",
+        "занятость"
+      ],
+      "seconds": 24.422929500000464
+    },
+    {
+      "case": "Q29",
+      "mode": "llm",
+      "query": "Как называется жильё, которое государство сдаёт гражданам в аренду?",
+      "request_seconds": 21.89,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_rental_housing_belarus",
+        "concept_residential_premises_for_social_use_belarus",
+        "concept_residential_premises_of_the_maneuverable_stock_belarus",
+        "concept_citizen_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "арендное жилье",
+        "жилое помещение социального пользования",
+        "жилое помещение маневренного фонда",
+        "гражданин"
+      ],
+      "seconds": 26.877577300001576
+    },
+    {
+      "case": "Q30",
+      "mode": "llm",
+      "query": "Кто относится к близким родственникам?",
+      "request_seconds": 18.14,
+      "answer_status": "grounded",
+      "status_matches_gold": true,
+      "returned_source_ids": [
+        "concept_close_relatives_belarus",
+        "concept_near_relativity_belarus",
+        "concept_relatives_belarus",
+        "concept_relatives_family_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "близкие родственники",
+        "близкое родство",
+        "родственники"
+      ],
+      "seconds": 22.542828899999222
+    },
+    {
+      "case": "Q31",
+      "mode": "llm",
+      "query": "ксюфрагматический аброкод",
+      "request_seconds": 13.64,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [],
+      "seconds": 13.638527499999327
+    },
+    {
+      "case": "Q32",
+      "mode": "llm",
+      "query": "Право квантового единорога на телепортацию",
+      "request_seconds": 15.016,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [],
+      "seconds": 15.015447100000529
+    },
+    {
+      "case": "Q33",
+      "mode": "llm",
+      "query": "зюзюбрик квакозяблик",
+      "request_seconds": 15.828,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [],
+      "seconds": 15.827450499999031
+    },
+    {
+      "case": "Q34",
+      "mode": "llm",
+      "query": "межгалактический нотариус о дзюброквах",
+      "request_seconds": 17.203,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [],
+      "seconds": 17.209792600000583
+    },
+    {
+      "case": "Q35",
+      "mode": "llm",
+      "query": "Что мне делать?",
+      "request_seconds": 14.219,
+      "answer_status": "no_evidence",
+      "status_matches_gold": true,
+      "returned_source_ids": [],
+      "status": "PASS",
+      "predicted_terms": [],
+      "seconds": 14.22099150000031
+    },
+    {
+      "case": "Q36",
+      "mode": "llm",
+      "query": "Помогите разобраться в моей ситуации",
+      "request_seconds": 20.109,
+      "answer_status": "grounded",
+      "status_matches_gold": false,
+      "returned_source_ids": [
+        "concept_housing_and_communal_services_belarus",
+        "concept_employer_belarus",
+        "concept_family_belarus",
+        "concept_housing_stock_belarus",
+        "concept_utilities_belarus"
+      ],
+      "status": "PASS",
+      "predicted_terms": [
+        "жилищно-коммунальные услуги",
+        "наниматель",
+        "семья",
+        "жилищный фонд",
+        "коммунальные услуги"
+      ],
+      "seconds": 26.626494699999967
+    }
+  ],
+  "status": "PASS",
+  "metrics": {
+    "baseline": {
+      "term_micro": {
+        "precision": 0.10212765957446808,
+        "recall": 0.8,
+        "f1": 0.1811320754716981
+      },
+      "counts": {
+        "tp": 24,
+        "fp": 211,
+        "fn": 6
+      },
+      "cases": 36,
+      "failures": 0,
+      "p50_seconds": 2.4374375500001406,
+      "p95_seconds": 7.940130099999806,
+      "request_p50_seconds": 1.399,
+      "request_p95_seconds": 3.234,
+      "timeout_rate": 0.0,
+      "linked_candidate_fraction": 0.4085106382978723,
+      "unsupported_reference_fraction": 0.0,
+      "expected_source_precision": 0.4444444444444444,
+      "references": 54,
+      "status_agreement_fraction": 0.8888888888888888
+    },
+    "llm": {
+      "term_micro": {
+        "precision": 0.6976744186046512,
+        "recall": 1.0,
+        "f1": 0.8219178082191781
+      },
+      "counts": {
+        "tp": 30,
+        "fp": 13,
+        "fn": 0
+      },
+      "cases": 36,
+      "failures": 0,
+      "p50_seconds": 15.94793109999955,
+      "p95_seconds": 24.97382080000034,
+      "request_p50_seconds": 14.9455,
+      "request_p95_seconds": 21.41,
+      "timeout_rate": 0.0,
+      "linked_candidate_fraction": 1.0,
+      "unsupported_reference_fraction": 0.0,
+      "expected_source_precision": 0.625,
+      "references": 48,
+      "status_agreement_fraction": 0.9722222222222222
+    }
+  },
+  "post_run_model_observation": [
+    {
+      "name": "qwen3:4b-instruct",
+      "size": 3571659904,
+      "size_vram": 3571659904,
+      "context_length": 4096,
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3",
+        "families": [
+          "qwen3"
+        ],
+        "parameter_size": "4.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0"
+    }
+  ]
+}

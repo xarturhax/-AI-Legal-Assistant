@@ -48,9 +48,13 @@ class Interpretation(StrictModel):
         lowered = query.casefold()
         for fact in self.facts:
             fact.present_in_user_text = (
-                fact.present_in_user_text and fact.value.casefold() in lowered
+                fact.present_in_user_text
+                and bool(fact.value.strip())
+                and fact.value.casefold() in lowered
             )
         self.entities = [
-            entity for entity in self.entities if entity.original_text.casefold() in lowered
+            entity
+            for entity in self.entities
+            if entity.original_text.strip() and entity.original_text.casefold() in lowered
         ]
         return self

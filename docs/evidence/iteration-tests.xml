@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="10" skipped="0" tests="56" time="58.270" timestamp="2026-11-11T12:38:02.661547+03:00" hostname="WIN-989TKB6IGHV"><testcase classname="backend.tests.unit.test_accounts" name="test_ownership_and_no_guest_access" time="0.772" /><testcase classname="backend.tests.unit.test_accounts" name="test_passwords_xss_and_calendar" time="0.468" /><testcase classname="backend.tests.unit.test_accounts" name="test_csrf_is_required" time="0.307" /><testcase classname="backend.tests.unit.test_accounts" name="test_migrations_and_persistence" time="0.399" /><testcase classname="backend.tests.unit.test_accounts" name="test_recovery_invalidates_sessions" time="0.714" /><testcase classname="backend.tests.unit.test_accounts" name="test_account_pages" time="0.486" /><testcase classname="backend.tests.unit.test_community" name="test_forum_ownership_votes_search" time="0.783" /><testcase classname="backend.tests.unit.test_community" name="test_news_cache_survives_network_failure" time="0.200" /><testcase classname="backend.tests.unit.test_community" name="test_large_news_feed_stops_after_first_hundred_entries[&lt;rss version='2.0'&gt;&lt;channel&gt;&lt;title&gt;Test&lt;/title&gt;-&lt;item&gt;&lt;title&gt;{i}&lt;/title&gt;&lt;link&gt;https://example.test/{i}&lt;/link&gt;&lt;/item&gt;]" time="0.018" /><testcase classname="backend.tests.unit.test_community" name="test_large_news_feed_stops_after_first_hundred_entries[&lt;feed xmlns='http://www.w3.org/2005/Atom'&gt;&lt;title&gt;Test&lt;/title&gt;-&lt;entry&gt;&lt;title&gt;{i}&lt;/title&gt;&lt;link href='https://example.test/{i}'/&gt;&lt;/entry&gt;]" time="0.016" /><testcase classname="backend.tests.unit.test_community" name="test_documents_empty_and_safe_fill" time="0.173" /><testcase classname="backend.tests.unit.test_community" name="test_community_pages_and_quiz_redaction" time="0.467" /><testcase classname="backend.tests.unit.test_config" name="test_catalog_path_in_checkout_and_shallow_container[False-checkout]" time="0.002" /><testcase classname="backend.tests.unit.test_config" name="test_catalog_path_in_checkout_and_shallow_container[False-container]" time="0.002" /><testcase classname="backend.tests.unit.test_config" name="test_catalog_path_in_checkout_and_shallow_container[True-checkout]" time="0.002" /><testcase classname="backend.tests.unit.test_config" name="test_catalog_path_in_checkout_and_shallow_container[True-container]" time="0.002" /><testcase classname="backend.tests.unit.test_core" name="test_query_contract" time="0.001" /><testcase classname="backend.tests.unit.test_core" name="test_local_only" time="0.000" /><testcase classname="backend.tests.unit.test_core" name="test_home_and_liveness" time="0.175" /><testcase classname="backend.tests.unit.test_core" name="test_timeout_is_bounded" time="0.001" /><testcase classname="backend.tests.unit.test_core" name="test_no_evidence_when_ostis_unavailable" time="0.169" /><testcase classname="backend.tests.unit.test_evaluation" name="test_metrics_and_dataset_provenance" time="0.001" /><testcase classname="backend.tests.unit.test_kb_build" name="test_gwf_build_uses_writable_copy_and_preserves_original[0]" time="0.013" /><testcase classname="backend.tests.unit.test_kb_build" name="test_gwf_build_uses_writable_copy_and_preserves_original[1]" time="0.011" /><testcase classname="backend.tests.unit.test_llm" name="test_schema_and_facts" time="0.001" /><testcase classname="backend.tests.unit.test_llm" name="test_two_invalid_json_replies" time="0.003" /><testcase classname="backend.tests.unit.test_llm" name="test_ostis_failure_prevents_llm_call" time="0.000" /><testcase classname="backend.tests.unit.test_llm" name="test_baseline_without_llm" time="0.000" /><testcase classname="backend.tests.unit.test_llm" name="test_live_vocabulary_constrains_model_terms[\u0430\u0440\u0435\u043d\u0434\u043d\u043e\u0435 \u0436\u0438\u043b\u044c\u0435]" time="0.002" /><testcase classname="backend.tests.unit.test_llm" name="test_live_vocabulary_constrains_model_terms[\u043d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e\u0435 \u043f\u043e\u043d\u044f\u0442\u0438\u0435]" time="0.002" /><testcase classname="backend.tests.unit.test_ostis_fallback" name="test_action_nodes_without_usable_sources_do_not_block_template_search" time="0.000" /><testcase classname="backend.tests.unit.test_ostis_image" name="test_missing_shared_library_stops_image_verification" time="0.014" /><testcase classname="backend.tests.unit.test_ostis_image" name="test_wrong_engine_version_stops_image_verification" time="0.011" /><testcase classname="backend.tests.unit.test_recommendations" name="test_personal_recommendations_and_feedback_are_private" time="0.758" /><testcase classname="backend.tests.unit.test_recommendations" name="test_tags_similar_word_search_and_topic_recommendations" time="0.461" /><testcase classname="backend.tests.unit.test_reliability" name="test_parallel_requests_do_not_mix_results" time="0.063" /><testcase classname="backend.tests.unit.test_reliability" name="test_wrong_correlation_id_is_rejected" time="0.001" /><testcase classname="backend.tests.unit.test_reliability" name="test_empty_oversized_invalid_modes" time="0.164" /><testcase classname="backend.tests.unit.test_reliability" name="test_auth_rate_limit" time="0.175" /><testcase classname="backend.tests.unit.test_reliability" name="test_baseline_keeps_prepositions_and_long_terms" time="0.000" /><testcase classname="backend.tests.unit.test_situation" name="test_situation_uses_only_grounded_context_and_kb_terms" time="0.001" /><testcase classname="backend.tests.unit.test_situation" name="test_context_does_not_link_substrings_as_different_concepts" time="0.000" /><testcase classname="backend.tests.unit.test_situation" name="test_context_extends_search_even_with_empty_model_search_terms" time="0.002" /><testcase classname="backend.tests.integration.test_migrations" name="test_db_upgrade_cli_preserves_existing_data" time="2.585" /><testcase classname="backend.tests.integration.test_ostis" name="test_real_kb_read" time="3.879"><failure message="app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.">def test_real_kb_read():
+        client = OstisClient(os.getenv("OSTIS_WS_URL", "ws://127.0.0.1:8090/ws_json"))
+&gt;       assert client.ready()["kb_loaded"]
+               ^^^^^^^^^^^^^^
+
+backend\tests\integration\test_ostis.py:11: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+backend\app\ostis\client.py:74: in ready
+    return self.call("ready")
+           ^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;app.ostis.client.OstisClient object at 0x00000221513279B0&gt;
+operation = 'ready', arguments = {}
+request_id = '9969c70f-06b6-4c0a-8aaf-f1bdff132ff1'
+environment = {'ACSETUPSVCPORT': '23210', 'ACSVCPORT': '17532', 'ALLUSERSPROFILE': 'C:\\ProgramData', 'APPDATA': 'C:\\Users\\user\\AppData\\Roaming', ...}
+payload = {'arguments': {}, 'operation': 'ready', 'request_id': '9969c70f-06b6-4c0a-8aaf-f1bdff132ff1', 'url': 'ws://127.0.0.1:8090/ws_json'}
+result = CompletedProcess(args=['C:\\Users\\user\\PycharmProjects\\Jurisprudencia\\.venv\\Scripts\\python.exe', '-m', 'app.osti..., т.к. конечный компьютер отверг запрос на подключение - goodbye\nWARNING:root:SC operation failed: ConnectionError\n')
+response = {'error': 'ConnectionError', 'ok': False, 'request_id': '9969c70f-06b6-4c0a-8aaf-f1bdff132ff1'}
+
+    def call(self, operation, **arguments):
+        request_id = str(uuid4())
+        if not _operation_lock.acquire(timeout=1):
+            raise ServiceError("OSTIS обрабатывает другой запрос. Повторите позже.", "ostis_busy")
+        try:
+            environment = os.environ.copy()
+            environment["PYTHONIOENCODING"] = "utf-8"
+            payload = {
+                "url": self.url,
+                "operation": operation,
+                "arguments": arguments,
+                "request_id": request_id,
+            }
+            result = subprocess.run(
+                [sys.executable, "-m", "app.ostis.worker"],
+                input=json.dumps(payload, ensure_ascii=False),
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                env=environment,
+                cwd=Path(__file__).resolve().parents[2],
+                timeout=self.timeout,
+            )
+            if result.returncode:
+                logger.warning(
+                    "OSTIS worker failed request_id=%s returncode=%s", request_id, result.returncode
+                )
+                raise ServiceError(
+                    "Не удалось прочитать OSTIS. Проверьте sc-machine и загруженную КБ.",
+                    "ostis_unavailable",
+                )
+            response = json.loads(result.stdout)
+            if response.get("request_id") != request_id:
+                raise ServiceError("Нарушена корреляция ответа OSTIS.", "ostis_protocol")
+            if not response.get("ok"):
+                if response.get("error") == "TimeoutError":
+                    raise ServiceError("Истекло ожидание действия OSTIS.", "ostis_timeout", 504)
+&gt;               raise ServiceError(
+                    "OSTIS не выполнил запрос. Проверьте состояние КБ.", "ostis_unavailable"
+                )
+E               app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.
+
+backend\app\ostis\client.py:61: ServiceError</failure></testcase><testcase classname="backend.tests.integration.test_ostis" name="test_exact_title_precedes_related_agent_sources" time="3.952"><failure message="app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.">def test_exact_title_precedes_related_agent_sources():
+        client = OstisClient(os.getenv("OSTIS_WS_URL", "ws://127.0.0.1:8090/ws_json"))
+&gt;       result = client.search(["воспитание"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+backend\tests\integration\test_ostis.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+backend\app\ostis\client.py:77: in search
+    return self.call("search", terms=terms[:16], use_agent=use_agent)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;app.ostis.client.OstisClient object at 0x0000022151395C10&gt;
+operation = 'search', arguments = {'terms': ['воспитание'], 'use_agent': True}
+request_id = '4ba94231-1c2d-416b-b5cd-4346cb85eda1'
+environment = {'ACSETUPSVCPORT': '23210', 'ACSVCPORT': '17532', 'ALLUSERSPROFILE': 'C:\\ProgramData', 'APPDATA': 'C:\\Users\\user\\AppData\\Roaming', ...}
+payload = {'arguments': {'terms': ['воспитание'], 'use_agent': True}, 'operation': 'search', 'request_id': '4ba94231-1c2d-416b-b5cd-4346cb85eda1', 'url': 'ws://127.0.0.1:8090/ws_json'}
+result = CompletedProcess(args=['C:\\Users\\user\\PycharmProjects\\Jurisprudencia\\.venv\\Scripts\\python.exe', '-m', 'app.osti..., т.к. конечный компьютер отверг запрос на подключение - goodbye\nWARNING:root:SC operation failed: ConnectionError\n')
+response = {'error': 'ConnectionError', 'ok': False, 'request_id': '4ba94231-1c2d-416b-b5cd-4346cb85eda1'}
+
+    def call(self, operation, **arguments):
+        request_id = str(uuid4())
+        if not _operation_lock.acquire(timeout=1):
+            raise ServiceError("OSTIS обрабатывает другой запрос. Повторите позже.", "ostis_busy")
+        try:
+            environment = os.environ.copy()
+            environment["PYTHONIOENCODING"] = "utf-8"
+            payload = {
+                "url": self.url,
+                "operation": operation,
+                "arguments": arguments,
+                "request_id": request_id,
+            }
+            result = subprocess.run(
+                [sys.executable, "-m", "app.ostis.worker"],
+                input=json.dumps(payload, ensure_ascii=False),
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                env=environment,
+                cwd=Path(__file__).resolve().parents[2],
+                timeout=self.timeout,
+            )
+            if result.returncode:
+                logger.warning(
+                    "OSTIS worker failed request_id=%s returncode=%s", request_id, result.returncode
+                )
+                raise ServiceError(
+                    "Не удалось прочитать OSTIS. Проверьте sc-machine и загруженную КБ.",
+                    "ostis_unavailable",
+                )
+            response = json.loads(result.stdout)
+            if response.get("request_id") != request_id:
+                raise ServiceError("Нарушена корреляция ответа OSTIS.", "ostis_protocol")
+            if not response.get("ok"):
+                if response.get("error") == "TimeoutError":
+                    raise ServiceError("Истекло ожидание действия OSTIS.", "ostis_timeout", 504)
+&gt;               raise ServiceError(
+                    "OSTIS не выполнил запрос. Проверьте состояние КБ.", "ostis_unavailable"
+                )
+E               app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.
+
+backend\app\ostis\client.py:61: ServiceError</failure></testcase><testcase classname="backend.tests.integration.test_ostis" name="test_existing_agent_single_title_link" time="3.905"><failure message="app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.">def test_existing_agent_single_title_link():
+        client = OstisClient(os.getenv("OSTIS_WS_URL", "ws://127.0.0.1:8090/ws_json"))
+&gt;       probe = client.call("single_match_probe", terms=["арендное жилье", "абитуриент", "занятость"])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+backend\tests\integration\test_ostis.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;app.ostis.client.OstisClient object at 0x0000022151325EE0&gt;
+operation = 'single_match_probe'
+arguments = {'terms': ['арендное жилье', 'абитуриент', 'занятость']}
+request_id = 'f156c66d-1c01-439d-bec8-ee81c21b5c80'
+environment = {'ACSETUPSVCPORT': '23210', 'ACSVCPORT': '17532', 'ALLUSERSPROFILE': 'C:\\ProgramData', 'APPDATA': 'C:\\Users\\user\\AppData\\Roaming', ...}
+payload = {'arguments': {'terms': ['арендное жилье', 'абитуриент', 'занятость']}, 'operation': 'single_match_probe', 'request_id': 'f156c66d-1c01-439d-bec8-ee81c21b5c80', 'url': 'ws://127.0.0.1:8090/ws_json'}
+result = CompletedProcess(args=['C:\\Users\\user\\PycharmProjects\\Jurisprudencia\\.venv\\Scripts\\python.exe', '-m', 'app.osti..., т.к. конечный компьютер отверг запрос на подключение - goodbye\nWARNING:root:SC operation failed: ConnectionError\n')
+response = {'error': 'ConnectionError', 'ok': False, 'request_id': 'f156c66d-1c01-439d-bec8-ee81c21b5c80'}
+
+    def call(self, operation, **arguments):
+        request_id = str(uuid4())
+        if not _operation_lock.acquire(timeout=1):
+            raise ServiceError("OSTIS обрабатывает другой запрос. Повторите позже.", "ostis_busy")
+        try:
+            environment = os.environ.copy()
+            environment["PYTHONIOENCODING"] = "utf-8"
+            payload = {
+                "url": self.url,
+                "operation": operation,
+                "arguments": arguments,
+                "request_id": request_id,
+            }
+            result = subprocess.run(
+                [sys.executable, "-m", "app.ostis.worker"],
+                input=json.dumps(payload, ensure_ascii=False),
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                env=environment,
+                cwd=Path(__file__).resolve().parents[2],
+                timeout=self.timeout,
+            )
+            if result.returncode:
+                logger.warning(
+                    "OSTIS worker failed request_id=%s returncode=%s", request_id, result.returncode
+                )
+                raise ServiceError(
+                    "Не удалось прочитать OSTIS. Проверьте sc-machine и загруженную КБ.",
+                    "ostis_unavailable",
+                )
+            response = json.loads(result.stdout)
+            if response.get("request_id") != request_id:
+                raise ServiceError("Нарушена корреляция ответа OSTIS.", "ostis_protocol")
+            if not response.get("ok"):
+                if response.get("error") == "TimeoutError":
+                    raise ServiceError("Истекло ожидание действия OSTIS.", "ostis_timeout", 504)
+&gt;               raise ServiceError(
+                    "OSTIS не выполнил запрос. Проверьте состояние КБ.", "ostis_unavailable"
+                )
+E               app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.
+
+backend\app\ostis\client.py:61: ServiceError</failure></testcase><testcase classname="backend.tests.integration.test_ostis" name="test_action_search_uses_real_sources_with_explicit_fallback" time="3.847"><failure message="app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.">def test_action_search_uses_real_sources_with_explicit_fallback():
+        client = OstisClient(os.getenv("OSTIS_WS_URL", "ws://127.0.0.1:8090/ws_json"))
+&gt;       result = client.search(["арендное жилье"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+backend\tests\integration\test_ostis.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+backend\app\ostis\client.py:77: in search
+    return self.call("search", terms=terms[:16], use_agent=use_agent)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;app.ostis.client.OstisClient object at 0x0000022151326EA0&gt;
+operation = 'search'
+arguments = {'terms': ['арендное жилье'], 'use_agent': True}
+request_id = '1057e83b-19c5-42fa-852e-74508e9d76d9'
+environment = {'ACSETUPSVCPORT': '23210', 'ACSVCPORT': '17532', 'ALLUSERSPROFILE': 'C:\\ProgramData', 'APPDATA': 'C:\\Users\\user\\AppData\\Roaming', ...}
+payload = {'arguments': {'terms': ['арендное жилье'], 'use_agent': True}, 'operation': 'search', 'request_id': '1057e83b-19c5-42fa-852e-74508e9d76d9', 'url': 'ws://127.0.0.1:8090/ws_json'}
+result = CompletedProcess(args=['C:\\Users\\user\\PycharmProjects\\Jurisprudencia\\.venv\\Scripts\\python.exe', '-m', 'app.osti..., т.к. конечный компьютер отверг запрос на подключение - goodbye\nWARNING:root:SC operation failed: ConnectionError\n')
+response = {'error': 'ConnectionError', 'ok': False, 'request_id': '1057e83b-19c5-42fa-852e-74508e9d76d9'}
+
+    def call(self, operation, **arguments):
+        request_id = str(uuid4())
+        if not _operation_lock.acquire(timeout=1):
+            raise ServiceError("OSTIS обрабатывает другой запрос. Повторите позже.", "ostis_busy")
+        try:
+            environment = os.environ.copy()
+            environment["PYTHONIOENCODING"] = "utf-8"
+            payload = {
+                "url": self.url,
+                "operation": operation,
+                "arguments": arguments,
+                "request_id": request_id,
+            }
+            result = subprocess.run(
+                [sys.executable, "-m", "app.ostis.worker"],
+                input=json.dumps(payload, ensure_ascii=False),
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                env=environment,
+                cwd=Path(__file__).resolve().parents[2],
+                timeout=self.timeout,
+            )
+            if result.returncode:
+                logger.warning(
+                    "OSTIS worker failed request_id=%s returncode=%s", request_id, result.returncode
+                )
+                raise ServiceError(
+                    "Не удалось прочитать OSTIS. Проверьте sc-machine и загруженную КБ.",
+                    "ostis_unavailable",
+                )
+            response = json.loads(result.stdout)
+            if response.get("request_id") != request_id:
+                raise ServiceError("Нарушена корреляция ответа OSTIS.", "ostis_protocol")
+            if not response.get("ok"):
+                if response.get("error") == "TimeoutError":
+                    raise ServiceError("Истекло ожидание действия OSTIS.", "ostis_timeout", 504)
+&gt;               raise ServiceError(
+                    "OSTIS не выполнил запрос. Проверьте состояние КБ.", "ostis_unavailable"
+                )
+E               app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.
+
+backend\app\ostis\client.py:61: ServiceError</failure></testcase><testcase classname="backend.tests.integration.test_quiz" name="test_quiz_reads_and_grades_live_ostis_questions" time="4.338"><failure message="AssertionError: {'error': {'code': 'ostis_unavailable', 'message': 'OSTIS не выполнил запрос. Проверьте состояние КБ.'}, 'runtime': {'mock': False}}&#10;assert 503 == 200&#10; +  where 503 = &lt;WrapperTestResponse streamed [503 SERVICE UNAVAILABLE]&gt;.status_code">app = &lt;Flask 'app'&gt;
+
+    def test_quiz_reads_and_grades_live_ostis_questions(app):
+        email, password = "quiz@example.test", "quiz-local-test-123"
+        with app.app_context():
+            db.session.add(
+                User(email=email, password_hash=generate_password_hash(password), is_verified=True)
+            )
+            db.session.commit()
+        client = app.test_client()
+        assert client.post("/auth", data={"email": email, "password": password}).status_code == 302
+        assert client.post("/api/test/start").status_code == 200
+    
+        ostis = app.extensions["legal_service"].ostis
+        seen = set()
+        for correct in (False, True):
+            response = client.get("/api/test/question")
+&gt;           assert response.status_code == 200, response.json
+E           AssertionError: {'error': {'code': 'ostis_unavailable', 'message': 'OSTIS не выполнил запрос. Проверьте состояние КБ.'}, 'runtime': {'mock': False}}
+E           assert 503 == 200
+E            +  where 503 = &lt;WrapperTestResponse streamed [503 SERVICE UNAVAILABLE]&gt;.status_code
+
+backend\tests\integration\test_quiz.py:26: AssertionError</failure></testcase><testcase classname="backend.tests.e2e.test_dependency_failures" name="test_baseline_with_unreachable_ollama" time="4.095"><failure message="AssertionError: {'error': {'code': 'ostis_unavailable', 'message': 'OSTIS не выполнил запрос. Проверьте состояние КБ.'}, 'runtime': {'mock': False}}&#10;assert 503 == 200&#10; +  where 503 = &lt;WrapperTestResponse streamed [503 SERVICE UNAVAILABLE]&gt;.status_code">app = &lt;Flask 'app'&gt;
+
+    @pytest.mark.live_ostis
+    def test_baseline_with_unreachable_ollama(app):
+        with socket.socket() as closed_service:
+            closed_service.bind(("127.0.0.1", 0))
+            port = closed_service.getsockname()[1]
+            app.extensions["legal_service"].interpreter = OllamaInterpreter(
+                f"http://127.0.0.1:{port}", app.config["OLLAMA_MODEL"], timeout=2
+            )
+            client = app.test_client()
+            baseline = client.post(
+                "/api/legal/query", json={"query": "Что такое арендное жилье?", "mode": "baseline"}
+            )
+&gt;           assert baseline.status_code == 200, baseline.json
+E           AssertionError: {'error': {'code': 'ostis_unavailable', 'message': 'OSTIS не выполнил запрос. Проверьте состояние КБ.'}, 'runtime': {'mock': False}}
+E           assert 503 == 200
+E            +  where 503 = &lt;WrapperTestResponse streamed [503 SERVICE UNAVAILABLE]&gt;.status_code
+
+backend\tests\e2e\test_dependency_failures.py:22: AssertionError</failure></testcase><testcase classname="backend.tests.e2e.test_dependency_failures" name="test_no_legal_answer_with_unreachable_ostis[baseline]" time="4.004" /><testcase classname="backend.tests.e2e.test_dependency_failures" name="test_no_legal_answer_with_unreachable_ostis[llm]" time="4.134" /><testcase classname="backend.tests.e2e.test_situations" name="test_situation_returns_only_kb_excerpts[\u042f \u0430\u0431\u0438\u0442\u0443\u0440\u0438\u0435\u043d\u0442, \u043f\u043e\u0434\u0430\u044e \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b \u0432 \u0434\u0432\u0430 \u0432\u0443\u0437\u0430. \u041c\u043e\u0433\u0443\u0442 \u043b\u0438 \u043c\u043d\u0435 \u043e\u0442\u043a\u0430\u0437\u0430\u0442\u044c?]" time="3.992"><failure message="app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.">app = &lt;Flask 'app'&gt;
+query = 'Я абитуриент, подаю документы в два вуза. Могут ли мне отказать?'
+
+    @pytest.mark.parametrize(
+        "query",
+        [
+            "Я абитуриент, подаю документы в два вуза. Могут ли мне отказать?",
+            "У меня арендное жилье, живу с ребёнком. Можно ли меня выселить?",
+            "Подписан трудовой договор, работодатель требует уйти завтра. Что делать?",
+        ],
+    )
+    def test_situation_returns_only_kb_excerpts(app, query):
+        service = app.extensions["legal_service"]
+&gt;       result = service.query(query, "llm")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+backend\tests\e2e\test_situations.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+backend\app\legal\service.py:18: in query
+    self.ostis.ready()
+backend\app\ostis\client.py:74: in ready
+    return self.call("ready")
+           ^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;app.ostis.client.OstisClient object at 0x000002215018F6E0&gt;
+operation = 'ready', arguments = {}
+request_id = '33ac5020-1907-4764-8690-a1b4a1825632'
+environment = {'ACSETUPSVCPORT': '23210', 'ACSVCPORT': '17532', 'ALLUSERSPROFILE': 'C:\\ProgramData', 'APPDATA': 'C:\\Users\\user\\AppData\\Roaming', ...}
+payload = {'arguments': {}, 'operation': 'ready', 'request_id': '33ac5020-1907-4764-8690-a1b4a1825632', 'url': 'ws://127.0.0.1:8090/ws_json'}
+result = CompletedProcess(args=['C:\\Users\\user\\PycharmProjects\\Jurisprudencia\\.venv\\Scripts\\python.exe', '-m', 'app.osti..., т.к. конечный компьютер отверг запрос на подключение - goodbye\nWARNING:root:SC operation failed: ConnectionError\n')
+response = {'error': 'ConnectionError', 'ok': False, 'request_id': '33ac5020-1907-4764-8690-a1b4a1825632'}
+
+    def call(self, operation, **arguments):
+        request_id = str(uuid4())
+        if not _operation_lock.acquire(timeout=1):
+            raise ServiceError("OSTIS обрабатывает другой запрос. Повторите позже.", "ostis_busy")
+        try:
+            environment = os.environ.copy()
+            environment["PYTHONIOENCODING"] = "utf-8"
+            payload = {
+                "url": self.url,
+                "operation": operation,
+                "arguments": arguments,
+                "request_id": request_id,
+            }
+            result = subprocess.run(
+                [sys.executable, "-m", "app.ostis.worker"],
+                input=json.dumps(payload, ensure_ascii=False),
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                env=environment,
+                cwd=Path(__file__).resolve().parents[2],
+                timeout=self.timeout,
+            )
+            if result.returncode:
+                logger.warning(
+                    "OSTIS worker failed request_id=%s returncode=%s", request_id, result.returncode
+                )
+                raise ServiceError(
+                    "Не удалось прочитать OSTIS. Проверьте sc-machine и загруженную КБ.",
+                    "ostis_unavailable",
+                )
+            response = json.loads(result.stdout)
+            if response.get("request_id") != request_id:
+                raise ServiceError("Нарушена корреляция ответа OSTIS.", "ostis_protocol")
+            if not response.get("ok"):
+                if response.get("error") == "TimeoutError":
+                    raise ServiceError("Истекло ожидание действия OSTIS.", "ostis_timeout", 504)
+&gt;               raise ServiceError(
+                    "OSTIS не выполнил запрос. Проверьте состояние КБ.", "ostis_unavailable"
+                )
+E               app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.
+
+backend\app\ostis\client.py:61: ServiceError</failure></testcase><testcase classname="backend.tests.e2e.test_situations" name="test_situation_returns_only_kb_excerpts[\u0423 \u043c\u0435\u043d\u044f \u0430\u0440\u0435\u043d\u0434\u043d\u043e\u0435 \u0436\u0438\u043b\u044c\u0435, \u0436\u0438\u0432\u0443 \u0441 \u0440\u0435\u0431\u0451\u043d\u043a\u043e\u043c. \u041c\u043e\u0436\u043d\u043e \u043b\u0438 \u043c\u0435\u043d\u044f \u0432\u044b\u0441\u0435\u043b\u0438\u0442\u044c?]" time="4.007"><failure message="app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.">app = &lt;Flask 'app'&gt;
+query = 'У меня арендное жилье, живу с ребёнком. Можно ли меня выселить?'
+
+    @pytest.mark.parametrize(
+        "query",
+        [
+            "Я абитуриент, подаю документы в два вуза. Могут ли мне отказать?",
+            "У меня арендное жилье, живу с ребёнком. Можно ли меня выселить?",
+            "Подписан трудовой договор, работодатель требует уйти завтра. Что делать?",
+        ],
+    )
+    def test_situation_returns_only_kb_excerpts(app, query):
+        service = app.extensions["legal_service"]
+&gt;       result = service.query(query, "llm")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+backend\tests\e2e\test_situations.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+backend\app\legal\service.py:18: in query
+    self.ostis.ready()
+backend\app\ostis\client.py:74: in ready
+    return self.call("ready")
+           ^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;app.ostis.client.OstisClient object at 0x00000221500CFC20&gt;
+operation = 'ready', arguments = {}
+request_id = '780930e0-c2fc-4312-893c-8082251e9f84'
+environment = {'ACSETUPSVCPORT': '23210', 'ACSVCPORT': '17532', 'ALLUSERSPROFILE': 'C:\\ProgramData', 'APPDATA': 'C:\\Users\\user\\AppData\\Roaming', ...}
+payload = {'arguments': {}, 'operation': 'ready', 'request_id': '780930e0-c2fc-4312-893c-8082251e9f84', 'url': 'ws://127.0.0.1:8090/ws_json'}
+result = CompletedProcess(args=['C:\\Users\\user\\PycharmProjects\\Jurisprudencia\\.venv\\Scripts\\python.exe', '-m', 'app.osti..., т.к. конечный компьютер отверг запрос на подключение - goodbye\nWARNING:root:SC operation failed: ConnectionError\n')
+response = {'error': 'ConnectionError', 'ok': False, 'request_id': '780930e0-c2fc-4312-893c-8082251e9f84'}
+
+    def call(self, operation, **arguments):
+        request_id = str(uuid4())
+        if not _operation_lock.acquire(timeout=1):
+            raise ServiceError("OSTIS обрабатывает другой запрос. Повторите позже.", "ostis_busy")
+        try:
+            environment = os.environ.copy()
+            environment["PYTHONIOENCODING"] = "utf-8"
+            payload = {
+                "url": self.url,
+                "operation": operation,
+                "arguments": arguments,
+                "request_id": request_id,
+            }
+            result = subprocess.run(
+                [sys.executable, "-m", "app.ostis.worker"],
+                input=json.dumps(payload, ensure_ascii=False),
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                env=environment,
+                cwd=Path(__file__).resolve().parents[2],
+                timeout=self.timeout,
+            )
+            if result.returncode:
+                logger.warning(
+                    "OSTIS worker failed request_id=%s returncode=%s", request_id, result.returncode
+                )
+                raise ServiceError(
+                    "Не удалось прочитать OSTIS. Проверьте sc-machine и загруженную КБ.",
+                    "ostis_unavailable",
+                )
+            response = json.loads(result.stdout)
+            if response.get("request_id") != request_id:
+                raise ServiceError("Нарушена корреляция ответа OSTIS.", "ostis_protocol")
+            if not response.get("ok"):
+                if response.get("error") == "TimeoutError":
+                    raise ServiceError("Истекло ожидание действия OSTIS.", "ostis_timeout", 504)
+&gt;               raise ServiceError(
+                    "OSTIS не выполнил запрос. Проверьте состояние КБ.", "ostis_unavailable"
+                )
+E               app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.
+
+backend\app\ostis\client.py:61: ServiceError</failure></testcase><testcase classname="backend.tests.e2e.test_situations" name="test_situation_returns_only_kb_excerpts[\u041f\u043e\u0434\u043f\u0438\u0441\u0430\u043d \u0442\u0440\u0443\u0434\u043e\u0432\u043e\u0439 \u0434\u043e\u0433\u043e\u0432\u043e\u0440, \u0440\u0430\u0431\u043e\u0442\u043e\u0434\u0430\u0442\u0435\u043b\u044c \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u0443\u0439\u0442\u0438 \u0437\u0430\u0432\u0442\u0440\u0430. \u0427\u0442\u043e \u0434\u0435\u043b\u0430\u0442\u044c?]" time="3.996"><failure message="app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.">app = &lt;Flask 'app'&gt;
+query = 'Подписан трудовой договор, работодатель требует уйти завтра. Что делать?'
+
+    @pytest.mark.parametrize(
+        "query",
+        [
+            "Я абитуриент, подаю документы в два вуза. Могут ли мне отказать?",
+            "У меня арендное жилье, живу с ребёнком. Можно ли меня выселить?",
+            "Подписан трудовой договор, работодатель требует уйти завтра. Что делать?",
+        ],
+    )
+    def test_situation_returns_only_kb_excerpts(app, query):
+        service = app.extensions["legal_service"]
+&gt;       result = service.query(query, "llm")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+backend\tests\e2e\test_situations.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+backend\app\legal\service.py:18: in query
+    self.ostis.ready()
+backend\app\ostis\client.py:74: in ready
+    return self.call("ready")
+           ^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;app.ostis.client.OstisClient object at 0x000002214FD56D80&gt;
+operation = 'ready', arguments = {}
+request_id = 'c2f0e7a7-d9a5-4c42-af18-59878de41b6f'
+environment = {'ACSETUPSVCPORT': '23210', 'ACSVCPORT': '17532', 'ALLUSERSPROFILE': 'C:\\ProgramData', 'APPDATA': 'C:\\Users\\user\\AppData\\Roaming', ...}
+payload = {'arguments': {}, 'operation': 'ready', 'request_id': 'c2f0e7a7-d9a5-4c42-af18-59878de41b6f', 'url': 'ws://127.0.0.1:8090/ws_json'}
+result = CompletedProcess(args=['C:\\Users\\user\\PycharmProjects\\Jurisprudencia\\.venv\\Scripts\\python.exe', '-m', 'app.osti..., т.к. конечный компьютер отверг запрос на подключение - goodbye\nWARNING:root:SC operation failed: ConnectionError\n')
+response = {'error': 'ConnectionError', 'ok': False, 'request_id': 'c2f0e7a7-d9a5-4c42-af18-59878de41b6f'}
+
+    def call(self, operation, **arguments):
+        request_id = str(uuid4())
+        if not _operation_lock.acquire(timeout=1):
+            raise ServiceError("OSTIS обрабатывает другой запрос. Повторите позже.", "ostis_busy")
+        try:
+            environment = os.environ.copy()
+            environment["PYTHONIOENCODING"] = "utf-8"
+            payload = {
+                "url": self.url,
+                "operation": operation,
+                "arguments": arguments,
+                "request_id": request_id,
+            }
+            result = subprocess.run(
+                [sys.executable, "-m", "app.ostis.worker"],
+                input=json.dumps(payload, ensure_ascii=False),
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                env=environment,
+                cwd=Path(__file__).resolve().parents[2],
+                timeout=self.timeout,
+            )
+            if result.returncode:
+                logger.warning(
+                    "OSTIS worker failed request_id=%s returncode=%s", request_id, result.returncode
+                )
+                raise ServiceError(
+                    "Не удалось прочитать OSTIS. Проверьте sc-machine и загруженную КБ.",
+                    "ostis_unavailable",
+                )
+            response = json.loads(result.stdout)
+            if response.get("request_id") != request_id:
+                raise ServiceError("Нарушена корреляция ответа OSTIS.", "ostis_protocol")
+            if not response.get("ok"):
+                if response.get("error") == "TimeoutError":
+                    raise ServiceError("Истекло ожидание действия OSTIS.", "ostis_timeout", 504)
+&gt;               raise ServiceError(
+                    "OSTIS не выполнил запрос. Проверьте состояние КБ.", "ostis_unavailable"
+                )
+E               app.errors.ServiceError: OSTIS не выполнил запрос. Проверьте состояние КБ.
+
+backend\app\ostis\client.py:61: ServiceError</failure></testcase><testcase classname="backend.tests.e2e.test_stack" name="test_real_flask_llm_to_ostis" time="3.999"><failure message="AssertionError: {'error': {'code': 'ostis_unavailable', 'message': 'OSTIS не выполнил запрос. Проверьте состояние КБ.'}, 'runtime': {'mock': False}}&#10;assert 503 == 200&#10; +  where 503 = &lt;WrapperTestResponse streamed [503 SERVICE UNAVAILABLE]&gt;.status_code">app = &lt;Flask 'app'&gt;
+
+    def test_real_flask_llm_to_ostis(app):
+        # Тестовая SQLite/сессия, но настоящие WebSocket и Ollama без подмен.
+        app.config["WTF_CSRF_ENABLED"] = True
+        client = app.test_client()
+        page = client.get("/requests")
+        token = re.search(r'name="csrf-token" content="([^"]+)"', page.data.decode())[1]
+        response = client.post(
+            "/api/legal/query",
+            json={"query": "Расскажите, что такое арендное жилье", "mode": "llm"},
+            headers={"X-CSRFToken": token},
+        )
+&gt;       assert response.status_code == 200, response.json
+E       AssertionError: {'error': {'code': 'ostis_unavailable', 'message': 'OSTIS не выполнил запрос. Проверьте состояние КБ.'}, 'runtime': {'mock': False}}
+E       assert 503 == 200
+E        +  where 503 = &lt;WrapperTestResponse streamed [503 SERVICE UNAVAILABLE]&gt;.status_code
+
+backend\tests\e2e\test_stack.py:19: AssertionError</failure></testcase></testsuite></testsuites>
