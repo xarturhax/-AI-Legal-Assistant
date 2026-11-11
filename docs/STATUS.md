@@ -13,13 +13,13 @@ HTTP readiness 200 (database/ostis/llm=true, mock=false). Установка и 
 | Стадия | Реализация | Проверки / gate |
 |---|---|---|
 | S0 | DONE: аудит, SHA, карта совместимости | источники прочитаны, лицензии подмодулей требуют проверки |
-| S1 | PARTIAL: Compose, pinned upstream, Windows launcher, защита KB/бэкап | setup PASS; живой стек readiness 200; свежий клон ещё не проверен |
+| S1 | PARTIAL: Compose, pinned upstream, Windows launcher, защита KB/бэкап | setup PASS из свежего клона с отдельными портами и томами; readiness 200 |
 | S2 | PARTIAL: Flask, SC SDK worker, action + шаблоны, источники | чтение реальных SC-источников PASS, fallback PASS; исходный агент — известный XFAIL |
 | S3 | PARTIAL: локальный Ollama, JSON Schema, валидация, linking | live E2E PASS; качество на свободных формулировках проверяется отдельно |
 | S4 | DONE для приложения: аккаунты, кабинет, история, заметки, календарь | проверки изоляции PASS; кабинет/заметки после перезапуска подтверждены пользователем |
 | S5 | PARTIAL: форум/рекомендации, SC-тесты, документы, RSS | Учебный тест с живой KB, три шаблона и реальный импорт RSS PASS |
 | S6 | DONE: 36 размеченных запросов, полный live-прогон в двух режимах | 72 выполнения без таймаутов, метрики и расхождения в TEST_REPORT.md |
-| S7 | PARTIAL: README, архитектура/API, лицензии, реальный HTTP/Chrome | страницы PASS; установка из отдельной копии PASS; свежий Git checkout NOT TESTED |
+| S7 | DONE: README, архитектура/API, лицензии, реальный HTTP/Chrome | страницы PASS; Windows-установка из свежего Git-клона и readiness PASS |
 
 S0: изменены docs/REPO_AUDIT.md, PARITY_MATRIX.md, DECISIONS.md, evidence/upstream.json.
 Проверки: полные деревья GitHub на заданных SHA — PASS; py-sc-client/py-sc-kpm 0.4.0
@@ -509,5 +509,9 @@ Pytest для `test_community.py` дал 6 PASS. Две проверки под�
 Повторный запрос `curl.exe -fsS --max-time 6 http://127.0.0.1:5037/health/ready`
 вернул `{"database":true,"llm":true,"mock":false,"ostis":true}`.
 Первичная установка из отдельной локальной копии и готовность реальных служб — PASS.
-Следующий шаг для проверки свежего Git checkout — создать первый коммит и повторить
-установку из него.
+Свежий клон с GitHub получен на коммите `7ccdd97`. Для запуска параллельно с рабочим
+сайтом в клоне настроены отдельные порты `5038`, `8098`, `11438`, тома и метки образов.
+`docker compose config` и `git diff --check` прошли. Пользователь успешно выполнил
+`.\reports\s7-github-clone\verify-install.bat`. Повторный запрос к `/health/ready` на
+порту `5038` подтвердил SQLite, реальный OSTIS и локальный Ollama (`mock=false`).
+Проверка S7 пройдена. Тестовый стек можно остановить той же командой с аргументом `stop`.
