@@ -26,6 +26,25 @@ def test_real_kb_read():
     } <= set(vocabulary["terms"])
 
 
+def test_article_file_reference_and_readable_concept(app):
+    http = app.test_client()
+    article_id = "by_act_hk1200428_article_1"
+    article = http.get(f"/api/legal/sources/{article_id}")
+    assert article.status_code == 200, article.json
+    assert article.json["text_status"] == "unavailable_file_reference"
+    assert article.json["sc_identifier"] == article_id
+    assert article.json["text"] == article.json["excerpt"] == ""
+    assert article.json["source_exists"] and article.json["provenance"]["text_links"]
+    assert article.json["source_relevant"] is article.json["legal_applicability"] is None
+    page = http.get(f"/article/{article_id}")
+    assert page.status_code == 200
+    assert "Текст не извлечён из SC-памяти." in page.get_data(as_text=True)
+    assert "/tmp/" not in page.get_data(as_text=True)
+    concept = http.get("/api/legal/sources/concept_rental_housing_belarus")
+    assert concept.status_code == 200
+    assert concept.json["text_status"] == "available" and concept.json["text"]
+
+
 def test_exact_title_precedes_related_agent_sources():
     client = OstisClient(os.getenv("OSTIS_WS_URL", "ws://127.0.0.1:8090/ws_json"))
     result = client.search(["воспитание"])

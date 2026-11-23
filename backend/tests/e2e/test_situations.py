@@ -78,3 +78,22 @@ def test_partial_context_and_definition_keep_real_search(app, query):
     assert source["excerpt"]
     assert app.extensions["legal_service"].ostis.source(source["id"])["text"]
     assert any(event["method"] == "action_user_request" for event in result["trace"])
+
+
+@pytest.mark.parametrize("mode", ["baseline", "llm"])
+def test_maritime_registration_without_confirmed_kb_scope(app, mode):
+    response = app.test_client().post(
+        "/api/legal/query",
+        json={
+            "query": "Как зарегистрировать морское судно под флагом Панамы?",
+            "mode": mode,
+        },
+    )
+    assert response.status_code == 200, response.json
+    result = response.json
+    assert result["answer"]["status"] == "no_evidence"
+    assert result["matches"] == result["search_terms"] == []
+    assert result["situation"]["clarification_questions"]
+    assert result["trace"][0]["reason"] == "outside_confirmed_scope"
+    assert result["runtime"]["mock"] is False
+    assert result["runtime"]["llm_used"] is False

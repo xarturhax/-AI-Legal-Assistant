@@ -17,6 +17,20 @@ from sc_client.models import (
 
 from app.legal.search_baseline import normalize_search_term
 
+LOCAL_PATH = re.compile(
+    r"(?:file:/+[^\r\n]+|(?:/|[a-z]:[\\/]|\\\\|\.{1,2}[\\/])[^\r\n]+|"
+    r"(?:[^\\/:\r\n]+[\\/])*[\w.-]+\.(?:html?|pdf|docx?|txt))",
+    re.IGNORECASE,
+)
+
+
+def readable_definition(definitions):
+    chunks = [text.strip() for _, text in definitions if text.strip()]
+    text = "\n\n".join(chunk for chunk in chunks if not LOCAL_PATH.fullmatch(chunk))
+    if text:
+        return text, "available"
+    return "", "unavailable_file_reference" if chunks else "unavailable"
+
 
 def plain_text(value):
     if not isinstance(value, str):
@@ -134,10 +148,7 @@ class Memory:
         identifier = self.system_identifier(node)
         if not titles:
             return None
-        text = "\n\n".join(text for _, text in definitions)
-        # sc-builder обычно загружает HTML. Если остался URI, это не содержимое статьи.
-        if text.startswith("file://"):
-            text = ""
+        text, text_status = readable_definition(definitions)
         related = []
         for relation in (
             "nrel_related_article",
@@ -175,6 +186,10 @@ class Memory:
             "title": titles[0][1],
             "excerpt": text[:1600],
             "text": text,
+            "text_status": text_status,
+            "source_exists": True,
+            "source_relevant": None,
+            "legal_applicability": None,
             "source_document": origins or None,
             "revision": None,
             "currency": "Редакция и актуальность правового текста не подтверждены.",
