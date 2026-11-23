@@ -99,6 +99,7 @@ def test_context_extends_search_even_with_empty_model_search_terms():
         "Что мне делать?",
         "Мне нужна юридическая помощь",
         "У меня сложная проблема, подскажите, как поступить",
+        "Скажите, как мне дальше действовать?",
     ],
 )
 def test_vague_request_cannot_search_using_invented_context(query, needs_clarification):
@@ -144,6 +145,7 @@ def test_vague_request_cannot_search_using_invented_context(query, needs_clarifi
         "Что такое арендное жилье?",
         "Мне предлагают арендное жилье. Какие условия?",
         "Меня уволили. Что делать?",
+        "Меня уволили. Как действовать?",
         "Я поступаю в вуз. Как называют поступающего?",
         "Подписал договор, но пока не знаю его условий.",
     ],

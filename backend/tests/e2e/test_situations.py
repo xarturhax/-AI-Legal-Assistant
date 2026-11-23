@@ -42,6 +42,7 @@ def test_situation_returns_only_kb_excerpts(app, query):
         "Помогите разобраться в моей ситуации",
         "Что мне делать?",
         "У меня сложная проблема, подскажите, как поступить",
+        "Скажите, как мне дальше действовать?",
     ],
 )
 def test_vague_request_asks_for_context_without_sources(app, query):
