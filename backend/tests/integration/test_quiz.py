@@ -17,6 +17,9 @@ def test_quiz_reads_and_grades_live_ostis_questions(app):
         db.session.commit()
     client = app.test_client()
     assert client.post("/auth", data={"email": email, "password": password}).status_code == 302
+    landing = client.get("/test").get_data(as_text=True)
+    assert "После каждого ответа можно посмотреть результат" in landing
+    assert "актуальность которой не подтверждена" not in landing
     assert client.post("/api/test/start").status_code == 200
 
     ostis = app.extensions["legal_service"].ostis
@@ -67,3 +70,10 @@ def test_quiz_reads_and_grades_live_ostis_questions(app):
         if len(correct_positions) > 1:
             break
     assert len(correct_positions) > 1
+
+    result = client.post(
+        "/test",
+        data={"action": "answer", "question_id": source["id"], "answer_id": source["correct_id"]},
+    ).get_data(as_text=True)
+    assert "<h2>Верно</h2>" in result
+    assert "<summary>Источник проверки</summary>" in result

@@ -1,0 +1,37 @@
+{
+  "http_status": 200,
+  "runtime": {
+    "elapsed_seconds": 4.404,
+    "llm_used": false,
+    "mock": false,
+    "ostis_connected": true
+  },
+  "source_ids": [
+    "concept_rental_housing_belarus"
+  ],
+  "trace": [
+    {
+      "method": "action_user_request",
+      "result_nodes_count": 9,
+      "source_count": 8,
+      "status": "finished",
+      "term": "арендное жилье"
+    },
+    {
+      "method": "sc_template_search",
+      "reason": "exact_title",
+      "status": "matched",
+      "term": "арендное жилье"
+    },
+    {
+      "method": "sc_template_search",
+      "status": "matched",
+      "term": "арендное"
+    },
+    {
+      "method": "sc_template_search",
+      "status": "matched",
+      "term": "жилье"
+    }
+  ]
+}

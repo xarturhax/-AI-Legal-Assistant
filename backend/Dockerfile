@@ -3,6 +3,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 ENV APP_INSTANCE_PATH=/app/data/instance
 ENV APP_HOST=0.0.0.0
 WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends fonts-dejavu-core \
+    && rm -rf /var/lib/apt/lists/*
 COPY requirements.lock.txt ./requirements.lock.txt
 RUN pip install --no-cache-dir -r requirements.lock.txt
 COPY . .

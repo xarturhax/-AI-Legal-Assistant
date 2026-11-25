@@ -10,13 +10,18 @@ class LegalService:
         self.ostis = ostis
         self.interpreter = interpreter
 
-    def query(self, query, mode):
+    def lookup_concepts(self, term, mode):
+        if mode == "baseline":
+            return self.ostis.search([term], use_agent=False)
+        return self.query(term, mode, use_agent=False)
+
+    def query(self, query, mode, *, use_agent=True):
         started = time.monotonic()
         interpretation = None
         situation = None
         maritime = maritime_registration(query)
         vocabulary = []
-        if mode == "llm":
+        if mode == "llm" and use_agent:
             # OSTIS проверяется ДО передачи текста локальной модели.
             self.ostis.ready()
         if mode == "llm" or maritime:
@@ -39,7 +44,10 @@ class LegalService:
                 vocabulary = [exact]
             else:
                 exact = None
-            interpretation = self.interpreter.interpret(query, vocabulary=vocabulary)
+            interpret = (
+                self.interpreter.interpret if use_agent else self.interpreter.interpret_directory
+            )
+            interpretation = interpret(query, vocabulary=vocabulary)
             situation = situation_plan(interpretation, query, vocabulary)
             terms = [exact] if exact else interpretation.search_terms
             terms = list(
@@ -68,7 +76,9 @@ class LegalService:
                 ],
             }
         else:
-            result = self.ostis.search(terms)
+            result = (
+                self.ostis.search(terms) if use_agent else self.ostis.search(terms, use_agent=False)
+            )
         for match in result["matches"]:
             title = normalize_search_term(match.get("title", ""))
             match["source_exists"] = True

@@ -1,9 +1,17 @@
+import json
 import re
+import smtplib
+from base64 import urlsafe_b64decode
+from email import policy
+from email.parser import BytesParser
 from pathlib import Path
+from urllib.parse import parse_qs
 
+import httpx
+import pytest
 from app import create_app
 from app.db.migrate import upgrade
-from app.db.models import User
+from app.db.models import User, VerificationToken
 from app.extensions import db
 from sqlalchemy import text
 
@@ -160,3 +168,92 @@ def test_account_pages(app):
     )
     assert alice.get("/api/settings").json["mode"] == "llm"
     assert 'value="llm" selected' in alice.get("/requests").data.decode()
+
+
+def test_repeat_registration_can_resume_without_changing_password(app):
+    client = app.test_client()
+    registration = {"email": "pending@example.test", "password": "Secure-local-123"}
+    assert client.post("/reg", data=registration).location == "/verification"
+    original = next(Path(app.config["DEV_MAIL_DIR"]).glob("*.txt")).read_text(encoding="utf-8")
+    assert client.post("/reg", data={**registration, "password": "Different-123"}).location == (
+        "/verification"
+    )
+    assert client.post("/resend_code", data={"email": registration["email"]}).status_code == 302
+    old_code = re.search(r"Код: (\S+)", original)[1]
+    new_code = next(
+        code
+        for path in Path(app.config["DEV_MAIL_DIR"]).glob("*.txt")
+        if (code := re.search(r"Код: (\S+)", path.read_text(encoding="utf-8"))[1]) != old_code
+    )
+    assert (
+        client.post(
+            "/verification", data={"email": registration["email"], "token": old_code}
+        ).status_code
+        == 400
+    )
+    assert (
+        client.post(
+            "/verification", data={"email": registration["email"], "token": new_code}
+        ).status_code
+        == 302
+    )
+    assert client.post("/auth", data=registration).location == "/cabinet"
+
+
+@pytest.mark.mock
+def test_smtp_delivery_failure_rolls_back_registration(app, monkeypatch):
+    app.config.update(
+        SMTP_HOST="smtp.example.test", SMTP_USERNAME="themis@example.test", SMTP_PASSWORD="test"
+    )
+
+    def reject(*args, **kwargs):
+        raise smtplib.SMTPAuthenticationError(535, b"test failure")
+
+    monkeypatch.setattr("app.auth.mail.smtplib.SMTP", reject)
+    response = app.test_client().post(
+        "/reg", data={"email": "pending@example.test", "password": "Secure-local-123"}
+    )
+    assert response.status_code == 503
+    with app.app_context():
+        assert db.session.execute(db.select(User)).scalar_one_or_none() is None
+        assert db.session.execute(db.select(VerificationToken)).scalar_one_or_none() is None
+    assert not list(Path(app.config["DEV_MAIL_DIR"]).glob("*.txt"))
+
+
+@pytest.mark.mock
+def test_gmail_api_sends_registration_code_with_oauth(app, tmp_path, monkeypatch):
+    credential_file = tmp_path / "oauth.json"
+    credential_file.write_text(
+        json.dumps({"client_id": "test", "client_secret": "test", "refresh_token": "test"}),
+        encoding="utf-8",
+    )
+    app.config.update(GMAIL_OAUTH_FILE=str(credential_file), GMAIL_SENDER="themis@example.test")
+    messages = []
+
+    def google(request):
+        if request.url.host == "oauth2.googleapis.com":
+            assert parse_qs(request.content.decode())["grant_type"] == ["refresh_token"]
+            return httpx.Response(200, json={"access_token": "test-access-token"})
+        assert str(request.url) == "https://gmail.googleapis.com/gmail/v1/users/me/messages/send"
+        assert request.headers["Authorization"] == "Bearer test-access-token"
+        content = urlsafe_b64decode(json.loads(request.content)["raw"])
+        messages.append(BytesParser(policy=policy.default).parsebytes(content))
+        return httpx.Response(200, json={"id": "test-message"})
+
+    http_client = httpx.Client
+    monkeypatch.setattr(
+        "app.auth.mail.httpx.Client",
+        lambda **kwargs: http_client(transport=httpx.MockTransport(google)),
+    )
+    client = app.test_client()
+    email = "pending@example.test"
+    assert (
+        client.post("/reg", data={"email": email, "password": "Secure-local-123"}).status_code
+        == 302
+    )
+    (message,) = messages
+    assert message["To"].addresses[0].addr_spec == email
+    assert message["From"].addresses[0].addr_spec == "themis@example.test"
+    code = re.search(r"Код подтверждения аккаунта: (\S+)", message.get_content())[1]
+    assert client.post("/verification", data={"email": email, "token": code}).status_code == 302
+    assert not list(Path(app.config["DEV_MAIL_DIR"]).glob("*.txt"))

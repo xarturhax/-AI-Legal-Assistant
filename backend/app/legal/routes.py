@@ -84,24 +84,28 @@ def query_api():
 @bp.get("/directory_results")
 def directory():
     term = request.values.get("term", "").strip()
+    mode = request.values.get("mode", "baseline")
     result = None
     if term:
-        if not 2 <= len(term) <= 200:
-            from flask import abort
-
-            abort(400, description="Термин должен содержать от 2 до 200 символов.")
-        result = legal_service().ostis.search([term], use_agent=False)
-    return render_template("search.html", result=result, directory=True)
+        result = lookup_concepts(term, mode)
+    return render_template("search.html", result=result, directory=True, selected_mode=mode)
 
 
 @bp.get("/api/legal/concepts")
 def concepts():
+    return jsonify(
+        lookup_concepts(request.args.get("term", "").strip(), request.args.get("mode", "baseline"))
+    )
+
+
+def lookup_concepts(term, mode):
     from flask import abort
 
-    term = request.args.get("term", "").strip()
     if not 2 <= len(term) <= 200:
-        abort(400, description="Термин должен содержать от 2 до 200 символов.")
-    return jsonify(legal_service().ostis.search([term], use_agent=False))
+        abort(400, description="Введите название или описание длиной от 2 до 200 символов.")
+    if mode not in {"baseline", "llm"}:
+        abort(400, description="Выберите поиск по названию или по описанию.")
+    return legal_service().lookup_concepts(term, mode)
 
 
 @bp.get("/api/legal/sources/<identifier>")

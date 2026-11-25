@@ -5,8 +5,8 @@ from pydantic import ValidationError
 
 from app.config import local_service_url
 from app.errors import ServiceError
-from app.llm.prompts import SYSTEM_PROMPT
-from app.llm.schemas import Interpretation
+from app.llm.prompts import DIRECTORY_PROMPT, SYSTEM_PROMPT
+from app.llm.schemas import DirectoryTerms, Interpretation
 
 
 class OllamaInterpreter:
@@ -32,11 +32,28 @@ class OllamaInterpreter:
         return False
 
     def interpret(self, query, vocabulary=None):
+        return self._complete(
+            query, vocabulary, Interpretation, SYSTEM_PROMPT, 1500
+        ).check_grounding(query)
+
+    def interpret_directory(self, query, vocabulary):
+        result = self._complete(query, vocabulary, DirectoryTerms, DIRECTORY_PROMPT, 320)
+        return Interpretation(
+            intent="definition",
+            domain_hints=[],
+            search_terms=result.search_terms,
+            entities=[],
+            facts=[],
+            missing_information=[],
+            needs_clarification=False,
+        )
+
+    def _complete(self, query, vocabulary, output_type, system_prompt, tokens):
         if not self.ready():
             raise ServiceError(
                 "Локальная модель недоступна. Выберите классический поиск.", "llm_unavailable"
             )
-        schema = Interpretation.model_json_schema()
+        schema = output_type.model_json_schema()
         user_content = query
         if vocabulary is not None:
             if not vocabulary:
@@ -51,9 +68,9 @@ class OllamaInterpreter:
             "model": self.model,
             "stream": False,
             "format": schema,
-            "options": {"temperature": 0, "num_predict": 1500, "num_ctx": 4096},
+            "options": {"temperature": 0, "num_predict": tokens, "num_ctx": 4096},
             "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_content},
             ],
         }
@@ -65,7 +82,7 @@ class OllamaInterpreter:
                     content = response.json()["message"]["content"]
                 if not isinstance(content, str) or len(content) > 16000:
                     raise ValueError("Недопустимый размер ответа модели")
-                interpretation = Interpretation.model_validate_json(content).check_grounding(query)
+                interpretation = output_type.model_validate_json(content)
                 if vocabulary is not None and any(
                     term not in vocabulary for term in interpretation.search_terms
                 ):

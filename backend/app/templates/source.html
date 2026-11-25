@@ -5,7 +5,10 @@
 <div class="c-work-area">
   <div class="c-source-reader">
     <article class="document-sheet"><div class="legal-text preserve">{{ source.text or 'Текст не извлечён из SC-памяти.' }}</div></article>
-    <aside class="c-reader-aside"><h2>Об источнике</h2><p class="notice">{{ source.currency }}</p>
+    <aside class="c-reader-aside"><h2>Об источнике</h2>
+      {% if source.source_citation %}<p>{{ source.source_citation }}</p>{% endif %}
+      {% if source.official_url %}<p><a href="{{ source.official_url }}" target="_blank" rel="noopener noreferrer">Открыть официальный источник ↗</a></p>{% endif %}
+      <p class="notice">{{ source.currency }}</p>
       {% if current_user.is_authenticated %}<form class="source-actions" method="post" action="/bookmarks/add"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="source_id" value="{{ source.id }}"><button>Добавить в закладки</button></form>{% endif %}
     </aside>
   </div>

@@ -51,6 +51,7 @@ services:
     volumes:
       - app-data:/app/data
       - ./data/documents:/app/documents:ro
+      - ./data/runtime/mail-credentials:/run/themis-mail:ro
     ports:
       - 127.0.0.1:${APP_PORT:-5000}:5000
     depends_on:
@@ -64,6 +65,7 @@ services:
       start_period: 60s
 volumes:
   kb-binary:
+    name: ${OSTIS_KB_VOLUME:-${COMPOSE_PROJECT_NAME}_kb-binary}
   app-data:
   ollama-models:
 

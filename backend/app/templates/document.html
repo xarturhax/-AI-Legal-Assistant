@@ -3,7 +3,44 @@
 {% block content %}
 <header class="c-page-heading"><a class="back-link" href="/templates">Все шаблоны документов</a><h1>{{ document.title }}</h1><p class="c-document-license"><a href="{{ document.source_url }}" rel="noopener noreferrer">Источник бланка</a><span>{{ document.license }}</span></p></header>
 <div class="c-work-area split-layout document-workbench">
-  <section aria-label="Текст бланка"><h2>Предварительный просмотр</h2><pre class="document-sheet document-preview">{{ content }}</pre></section>
-  <form method="post" class="form-panel document-form"><h2>Заполните поля</h2><p class="field-help">Данные подставятся в бланк. Готовый документ скачается в формате TXT.</p><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">{% for field in fields %}<label>{{ field.replace('_',' ') }}<input name="{{ field }}" maxlength="1000" required></label>{% endfor %}<button>Скачать заполненный документ</button></form>
+  <section aria-labelledby="preview-title">
+    <h2 id="preview-title">{{ 'Заполненный бланк' if preview_ready else 'Предварительный просмотр' }}</h2>
+    {% if specs %}
+      <div class="document-sheet document-preview document-preview-structured">
+        {% for block in content.strip().split('\n\n') %}<p>{{ block }}</p>{% endfor %}
+      </div>
+    {% else %}<pre class="document-sheet document-preview">{{ content }}</pre>{% endif %}
+  </section>
+  <form method="post" class="form-panel document-form">
+    <h2>Заполните поля</h2>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {% if specs %}
+      {% if errors %}<p class="document-field-error" role="alert">Исправьте отмеченные поля.</p>{% endif %}
+      {% for name, spec in specs.items() %}
+        {% set issue = errors.get(name) %}
+        <label for="field-{{ name }}">{{ spec.label }}</label>
+        {% if spec.options %}
+          <select id="field-{{ name }}" name="{{ name }}" required {% if issue %}aria-invalid="true" aria-describedby="error-{{ name }}"{% endif %}>
+            <option value="">Выберите вариант</option>
+            {% for option in spec.options %}<option {% if values.get(name) == option %}selected{% endif %}>{{ option }}</option>{% endfor %}
+          </select>
+        {% else %}
+          <input id="field-{{ name }}" name="{{ name }}" type="{{ 'date' if spec.kind == 'date' else 'text' }}" value="{{ values.get(name, '') }}" required
+            maxlength="{{ 4 if spec.kind == 'year' else spec.max_length }}" {% if spec.placeholder %}placeholder="{{ spec.placeholder }}"{% endif %}
+            {% if spec.kind == 'year' %}inputmode="numeric" pattern="[0-9]{4}"{% endif %}
+            {% if issue %}aria-invalid="true" aria-describedby="error-{{ name }}"{% endif %}>
+        {% endif %}
+        {% if issue %}<p id="error-{{ name }}" class="document-field-error">{{ issue }}</p>{% endif %}
+      {% endfor %}
+      <div class="form-actions">
+        <button name="action" value="preview">Посмотреть бланк</button>
+        <button class="button-secondary" name="action" value="docx">Скачать DOCX</button>
+        <button class="button-secondary" name="action" value="pdf">Скачать PDF</button>
+      </div>
+    {% else %}
+      {% for field in fields %}<label>{{ field.replace('_',' ') }}<input name="{{ field }}" maxlength="1000" required></label>{% endfor %}
+      <button>Скачать заполненный документ</button>
+    {% endif %}
+  </form>
 </div>
 {% endblock %}

@@ -26,6 +26,8 @@ def app(tmp_path, monkeypatch):
             "WTF_CSRF_ENABLED": False,
             "DEV_LOCAL_MAIL": True,
             "DEV_MAIL_DIR": str(tmp_path / "dev-mail"),
+            "GMAIL_OAUTH_FILE": "",
+            "SMTP_HOST": "",
         }
     )
     from app.db.migrate import upgrade

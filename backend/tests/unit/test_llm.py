@@ -79,11 +79,18 @@ def test_baseline_without_llm():
 
 
 @pytest.mark.mock
+@pytest.mark.parametrize("directory", [False, True])
 @pytest.mark.parametrize("chosen_term", ["арендное жилье", "неизвестное понятие"])
-def test_live_vocabulary_constrains_model_terms(monkeypatch, chosen_term):
+def test_live_vocabulary_constrains_model_terms(monkeypatch, chosen_term, directory):
     calls = []
-    data = interpretation_data()
-    data["search_terms"] = [chosen_term]
+    data = (
+        {"search_terms": [chosen_term]}
+        if directory
+        else {
+            **interpretation_data(),
+            "search_terms": [chosen_term],
+        }
+    )
 
     def respond(request):
         calls.append(json.loads(request.content))
@@ -95,15 +102,18 @@ def test_live_vocabulary_constrains_model_terms(monkeypatch, chosen_term):
     )
     interpreter = OllamaInterpreter("http://localhost:11434", "local-model")
     monkeypatch.setattr(interpreter, "ready", lambda: True)
+    interpret = interpreter.interpret_directory if directory else interpreter.interpret
     if chosen_term == "арендное жилье":
-        result = interpreter.interpret("Что такое арендное жилье?", vocabulary=["арендное жилье"])
+        result = interpret("Что такое арендное жилье?", vocabulary=["арендное жилье"])
         assert result.search_terms == [chosen_term]
     else:
         with pytest.raises(ServiceError) as caught:
-            interpreter.interpret("Что такое арендное жилье?", vocabulary=["арендное жилье"])
+            interpret("Что такое арендное жилье?", vocabulary=["арендное жилье"])
         assert caught.value.code == "llm_format"
         assert len(calls) == 2
     assert calls[0]["format"]["properties"]["search_terms"]["items"]["enum"] == ["арендное жилье"]
+    if directory:
+        assert set(calls[0]["format"]["properties"]) == {"search_terms"}
     supplied = json.loads(calls[0]["messages"][1]["content"])
     assert supplied == {
         "question": "Что такое арендное жилье?",

@@ -75,6 +75,24 @@ def evaluate(dataset, terms_only, *, progress=False):
                     row["answer_status"] = result["answer"]["status"]
                     row["status_matches_gold"] = row["answer_status"] == case["expected_status"]
                     row["returned_source_ids"] = [m["sc_identifier"] for m in result["matches"]]
+                    situation = result.get("situation") or {}
+                    row["needs_clarification"] = situation.get("needs_clarification")
+                    row["clarification_questions"] = situation.get("clarification_questions", [])
+                    row["assessment_status"] = situation.get("assessment_status")
+                    row["interpretation"] = result.get("interpretation")
+                    row["trace"] = result.get("trace", [])
+                    source_hit = bool(
+                        set(row["returned_source_ids"]) & set(case["expected_source_ids"])
+                    )
+                    row["behavior_matches_gold"] = (
+                        row["status_matches_gold"]
+                        and (source_hit if case["expected_source_ids"] else not result["matches"])
+                        and (
+                            not case.get("expected_clarification")
+                            or mode != "llm"
+                            or bool(row["needs_clarification"] and row["clarification_questions"])
+                        )
+                    )
                     linked += len(set(result["linked_terms"]))
                     for match in result["matches"]:
                         references += 1

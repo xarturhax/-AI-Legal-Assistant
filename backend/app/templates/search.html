@@ -4,41 +4,54 @@
 {% block content %}
 <section class="c-search-masthead">
   <div class="c-search-heading"><h1>{{ 'Справочник' if directory else 'Юридический' }}<br>{{ 'понятий' if directory else 'поиск' }}</h1><p>{{ 'Определения и связи из семантической базы знаний.' if directory else 'Сначала вопрос. Затем — основания для ответа.' }}</p><div class="c-search-principle"><span class="c-principle-line" aria-hidden="true"></span><p>В выдаче — только сведения, извлечённые из OSTIS. Актуальность редакции проверяйте у источника.</p></div></div>
-  <form method="{{ 'get' if directory else 'post' }}" class="c-search-form" data-loading-form>
+  <form method="post" action="{{ '/directory' if directory else '/requests' }}" class="c-search-form" data-loading-form>
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    {% if not directory %}<div class="c-form-top"><label for="mode">Как искать</label><select id="mode" name="mode" aria-describedby="mode-description"><option value="baseline" {% if selected_mode == 'baseline' %}selected{% endif %}>Классический поиск</option><option value="llm" {% if selected_mode == 'llm' %}selected{% endif %}>Локальная LLM</option></select></div>
-    <p id="mode-description" class="c-mode-help">Классический поиск использует слова вопроса. LLM подбирает понятия по описанию своими словами.</p>{% endif %}
-    <div class="c-query-label"><label for="query">{{ 'Название понятия' if directory else 'Ваш вопрос или описание ситуации' }}</label><span>{{ 'До 200 знаков' if directory else 'До 1 500 знаков' }}</span></div>
-    <textarea id="query" name="{{ 'term' if directory else 'query' }}" minlength="2" maxlength="{{ 200 if directory else 1500 }}" required placeholder="{{ 'Введите юридическое понятие' if directory else 'Укажите предмет вопроса и важные обстоятельства' }}" aria-describedby="query-help">{{ request.values.get('term' if directory else 'query', '') }}</textarea>
-    <div class="c-query-actions"><p id="query-help">{{ 'Поиск по названиям в SC-базе.' if directory else 'Материалы в обоих режимах поступают из одной базы OSTIS.' }}</p><button class="c-button">Найти сведения</button></div>
+    <div class="c-form-top"><label for="mode">Как искать</label><select id="mode" name="mode" aria-describedby="mode-description"><option value="baseline" {% if selected_mode == 'baseline' %}selected{% endif %}>{{ 'По названию' if directory else 'Классический поиск' }}</option><option value="llm" {% if selected_mode == 'llm' %}selected{% endif %}>{{ 'По описанию с LLM' if directory else 'Локальная LLM' }}</option></select></div>
+    <p id="mode-description" class="c-mode-help">{{ 'Если не знаете точный термин, опишите понятие своими словами.' if directory else 'Классический поиск использует слова вопроса. LLM подбирает понятия по описанию своими словами.' }}</p>
+    <div class="c-query-label"><label for="query">{{ 'Название или описание понятия' if directory else 'Ваш вопрос или описание ситуации' }}</label><span>{{ 'До 200 знаков' if directory else 'До 1 500 знаков' }}</span></div>
+    <textarea id="query" name="{{ 'term' if directory else 'query' }}" minlength="2" maxlength="{{ 200 if directory else 1500 }}" required placeholder="{{ 'Например, арендное жильё' if directory else 'Укажите предмет вопроса и важные обстоятельства' }}">{{ request.values.get('term' if directory else 'query', '') }}</textarea>
+    <div class="c-query-actions"><button class="c-button">{{ 'Найти понятия' if directory else 'Найти сведения' }}</button></div>
     <p class="loading-status c-loading" role="status" hidden>Ищем сведения в локальной базе. Дождитесь результата…</p>
   </form>
 </section>
 {% if result %}
 <section class="c-research" aria-labelledby="research-title">
   <div class="c-research-top"><h2 id="research-title">{{ 'Найденные понятия' if directory else 'Материалы исследования' }}</h2>{% set source_count = result.matches | length %}<p>{{ source_count }} {{ 'источник' if source_count % 10 == 1 and source_count % 100 != 11 else ('источника' if source_count % 10 in [2,3,4] and source_count % 100 not in [12,13,14] else 'источников') }} из OSTIS</p></div>
-  <div class="c-research-columns">
-    <aside class="c-research-summary">
-      {% if directory %}<div class="c-answer"><h3>Понятие в связях</h3><p>Откройте источник, чтобы прочитать определение и перейти к связанным материалам. Состав выдачи отражает загруженную память OSTIS.</p></div>{% endif %}
-      {% if result.answer %}<div class="c-answer"><h3>{{ 'Найденные выдержки' if result.answer.status == 'grounded' else 'Нет подтверждённого ответа' }}</h3><p class="c-preserve">{{ result.answer.text }}</p></div>{% endif %}
-      {% if result.interpretation and result.search_terms %}<div class="c-search-terms"><h3>Как понят запрос</h3><p>{{ result.search_terms | join(', ') }}</p><small>Поисковые термины LLM. Модель подбирает понятия; тексты поступают из OSTIS.</small></div>{% endif %}
-      <p class="c-currency-note">Найденные определения сами по себе не устанавливают права и обязанности в вашей ситуации.</p>
-    </aside>
+  {% set context = result.situation if not directory and result.situation and (result.situation['items'] or result.situation.needs_clarification) else none %}
+  <div class="c-research-columns{% if context %} c-with-context{% endif %}">
     <div class="c-materials">
       <div class="c-source-register">
-      {% for item in result.matches %}<article class="c-source"><div class="c-source-title"><h3><a href="{{ url_for('legal.source', identifier=item.id) }}">{{ item.title }}</a></h3><span>OSTIS</span></div><p class="c-source-excerpt">{{ item.excerpt or 'Текст недоступен в загруженной памяти.' }}</p><dl class="c-source-facts"><div><dt>SC-идентификатор</dt><dd>{{ item.sc_identifier or item.sc_address }}</dd></div><div><dt>Редакция</dt><dd>{{ item.currency }}</dd></div></dl><a class="c-source-link" href="{{ url_for('legal.source', identifier=item.id) }}">Читать источник и связанные материалы</a></article>
-      {% else %}<div class="c-empty"><h3>Совпадений в базе не найдено</h3><p>Попробуйте более точное название понятия или переформулируйте вопрос. Отсутствие совпадений не означает отсутствия правовой нормы.</p></div>{% endfor %}
+      {% for item in result.matches %}
+        <article class="c-source">
+          <div class="c-source-title"><h3>{{ item.title }}</h3><span>OSTIS</span></div>
+          <p class="c-source-excerpt">{{ item.excerpt or 'Текст недоступен в загруженной базе знаний.' }}</p>
+          <a class="c-source-link" href="{{ url_for('legal.source', identifier=item.id) }}" aria-label="Открыть источник — {{ item.title }}">Открыть источник</a>
+        </article>
+      {% else %}
+        <div class="c-empty">
+          <h3>{{ 'Понятия не найдены' if directory else 'Нет подтверждённого ответа' }}</h3>
+          <p>{{ 'Уточните понятие или опишите его своими словами в режиме LLM.' if directory else result.answer.text }}</p>
+        </div>
+      {% endfor %}
       </div>
-      {% if result.situation %}
-      <section class="c-situation"><h3>Контекст ситуации</h3><p class="c-situation-notice">{{ result.situation.notice }}</p><dl class="c-situation-list">{% for item in result.situation['items'] %}<div><dt>{{ item.text }}</dt><dd><span class="{{ 'c-linked' if item.status == 'linked' else 'c-unlinked' }}">{{ 'связано с источниками OSTIS' if item.status == 'linked' else 'связь с OSTIS не найдена' }}</span>{% for source_id in item.source_ids %} <a href="{{ url_for('legal.source', identifier=source_id) }}">Источник</a>{% endfor %}</dd></div>{% endfor %}</dl>
-      {% if result.situation.needs_clarification %}<div class="c-clarification"><h4>Уточните обстоятельства</h4><ul>{% for question in result.situation.clarification_questions %}<li>{{ question }}</li>{% else %}<li>Опишите подробнее обстоятельства и желаемый результат.</li>{% endfor %}</ul></div>{% endif %}</section>
+      {% if result.trace or result.matches %}
+        <details class="c-detail"><summary>Как получен результат</summary>
+          {% if result.interpretation and result.search_terms %}<p>Термины, подобранные LLM — {{ result.search_terms | join(', ') }}</p>{% endif %}
+          {% if result.unmatched_terms %}<p>Термины без совпадения — {{ result.unmatched_terms | join(', ') }}</p>{% endif %}
+          {% for item in result.matches %}<p>{{ item.title }} · <code>{{ item.sc_identifier or item.sc_address }}</code> · {{ item.currency }}</p>{% endfor %}
+          {% if result.trace %}<pre>{{ result.trace | tojson(indent=2) }}</pre>{% endif %}
+        </details>
       {% endif %}
-      {% if result.unmatched_terms %}<details class="c-detail"><summary>Термины без совпадения</summary><p>{{ result.unmatched_terms | join(', ') }}</p></details>{% endif %}
-      {% if result.trace %}<details class="c-detail"><summary>Как получен результат</summary><pre>{{ result.trace | tojson(indent=2) }}</pre></details>{% endif %}
     </div>
+    {% if context %}
+      <aside class="c-situation"><h3>Контекст ситуации</h3>
+        {% if context['items'] %}<dl class="c-situation-list">{% for item in context['items'] %}<div><dt>{{ item.text }}</dt><dd><span class="{{ 'c-linked' if item.status == 'linked' else 'c-unlinked' }}">{{ 'связано с источниками OSTIS' if item.status == 'linked' else 'связь с OSTIS не найдена' }}</span>{% for source_id in item.source_ids %} <a href="{{ url_for('legal.source', identifier=source_id) }}">Источник</a>{% endfor %}</dd></div>{% endfor %}</dl>{% endif %}
+        {% if context.needs_clarification %}<div class="c-clarification"><h4>Уточните обстоятельства</h4><ul>{% for question in context.clarification_questions %}<li>{{ question }}</li>{% endfor %}</ul></div>{% endif %}
+      </aside>
+    {% endif %}
   </div>
 </section>
 {% else %}
-<section class="c-search-rest"><div><h2>Право опирается<br>на основания.</h2><p>Здесь появятся выдержки, источники и доступные связи. Откройте найденный материал, чтобы прочитать текст и проверить его происхождение.</p></div></section>
+<section class="c-search-rest"><div><h2>{{ 'Как искать понятие' if directory else 'Попробуйте запрос' }}</h2><p>{{ 'По названию — «арендное жилье». По описанию — «жильё, которое государство сдаёт гражданам».' if directory else 'Например, «Что такое арендное жилье?» или «У меня арендное жилье, условий договора не знаю».' }}</p></div></section>
 {% endif %}
 {% endblock %}

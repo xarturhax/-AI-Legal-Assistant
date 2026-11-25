@@ -9,7 +9,7 @@ JSON API использует ту же cookie-сессию, что сайт. П
 | GET /health/live | процесс, mock=false; без зависимостей |
 | GET /health/ready | database/ostis/llm отдельно; 503 при критической неготовности |
 | POST /api/legal/query | query 2–1500 символов, mode baseline/llm; interpretation, matches, unmatched_terms, trace, answer, runtime |
-| GET /api/legal/concepts?term=... | термин 2–200 символов; только результаты SC-шаблона |
+| GET /api/legal/concepts?term=...&mode=baseline\|llm | название или описание от 2 до 200 символов. По умолчанию baseline. LLM подбирает термины по словарю OSTIS. Оба режима возвращают карточки из SC-шаблонов |
 | GET /api/legal/sources/{id} | текст/название/SC-ID/SC-адрес/происхождение/связи; 404 если источник отсутствует |
 | GET/PUT /api/profile | свой профиль, email и verified read-only |
 | GET/PUT /api/settings | mode и timezone |
@@ -36,6 +36,14 @@ JSON API использует ту же cookie-сессию, что сайт. П
 
 `matches` содержат source_system=ostis, фактические sc_identifier (может быть null),
 sc_address, id, title, excerpt, text, source_document, revision, currency, related и provenance.
+`source_exists=true` подтверждает, что карточка прочитана из OSTIS.
+`source_relevant=true` у результата запроса означает совпадение нормализованного
+предмета запроса с названием. `source_relevant=null` означает, что релевантность
+не установлена. `legal_applicability=null` означает отсутствие оценки применимости.
+У отдельно открытого источника релевантность не оценивается.
+`text_status` принимает `available`, `unavailable_file_reference` или `unavailable`.
+При наличии только файловой ссылки сохраняются SC-ID, связи и provenance,
+а `text` и `excerpt` пусты. Файловый путь не включается в текст выдачи.
 `addr:N` в URL означает настоящий числовой адрес, не выдуманный SC-ID. Он может устареть после rebuild.
 `revision=null` означает неизвестную редакцию. Нет подтверждённых выдержек — answer.status=no_evidence,
 без юридических утверждений. При отказе OSTIS ответ 503/504 не содержит answer.
@@ -47,13 +55,17 @@ sc_address, id, title, excerpt, text, source_document, revision, currency, relat
 элемента принимает `linked` или `unlinked`. Эта связь означает поиск понятия, применимость
 нормы к обстоятельствам не установлена. `assessment_status=not_performed`.
 `clarification_questions` содержит missing_information модели, `needs_clarification`
-учитывает как исходный флаг, так и наличие вопросов. В baseline `situation=null`.
+учитывает как исходный флаг, так и наличие вопросов. В baseline `situation` обычно
+равно `null`, при ограничении предметной области оно содержит уточнение.
 `situation.search_allowed=false` означает, что исходный запрос содержит только общую
 просьбу без предмета или обстоятельств. В этом случае поиск и action не запускаются,
 `search_terms=[]`, `matches=[]`, `answer.status=no_evidence`, а trace содержит
 `query_interpretation` с `reason=insufficient_context`. Уточнение обязательно,
 вопросы не предполагают выдуманный договор или событие. При наличии предмета либо
 события `needs_clarification=true` допускает частичный поиск вместе с вопросами.
+Если запрос явно о регистрации морских судов, а живой словарь не подтверждает
+предметную область, оба режима возвращают пустую выдачу и уточнение с
+`reason=outside_confirmed_scope`. При таком отказе `runtime.llm_used=false`.
 
 Событие action_user_request в trace содержит result_nodes_count и source_count:
 status=finished означает завершение действия, но не гарантирует непустой ответ.

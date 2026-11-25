@@ -3,6 +3,10 @@
 !ostis/Dockerfile
 !ostis/verify_runtime.py
 !ostis/entrypoint.py
+!ostis/patches/
+!ostis/patches/user-request-agent.patch
+!ostis/knowledge-additions/
+!ostis/knowledge-additions/**
 !ostis/UPSTREAM_LICENSE
 !ostis/SC_MACHINE_LICENSE
 !ostis/upstream/

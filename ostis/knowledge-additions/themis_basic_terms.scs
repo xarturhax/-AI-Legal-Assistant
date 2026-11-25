@@ -1,0 +1,14 @@
+belarus_legal_term -> concept_law_belarus;;
+
+concept_law_belarus
+  => nrel_main_idtf: [закон] (* <- lang_ru;; *);
+  => nrel_themis_source_citation: [Закон Республики Беларусь от 17 июля 2018 г. № 130-З «О нормативных правовых актах», пункт 1 статьи 14.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=h11800130];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Закон – нормативный правовой акт, закрепляющий принципы и нормы правового регулирования наиболее важных общественных отношений.] (*
+        <- lang_ru;;
+      *);;
+    *);;
+  *);;

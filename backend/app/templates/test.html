@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Учебные тесты{% endblock %}
 {% block content %}
-<header class="c-page-heading"><h1>Учебные тесты</h1><p>Вопросы и правильные ответы читаются из SC-памяти. Проверьте знания и обратитесь к источнику проверки.</p></header>
+<header class="c-page-heading"><h1>Учебные тесты</h1><p>После каждого ответа можно посмотреть результат и источник проверки.</p></header>
 <div class="c-work-area"><div class="quiz-reading">
-<p class="notice">Результат отражает учебную разметку базы, актуальность которой не подтверждена.</p>
 {% if question %}<article class="quiz-question"><h2>{{ question.text }}</h2><p class="source-meta">OSTIS / {{ question.id }}</p><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="action" value="answer"><input type="hidden" name="question_id" value="{{ question.id }}"><fieldset><legend class="field-help">Выберите один ответ</legend>{% for answer in question.answers %}<label class="answer-option"><input type="radio" name="answer_id" value="{{ answer.id }}" required><span>{{ answer.text }}</span></label>{% endfor %}</fieldset><button>Проверить ответ</button></form></article>
 {% else %}
-  {% if result %}<div class="quiz-result" role="status"><h2>{{ ('Верно по разметке KB' if result.correct else 'Не совпало с разметкой KB') if result.correct is defined else 'Итоги теста' }}</h2><div class="score-line"><div><strong>{{ result.score.answered }}</strong><span>ответов</span></div><div><strong>{{ result.score.correct }}</strong><span>правильных</span></div></div></div>{% if result.source %}<details class="c-detail"><summary>Источник проверки</summary><pre>{{ result.source | tojson(indent=2) }}</pre></details>{% endif %}
-  {% else %}<div class="quiz-intro"><h2>От понятия — к пониманию.</h2><p>Отвечайте на вопросы и сверяйтесь с учебной разметкой OSTIS. Источник проверки доступен вместе с результатом.</p></div>{% endif %}
+  {% if result %}<div class="quiz-result" role="status"><h2>{{ ('Верно' if result.correct else 'Неверно') if result.correct is defined else 'Итоги теста' }}</h2><div class="score-line"><div><strong>{{ result.score.answered }}</strong><span>ответов</span></div><div><strong>{{ result.score.correct }}</strong><span>правильных</span></div></div></div>{% if result.source %}<details class="c-detail"><summary>Источник проверки</summary><p>Ответ проверен по учебному вопросу из OSTIS. Редакция правовой нормы в источнике может быть устаревшей.</p><pre>{{ result.source | tojson(indent=2) }}</pre></details>{% endif %}{% endif %}
   <form method="post" class="form-actions"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button name="action" value="start">Начать новый тест</button>{% if session.get('quiz_round') %}<button class="button-secondary" name="action" value="next">Следующий вопрос</button><button class="text-button" name="action" value="finish">Завершить</button>{% endif %}</form>
-  {% if request.method == 'POST' and not result %}<p class="notice">Новых вопросов с проверяемой разметкой в KB не найдено.</p>{% endif %}
+  {% if request.method == 'POST' and not result %}<p class="notice">В базе закончились вопросы для этого теста.</p>{% endif %}
 {% endif %}
 </div></div>
 {% endblock %}

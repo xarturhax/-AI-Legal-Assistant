@@ -1,0 +1,379 @@
+--- a/problem-solver/cxx/user-request-module/agent/user_request_agent.cpp
++++ b/problem-solver/cxx/user-request-module/agent/user_request_agent.cpp
+@@ -1,269 +1,110 @@
+ #include "user_request_agent.hpp"
+-#include <iostream>
+-#include <cstdio>
+-#include <cstring>
+-#include <memory>
+-#include <stdexcept>
+-#include <string>
+-#include <array>
+-#include <regex>
++
+ #include <sc-memory/sc_memory_headers.hpp>
++
+ #include "keynodes/user_request_keynodes.hpp"
++
++namespace
++{
++void CollectMatches(
++    ScMemoryContext & context,
++    ScTemplate const & pattern,
++    char const * alias,
++    ScAddrSet & matches)
++{
++  ScTemplateSearchResult results;
++  context.SearchByTemplate(pattern, results);
++  for (size_t index = 0; index < results.Size(); ++index)
++  {
++    ScTemplateResultItem row;
++    results.Get(index, row);
++    ScAddr match;
++    row.Get(alias, match);
++    if (match.IsValid())
++      matches.insert(match);
++  }
++}
++
++void CollectRelated(
++    ScMemoryContext & context,
++    ScAddr const & term,
++    ScAddr const & relation,
++    bool reverse,
++    ScAddrSet & result)
++{
++  ScTemplate pattern;
++  if (reverse)
++    pattern.Quintuple(
++        ScType::VarNode >> "_related", ScType::VarCommonArc, term,
++        ScType::VarPermPosArc, relation);
++  else
++    pattern.Quintuple(
++        term, ScType::VarCommonArc, ScType::VarNode >> "_related",
++        ScType::VarPermPosArc, relation);
++  CollectMatches(context, pattern, "_related", result);
++}
++
++void CollectDefinitions(ScMemoryContext & context, ScAddr const & term, ScAddrSet & result)
++{
++  ScTemplate pattern;
++  pattern.Quintuple(
++      ScType::VarNode >> "_structure", ScType::VarPermPosArc, term,
++      ScType::VarPermPosArc, UserRequestKeynodes::rrel_key_sc_element);
++  pattern.Quintuple(
++      ScType::VarNode >> "_translation", ScType::VarCommonArc, "_structure",
++      ScType::VarPermPosArc, UserRequestKeynodes::nrel_sc_text_translation);
++  pattern.Quintuple(
++      "_translation", ScType::VarPermPosArc, ScType::VarNodeLink >> "_definition",
++      ScType::VarPermPosArc, UserRequestKeynodes::rrel_example);
++  pattern.Triple(UserRequestKeynodes::lang_ru, ScType::VarPermPosArc, "_definition");
++  CollectMatches(context, pattern, "_definition", result);
++}
++}  // namespace
+ 
+ ScAddr ScUserRequestAgent::GetActionClass() const
+ {
+-    return UserRequestKeynodes::action_user_request;
++  return UserRequestKeynodes::action_user_request;
+ }
+-
+-std::string getFirstWord(const std::string& input) 
+-{
+-  std::istringstream stream(input);
+-  std::string firstWord;
+-  stream >> firstWord;
+-  return firstWord;
+-}
+-
+-std::string str_tolower(std::string str) 
+-{
+-  std::transform(str.begin(), str.end(), str.begin(), 
+-                [](unsigned char c){ return std::tolower(c); });
+-  return str;
+-}
+-
+-bool isSubstring(const std::string& textToSearch, const std::string& fullText) 
+-{
+-  if (textToSearch.empty()) 
+-  {
+-    return true;
+-  }
+-
+-  if (fullText.length() < textToSearch.length()) 
+-  {
+-    return false;
+-  }
+-
+-  return fullText.find(textToSearch) != std::string::npos;
+-}
+-
+-bool areEqual(const std::string& str1, const std::string& str2) 
+-{
+-  return str1 == str2;
+-}
+-
+-void generateCommonDirectTemplate(ScTemplate& inputTemplate, ScAddr& item) {
+-  inputTemplate.Quintuple(
+-    ScType::VarNode >> "_main_node",
+-    ScType::VarCommonArc,
+-    item >> "_title_link",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::nrel_main_idtf
+-  );
+-
+-  inputTemplate.Quintuple(
+-    ScType::NodeVarClass >> "_concept",
+-    ScType::EdgeDCommonVar,
+-    "_main_node",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::nrel_related_concept
+-  );
+-
+-  inputTemplate.Quintuple(
+-    "_main_node",
+-    ScType::EdgeDCommonVar,
+-    ScType::NodeVar >> "_article",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::nrel_related_article
+-  );
+-
+-  inputTemplate.Triple(
+-    UserRequestKeynodes::lang_ru,
+-    ScType::VarPermPosArc,
+-    "_title_link"
+-  );
+-
+-  inputTemplate.Triple(
+-    UserRequestKeynodes::belarus_legal_term,
+-    ScType::VarPermPosArc,
+-    "_main_node"
+-  );
+-
+-  inputTemplate.Quintuple(
+-    ScType::VarNode >> "_1",
+-    ScType::VarPermPosArc,
+-    "_main_node",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::rrel_key_sc_element
+-  );
+-
+-  inputTemplate.Quintuple(
+-    ScType::VarNode >> "_2",
+-    ScType::VarCommonArc,
+-    "_1",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::nrel_sc_text_translation
+-  );
+-
+-  inputTemplate.Quintuple(
+-    "_2",
+-    ScType::VarPermPosArc,
+-    ScType::VarNodeLink >> "_def_link",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::rrel_example
+-  );
+-
+-  inputTemplate.Triple(
+-    UserRequestKeynodes::lang_ru,
+-    ScType::VarPermPosArc,
+-    "_def_link"
+-  );
+-  
+-};
+-
+-void generateCommonReversedTemplate(ScTemplate& inputTemplate, ScAddr& item) {
+-  inputTemplate.Quintuple(
+-    ScType::VarNode >> "_main_node",
+-    ScType::VarCommonArc,
+-    item >> "_title_link",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::nrel_main_idtf
+-  );
+-
+-  inputTemplate.Quintuple(
+-    "_main_node",
+-    ScType::EdgeDCommonVar,
+-    ScType::NodeVarClass >> "_concept",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::nrel_related_concept
+-  );
+-
+-  inputTemplate.Quintuple(
+-    "_main_node",
+-    ScType::EdgeDCommonVar,
+-    ScType::NodeVar >> "_article",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::nrel_related_article
+-  );
+-
+-  inputTemplate.Triple(
+-    UserRequestKeynodes::lang_ru,
+-    ScType::VarPermPosArc,
+-    "_title_link"
+-  );
+-
+-  inputTemplate.Triple(
+-    UserRequestKeynodes::belarus_legal_term,
+-    ScType::VarPermPosArc,
+-    "_main_node"
+-  );
+-
+-  inputTemplate.Quintuple(
+-    ScType::VarNode >> "_1",
+-    ScType::VarPermPosArc,
+-    "_main_node",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::rrel_key_sc_element
+-  );
+-
+-  inputTemplate.Quintuple(
+-    ScType::VarNode >> "_2",
+-    ScType::VarCommonArc,
+-    "_1",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::nrel_sc_text_translation
+-  );
+-
+-  inputTemplate.Quintuple(
+-    "_2",
+-    ScType::VarPermPosArc,
+-    ScType::VarNodeLink >> "_def_link",
+-    ScType::VarPermPosArc,
+-    UserRequestKeynodes::rrel_example
+-  );
+-
+-  inputTemplate.Triple(
+-    UserRequestKeynodes::lang_ru,
+-    ScType::VarPermPosArc,
+-    "_def_link"
+-  );
+-  
+-};
+ 
+ ScResult ScUserRequestAgent::DoProgram(ScAction & action)
+ {
+-  auto const & [requestAddr] = action.GetArguments<1>(); 
+-  
+-  std::string stringContent;
+-  
+-  bool const stringContentExist = m_context.GetLinkContent(requestAddr, stringContent);
++  auto const & [requestAddr] = action.GetArguments<1>();
++  std::string query;
++  if (!requestAddr.IsValid() || !m_context.GetLinkContent(requestAddr, query) || query.empty())
++    return action.FinishUnsuccessfully();
+ 
+-  ScAddrSet const & linkAddrs1 = m_context.SearchLinksByContent(stringContent);
+-  
+-  ScStructure resultStruct = m_context.GenerateStructure();
+-  
+-  if (linkAddrs1.size() > 1)
++  // Only a Russian title of a legal term counts, including when it is the sole title link.
++  ScAddrSet terms;
++  for (ScAddr const & link : m_context.SearchLinksByContent(query))
+   {
+-    for (auto item : linkAddrs1)
+-    {
+-
+-      ScTemplate FindTemplate;
+-    
+-      generateCommonReversedTemplate(FindTemplate, item);
+-    
+-      ScTemplateSearchResult FindTemplateSearchResult;
+-    
+-      m_context.SearchByTemplate(FindTemplate, FindTemplateSearchResult);
+-      SC_LOG_INFO("before");
+-      SC_LOG_INFO(FindTemplateSearchResult.Size());
+-      if (FindTemplateSearchResult.Size() == 0)
+-      {
+-        generateCommonReversedTemplate(FindTemplate, item);
+-        m_context.SearchByTemplate(FindTemplate, FindTemplateSearchResult);
+-        SC_LOG_INFO("after");
+-        SC_LOG_INFO(FindTemplateSearchResult.Size());
+-      }
+-    
+-      for (int i = 0; i < FindTemplateSearchResult.Size(); i++) 
+-      {
+-        ScTemplateResultItem FindTemplateSearchResultItem;
+-    
+-        FindTemplateSearchResult.Get(i, FindTemplateSearchResultItem);
+-    
+-        ScAddr titleTextAddr;
+-        ScAddr defTextAddr;
+-        ScAddr conceptAddr;
+-        ScAddr articleAddr;
+-
+-        FindTemplateSearchResultItem.Get("_title_link", titleTextAddr);
+-        
+-        FindTemplateSearchResultItem.Get("_def_link", defTextAddr); 
+-        
+-        FindTemplateSearchResultItem.Get("_concept", conceptAddr);
+-        
+-        FindTemplateSearchResultItem.Get("_article", articleAddr);
+-    
+-        std::string titleText;
+-        std::string defText;
+-    
+-        m_context.GetLinkContent(titleTextAddr, titleText);
+-        m_context.GetLinkContent(defTextAddr, defText);
+-    
+-        defText = getFirstWord(defText);
+-        
+-        resultStruct.Append(defTextAddr);
+-        resultStruct.Append(conceptAddr);
+-        resultStruct.Append(articleAddr);
+-
+-        SC_LOG_INFO(titleText);
+-        SC_LOG_INFO(defText);
+-
+-      }
+-    }
+-  }
+-  else
+-  {
+-    return action.FinishUnsuccessfully();
++    ScTemplate pattern;
++    pattern.Quintuple(
++        ScType::VarNode >> "_term", ScType::VarCommonArc, link,
++        ScType::VarPermPosArc, UserRequestKeynodes::nrel_main_idtf);
++    pattern.Triple(UserRequestKeynodes::lang_ru, ScType::VarPermPosArc, link);
++    pattern.Triple(UserRequestKeynodes::belarus_legal_term, ScType::VarPermPosArc, "_term");
++    CollectMatches(m_context, pattern, "_term", terms);
+   }
+ 
+-  action.SetResult(resultStruct);
++  if (terms.empty())
++    return action.FinishUnsuccessfully();
++
++  // Related material is optional and must not determine whether a title matches.
++  ScAddrSet elements = terms;
++  for (ScAddr const & term : terms)
++  {
++    CollectDefinitions(m_context, term, elements);
++    CollectRelated(m_context, term, UserRequestKeynodes::nrel_related_article, false, elements);
++    CollectRelated(m_context, term, UserRequestKeynodes::nrel_related_articles, false, elements);
++    CollectRelated(m_context, term, UserRequestKeynodes::nrel_related_concept, false, elements);
++    CollectRelated(m_context, term, UserRequestKeynodes::nrel_related_concept, true, elements);
++    CollectRelated(m_context, term, UserRequestKeynodes::nrel_related_concepts, false, elements);
++    CollectRelated(m_context, term, UserRequestKeynodes::nrel_related_concepts, true, elements);
++  }
++
++  ScStructure result = m_context.GenerateStructure();
++  for (ScAddr const & element : elements)
++    result.Append(element);
++  action.SetResult(result);
+   return action.FinishSuccessfully();
+ }
+--- a/problem-solver/cxx/user-request-module/keynodes/user_request_keynodes.hpp
++++ b/problem-solver/cxx/user-request-module/keynodes/user_request_keynodes.hpp
+@@ -21,6 +21,10 @@
+     "nrel_related_concept", ScType::ConstNodeNonRole};
+   static inline ScKeynode const nrel_related_article{
+     "nrel_related_article", ScType::ConstNodeNonRole};
++  static inline ScKeynode const nrel_related_concepts{
++    "nrel_related_concepts", ScType::ConstNodeNonRole};
++  static inline ScKeynode const nrel_related_articles{
++    "nrel_related_articles", ScType::ConstNodeNonRole};
+   static inline ScKeynode const belarus_legal_term{
+     "belarus_legal_term", ScType::ConstNodeClass};
+   static inline ScKeynode const lang_ru{

@@ -116,6 +116,15 @@
 .document-workbench > section > h2 { margin-bottom: 22px; }
 .document-preview { font: 13px/2 Consolas, 'Courier New', monospace; white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; }
 .document-form { position: sticky; top: 24px; }
+.document-preview-structured { font: inherit; line-height: 1.55; white-space: normal; }
+.document-preview-structured p { white-space: pre-wrap; }
+.document-preview-structured p + p { margin-top: 1.1rem; }
+.document-preview-structured p:first-child { text-align: right; }
+.document-preview-structured p:nth-child(2) { text-align: center; font-weight: 700; }
+.document-form > label { margin: 14px 0 5px; }
+.document-form .form-actions { margin-top: 20px; }
+.document-form .document-field-error { margin: 5px 0; color: #8b382f; }
+.document-form [aria-invalid="true"] { border-color: #8b382f; }
 
 /* Авторизация — две тихие плоскости, без повторения главной иллюстрации. */
 .c-auth-page { min-height: calc(100vh - 260px); }
@@ -178,9 +187,6 @@
 
 /* Учебная проверка и системные состояния. */
 .quiz-reading { max-width: 950px; }
-.quiz-intro { padding: 10px 0 30px; }
-.quiz-intro h2 { font-size: 34px; }
-.quiz-intro p { max-width: 68ch; margin-top: 22px; color: var(--c-muted); font-size: 15px; }
 .quiz-question { padding: 25px 30px 30px; border-top: 2px solid #839371; background: #edf0e5; }
 .quiz-question h2 { max-width: 36ch; font-size: 30px; }
 .quiz-question .source-meta { margin: 18px 0 28px; }

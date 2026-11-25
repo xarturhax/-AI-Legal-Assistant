@@ -8,7 +8,7 @@
 Фамилия, имя и отчество работника: {{employee_name}}
 Организация и подразделение: {{employer}}
 Должность: {{position}}
-Период работы: {{employment_period}}
+Период работы: {{employment_start_year}} – {{employment_end_year}}
 Какие сведения нужны (стаж, заработная плата или оба): {{requested_information}}
 Цель запроса: {{purpose}}
 Приложения: ____________________

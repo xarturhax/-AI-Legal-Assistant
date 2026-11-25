@@ -131,6 +131,47 @@ def test_documents_empty_and_safe_fill(app, tmp_path):
     assert "49" not in result.data.decode("utf-8-sig")
 
 
+def test_study_document_validates_fields_and_exports(app, monkeypatch):
+    from io import BytesIO
+    from pathlib import Path
+
+    from docx import Document
+
+    catalog = Path(__file__).resolve().parents[3] / "data" / "documents" / "catalog.json"
+    monkeypatch.setitem(app.config, "DOCUMENT_CATALOG", str(catalog))
+    client = app.test_client()
+    route = "/templates/archive-study"
+    values = {
+        "applicant_name": "Иванов Иван Иванович",
+        "postal_address": "Брест, улица Ленина, 16",
+        "institution": "Учреждение образования № 3",
+        "study_program": "Информатика",
+        "study_start_year": "2020",
+        "study_end_year": "2024",
+        "date": "2025-03-12",
+    }
+    bad = client.post(
+        route, data={**values, "study_start_year": "Информатика", "study_program": "4"}
+    )
+    assert bad.status_code == 422
+    html = bad.get_data(as_text=True)
+    assert 'id="error-study_start_year"' in html and 'id="error-study_program"' in html
+    assert "Фамилия, имя, отчество заявителя" in html
+    assert "Год окончания должен" in client.post(
+        route, data={**values, "study_end_year": "2019"}
+    ).get_data(as_text=True)
+    preview = client.post(route, data={**values, "action": "preview"}).get_data(as_text=True)
+    assert "Заполненный бланк" in preview and "2020 – 2024" in preview
+    word = client.post(route, data={**values, "action": "docx"})
+    assert word.status_code == 200 and ".docx" in word.headers["Content-Disposition"]
+    document = Document(BytesIO(word.data))
+    text = "\n".join(paragraph.text for paragraph in document.paragraphs)
+    assert values["applicant_name"] in text and "Период обучения: 2020 – 2024" in text
+    pdf = client.post(route, data={**values, "action": "pdf"})
+    assert pdf.status_code == 200 and pdf.data.startswith(b"%PDF-")
+    assert b"/FontFile2" in pdf.data
+
+
 def test_community_pages_and_quiz_redaction(app):
     alice = register_and_login(app, "alice@example.test")
     for path in ("/forum", "/forum/create_topic", "/news", "/templates", "/test"):

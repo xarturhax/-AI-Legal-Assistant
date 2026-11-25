@@ -149,6 +149,8 @@ class Memory:
         if not titles:
             return None
         text, text_status = readable_definition(definitions)
+        if identifier and "_article_" in identifier:
+            text = re.sub(r"(?<=\.)\s*(?=\d{1,3}\. [А-ЯЁ])", "\n\n", text)
         related = []
         for relation in (
             "nrel_related_article",
@@ -178,6 +180,16 @@ class Memory:
                     "title": names[0][1] if names else None,
                 }
             )
+        citations = self.texts(node, "nrel_themis_source_citation", russian=False)
+        urls = self.texts(node, "nrel_themis_source_url", russian=False)
+        official_url = next(
+            (
+                url
+                for _, url in urls
+                if url.startswith(("https://etalonline.by/", "https://pravo.by/"))
+            ),
+            None,
+        )
         return {
             "source_system": "ostis",
             "sc_identifier": identifier,
@@ -191,6 +203,8 @@ class Memory:
             "source_relevant": None,
             "legal_applicability": None,
             "source_document": origins or None,
+            "source_citation": citations[0][1] if citations else None,
+            "official_url": official_url,
             "revision": None,
             "currency": "Редакция и актуальность правового текста не подтверждены.",
             "related": related,
@@ -217,11 +231,17 @@ class Memory:
         )
         if not all((legal_class, main_id, language)):
             raise RuntimeError("Отсутствует онтология юридических терминов.")
-        links = client.search_links_by_contents(term)[0]
-        if not links and not exact_only:
-            links = client.search_links_by_contents_substrings(term)[0]
+        exact = client.search_links_by_contents(term)[0]
+        nodes = self.concepts_from_title_links(exact, legal_class, main_id, language)
+        if nodes or exact_only:
+            return nodes
+        # A request link may have the exact content without being a title in the KB.
+        candidates = client.search_links_by_contents_substrings(term)[0]
+        return self.concepts_from_title_links(candidates[:24], legal_class, main_id, language)
+
+    def concepts_from_title_links(self, links, legal_class, main_id, language):
         nodes = {}
-        for link in links[:24]:
+        for link in links:
             template = ScTemplate()
             template.quintuple(
                 t.VAR_NODE >> "node", t.VAR_COMMON_ARC, link, t.VAR_PERM_POS_ARC, main_id
@@ -231,7 +251,9 @@ class Memory:
             for row in self.search(template):
                 node = row.get("node")
                 nodes[node.value] = node
-        return list(nodes.values())[:8]
+                if len(nodes) == 8:
+                    return list(nodes.values())
+        return list(nodes.values())
 
     def vocabulary(self):
         """Названия понятий из текущей SC-памяти для привязки запроса LLM."""
@@ -330,7 +352,9 @@ class Memory:
                 unmatched.append(term)
             else:
                 linked.append(term)
-            for source in (*direct_sources, *agent_sources):
+            # Exact titles are the primary cards. Their existing relation list exposes the
+            # optional material without turning each associated article into a search hit.
+            for source in direct_sources or agent_sources:
                 previous = matches.get(source["id"], {})
                 matched_terms = list(previous.get("matched_terms", []))
                 if term not in matched_terms:

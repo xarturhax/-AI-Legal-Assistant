@@ -32,10 +32,12 @@ RUN curl --fail --location --retry 3 --connect-timeout 30 \
 FROM sdk AS builder
 ARG BUILD_JOBS=2
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential cmake ninja-build ccache libssl-dev \
+    build-essential cmake ninja-build ccache libssl-dev patch \
     && rm -rf /var/lib/apt/lists/*
 COPY ostis/upstream/ /app/
-RUN cmake -S /app -B /app/build/Release -G Ninja \
+COPY ostis/patches/user-request-agent.patch /tmp/user-request-agent.patch
+RUN patch --batch --fuzz=0 -p1 < /tmp/user-request-agent.patch \
+    && cmake -S /app -B /app/build/Release -G Ninja \
     -DCMAKE_BUILD_TYPE=Release -DSC_BUILD_TESTS=OFF \
     -DCMAKE_PREFIX_PATH=/app/sc-machine \
     && cmake --build /app/build/Release --parallel "$BUILD_JOBS"
@@ -45,6 +47,7 @@ COPY --from=sdk /app/sc-machine /app/sc-machine
 COPY --from=builder /app/build/Release/extensions /app/build/Release/extensions
 COPY ostis/verify_runtime.py /app/verify_runtime.py
 COPY ostis/entrypoint.py /app/entrypoint.py
+COPY ostis/knowledge-additions /app/knowledge-additions
 RUN python3 /app/verify_runtime.py
 EXPOSE 8090
 ENTRYPOINT ["/usr/bin/tini", "--", "/app/.venv/bin/python3", "/app/entrypoint.py"]

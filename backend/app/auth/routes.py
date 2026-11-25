@@ -2,13 +2,14 @@ import hashlib
 import re
 import secrets
 from datetime import timedelta
-from pathlib import Path
+from email.headerregistry import Address
 
 from flask import Blueprint, abort, current_app, flash, redirect, render_template, request, session
 from flask_login import login_required, login_user, logout_user
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from app.auth.mail import deliver_code, mail_mode
 from app.db.models import Profile, User, VerificationToken, now
 from app.extensions import db
 from app.web_utils import payload, string_value
@@ -26,6 +27,11 @@ def email_value(data):
     email = string_value(data, "email", 254).casefold()
     if not re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", email):
         abort(400, description="Проверьте адрес электронной почты.")
+    try:
+        if Address(addr_spec=email).addr_spec != email:
+            raise ValueError
+    except (ValueError, IndexError):
+        abort(400, description="Проверьте адрес электронной почты.")
     return email
 
 
@@ -37,11 +43,6 @@ def password_value(data):
 
 
 def issue_token(user, purpose):
-    if not current_app.config["DEV_LOCAL_MAIL"]:
-        abort(
-            503,
-            description="Доставка кода не настроена. Включите локальный режим DEV_LOCAL_MAIL=1.",
-        )
     token = secrets.token_urlsafe(32)
     db.session.execute(
         db.update(VerificationToken)
@@ -60,20 +61,17 @@ def issue_token(user, purpose):
             expires_at=now() + timedelta(minutes=15),
         )
     )
-    directory = Path(
-        current_app.config.get("DEV_MAIL_DIR", str(Path(current_app.instance_path) / "dev-mail"))
-    )
-    directory.mkdir(parents=True, exist_ok=True)
-    path = directory / (secrets.token_hex(12) + ".txt")
-    path.write_text(
-        f"ЛОКАЛЬНЫЙ DEV-РЕЖИМ: письмо не отправлялось.\nemail: {user.email}\n"
-        f"purpose: {purpose}\nКод: {token}\nСрок: 15 минут.\n",
-        encoding="utf-8",
-    )
     try:
-        path.chmod(0o600)
+        deliver_code(user.email, purpose, token)
     except OSError:
-        pass
+        db.session.rollback()
+        # Журналу достаточно факта сбоя. Ответ SMTP может содержать адрес или другие данные.
+        current_app.logger.warning("Не удалось доставить код аккаунта (%s).", purpose)
+        abort(503, description="Не удалось отправить код. Повторите попытку позже.")
+
+
+def auth_page(kind):
+    return render_template("auth.html", kind=kind, delivery=mail_mode(current_app.config))
 
 
 def consume_token(email, code, purpose):
@@ -116,14 +114,22 @@ def register():
             db.session.flush()
         except IntegrityError:
             db.session.rollback()
-            abort(409, description="Не удалось создать аккаунт с этим адресом.")
+            existing = find_user(email)
+            if existing is not None and not existing.is_verified:
+                session["verification_email"] = email
+                flash("Если код уже приходил, введите его. Новый код можно запросить ниже.")
+                return redirect("/verification")
+            flash("Аккаунт с этим адресом уже существует. Войдите или восстановите доступ.")
+            return auth_page("reg"), 409
         name = string_value(data, "display_name", 120, required=False)
         db.session.add(Profile(user_id=user.id, display_name=name))
         issue_token(user, "verify")
         db.session.commit()
         session["verification_email"] = email
+        if mail_mode(current_app.config) in {"smtp", "gmail"}:
+            flash("Код подтверждения отправлен на указанный адрес.")
         return redirect("/verification")
-    return render_template("auth.html", kind="reg")
+    return auth_page("reg")
 
 
 @bp.route("/auth", methods=["GET", "POST"])
@@ -138,11 +144,13 @@ def authenticate():
         if not user or not valid:
             abort(401, description="Неверный адрес или пароль.")
         if not user.is_verified:
-            abort(403, description="Подтвердите аккаунт кодом из локального dev-письма.")
+            session["verification_email"] = user.email
+            flash("Подтвердите аккаунт. При необходимости запросите новый код.")
+            return redirect("/verification")
         session.clear()
         login_user(user, fresh=True)
         return redirect("/cabinet")
-    return render_template("auth.html", kind="auth")
+    return auth_page("auth")
 
 
 @bp.route("/verification", methods=["GET", "POST"])
@@ -154,16 +162,21 @@ def verify():
         db.session.commit()
         flash("Аккаунт подтверждён. Теперь можно войти.")
         return redirect("/auth")
-    return render_template("auth.html", kind="verification")
+    return auth_page("verification")
 
 
 @bp.post("/resend_code")
 def resend():
-    user = find_user(email_value(payload()))
+    email = email_value(payload())
+    user = find_user(email)
     if user and not user.is_verified:
         issue_token(user, "verify")
         db.session.commit()
-    flash("Если аккаунт существует, новый код сохранён в локальном dev-письме.")
+    session["verification_email"] = email
+    if mail_mode(current_app.config) in {"smtp", "gmail"}:
+        flash("Если адрес ожидает подтверждения, на него отправлен новый код.")
+    else:
+        flash("Если адрес ожидает подтверждения, новый код доступен владельцу установки.")
     return redirect("/verification")
 
 
@@ -184,8 +197,11 @@ def recover():
         if user:
             issue_token(user, "recover")
             db.session.commit()
-        flash("Если аккаунт существует, код восстановления сохранён в локальном dev-письме.")
-    return render_template("auth.html", kind="recover")
+        if mail_mode(current_app.config) in {"smtp", "gmail"}:
+            flash("Если аккаунт существует, код восстановления отправлен на этот адрес.")
+        else:
+            flash("Если аккаунт существует, код восстановления доступен владельцу установки.")
+    return auth_page("recover")
 
 
 @bp.post("/logout")

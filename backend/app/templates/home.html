@@ -6,14 +6,8 @@
   <div class="c-hero-inner">
     <div class="c-hero-copy">
       <h1 id="home-title">Право<br>на ясность.</h1>
-      <p class="c-hero-description">Разобраться в вопросе.<br>Найти основание. Проверить источник.</p>
-      <form class="c-home-query" method="post" action="/requests" data-loading-form>
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <label for="home-query">Что вы хотите узнать?</label>
-        <textarea id="home-query" name="query" minlength="2" maxlength="1500" required rows="2" placeholder="Опишите юридический вопрос или ситуацию" aria-describedby="home-query-help"></textarea>
-        <div class="c-home-query-bottom"><a href="/requests" id="home-query-help">Выбрать режим поиска</a><button class="c-button">Найти сведения</button></div>
-        <p class="loading-status c-loading" role="status" hidden>Ищем сведения в локальной базе. Дождитесь результата…</p>
-      </form>
+      <p class="c-hero-description">Найдите юридическое понятие, прочитайте связанные источники или заполните бланк заявления.</p>
+      <a class="c-button c-home-search" href="/requests">Перейти к поиску</a>
     </div>
     <figure class="c-hero-art"><img src="{{ url_for('static', filename='concept-themis.png') }}" width="1200" height="1312" alt="Скульптурный образ Фемиды с повязкой на глазах и уравновешенными весами" fetchpriority="high"></figure>
   </div>

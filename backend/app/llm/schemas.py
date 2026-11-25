@@ -23,6 +23,10 @@ class Fact(StrictModel):
     present_in_user_text: bool
 
 
+class DirectoryTerms(StrictModel):
+    search_terms: list[ShortText] = Field(max_length=3)
+
+
 class Interpretation(StrictModel):
     intent: Literal["find_legal_information", "definition", "procedure", "rights", "other"]
     domain_hints: list[ShortText] = Field(max_length=8)
