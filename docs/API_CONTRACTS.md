@@ -42,6 +42,8 @@ sc_address, id, title, excerpt, text, source_document, revision, currency, relat
 не установлена. `legal_applicability=null` означает отсутствие оценки применимости.
 У отдельно открытого источника релевантность не оценивается.
 `text_status` принимает `available`, `unavailable_file_reference` или `unavailable`.
+`text_kind=summary` помечает редакционное изложение статьи, прочитанное из SC-ссылки.
+`text_kind=source` обозначает текст из основного блока источника. Это может быть выдержка.
 При наличии только файловой ссылки сохраняются SC-ID, связи и provenance,
 а `text` и `excerpt` пусты. Файловый путь не включается в текст выдачи.
 `addr:N` в URL означает настоящий числовой адрес, не выдуманный SC-ID. Он может устареть после rebuild.
@@ -54,6 +56,8 @@ sc_address, id, title, excerpt, text, source_document, revision, currency, relat
 с `terms` из текущего словаря и `source_ids` из найденных результатов. `status` каждого
 элемента принимает `linked` или `unlinked`. Эта связь означает поиск понятия, применимость
 нормы к обстоятельствам не установлена. `assessment_status=not_performed`.
+Если поисковая формулировка из OSTIS буквально присутствует в запросе, контекст
+может содержать дополнительно связанный фрагмент с `kind=topic`.
 `clarification_questions` содержит missing_information модели, `needs_clarification`
 учитывает как исходный флаг, так и наличие вопросов. В baseline `situation` обычно
 равно `null`, при ограничении предметной области оно содержит уточнение.
@@ -67,6 +71,13 @@ sc_address, id, title, excerpt, text, source_document, revision, currency, relat
 предметную область, оба режима возвращают пустую выдачу и уточнение с
 `reason=outside_confirmed_scope`. При таком отказе `runtime.llm_used=false`.
 
+`answer.guidance` содержит пояснения для принятых тем. Для каждой темы
+`provisions` содержит формулировку `text`, SC-идентификатор статьи `id`,
+адрес ссылки `text_link`, реквизиты `citation` и `official_url`.
+`checks` содержит условия, которые предлагается проверить в ситуации.
+При отсутствии тематических пояснений массив `guidance` пуст.
+У карточки темы эти сведения доступны также в `case_guidance`.
+
 Событие action_user_request в trace содержит result_nodes_count и source_count:
 status=finished означает завершение действия, но не гарантирует непустой ответ.
 При отсутствии пригодных источников SC-template событие помечено reason=agent_no_sources.
@@ -75,6 +86,10 @@ status=finished означает завершение действия, но н�
 LLM выбирает interpretation.search_terms из словаря, прочитанного в текущей SC-памяти;
 это кандидаты поиска, а не правовые выводы. Названия, отсутствующие в словаре, отклоняются
 с ошибкой формата; пустой словарь даёт ostis_vocabulary_empty (503).
+`sc_situation_topic` отмечает совпадение исходной формулировки с темой.
+`source_relevance` показывает статус проверки, принятые `accepted_checked_ids`
+и исключённые `excluded_ids`. При недоступности проверки сохраняются прямые
+совпадения, а событие получает статус `unavailable`.
 
 Ошибки: `error: {code, message}`. Код 400 для входа/CSRF, 401 входа, 403 запрета,
 404 отсутствия/чужой приватной записи, 409 конфликта, 429 частоты, 502 формата LLM,

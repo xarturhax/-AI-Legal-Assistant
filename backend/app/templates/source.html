@@ -4,7 +4,10 @@
 <header class="c-page-heading c-source-heading"><a class="back-link" href="/directory">Вернуться в справочник</a><p class="c-page-category">Источник OSTIS</p><h1>{{ source.title }}</h1><p class="c-heading-identifier">{{ source.sc_identifier or source.sc_address }}</p></header>
 <div class="c-work-area">
   <div class="c-source-reader">
-    <article class="document-sheet"><div class="legal-text preserve">{{ source.text or 'Текст не извлечён из SC-памяти.' }}</div></article>
+    <article class="document-sheet">
+      {% if source.text_kind == 'summary' %}<p class="notice">Краткое изложение положений статьи</p>{% endif %}
+      <div class="legal-text preserve">{{ source.text or 'Текст не извлечён из SC-памяти.' }}</div>
+    </article>
     <aside class="c-reader-aside"><h2>Об источнике</h2>
       {% if source.source_citation %}<p>{{ source.source_citation }}</p>{% endif %}
       {% if source.official_url %}<p><a href="{{ source.official_url }}" target="_blank" rel="noopener noreferrer">Открыть официальный источник ↗</a></p>{% endif %}

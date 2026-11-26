@@ -1,0 +1,30 @@
+belarus_legal_term -> concept_residential_lease_registration_belarus;;
+themis_situation_topic -> concept_residential_lease_registration_belarus;;
+
+concept_residential_lease_registration_belarus
+  => nrel_main_idtf: [оформление и регистрация договора найма жилья] (* <- lang_ru;; *);
+  => nrel_themis_query_marker: [зарегистрировать договор найма];
+  => nrel_themis_query_marker: [регистрация договора найма];
+  => nrel_themis_query_marker: [сдать квартиру без договора];
+  => nrel_themis_query_marker: [зарегистрировать договор аренды квартиры];
+  => nrel_themis_query_marker: [заключить договор найма];
+  => nrel_themis_query_marker: [зачем регистрировать договор на квартиру];
+  => nrel_related_articles: by_act_hk1200428_article_51;
+  => nrel_related_articles: by_act_hk1200428_article_53;
+  => nrel_themis_case_check: [Уточните вид жилищного фонда и характер найма. Для обычного найма проверьте письменный договор, отметку о регистрации, срок, плату и условия по коммунальным расходам.];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Форма, регистрация и основные условия договора найма жилого помещения.] (* <- lang_ru;; *);;
+    *);;
+  *);;
+
+by_act_hk1200428_article_51
+  => nrel_themis_source_citation: [Жилищный кодекс Республики Беларусь, статья 51, пункты 1 и 2.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk1200428];
+  => nrel_themis_practical_summary: [В договоре найма согласуют жилое помещение, срок для срочного договора, размер и срок внесения платы. Если оплата коммунальных услуг или электроэнергии лежит на нанимателе, указывают сроки таких платежей. В договор вносят членов семьи нанимателя, у которых есть право пользоваться помещением.];;
+
+by_act_hk1200428_article_53
+  => nrel_themis_source_citation: [Жилищный кодекс Республики Беларусь, статья 53, пункт 1.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk1200428];
+  => nrel_themis_practical_summary: [Обычный договор найма жилого помещения и дополнительные соглашения оформляют письменно. По общему правилу они считаются заключёнными с даты регистрации уполномоченным местным органом. Для договора при оказании услуг краткосрочного проживания кодекс устанавливает отдельное правило без регистрации.];;

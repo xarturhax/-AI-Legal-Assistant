@@ -1,0 +1,119 @@
+belarus_legal_term -> concept_employee_resignation_belarus;;
+themis_situation_topic -> concept_employee_resignation_belarus;;
+
+belarus_legal_term -> concept_dismissal_pay_belarus;;
+themis_situation_topic -> concept_dismissal_pay_belarus;;
+
+belarus_legal_term -> concept_annual_leave_belarus;;
+themis_situation_topic -> concept_annual_leave_belarus;;
+
+belarus_legal_act -> by_act_hk9900296;;
+
+by_act_hk9900296
+  => nrel_main_idtf: [Трудовой кодекс Республики Беларусь от 26 июля 1999 г. № 296-З] (* <- lang_ru;; *);
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900296];;
+
+concept_employee_resignation_belarus
+  => nrel_main_idtf: [увольнение по инициативе работника] (* <- lang_ru;; *);
+  => nrel_themis_query_marker: [хочу уволиться];
+  => nrel_themis_query_marker: [уволиться по собственному желанию];
+  => nrel_themis_query_marker: [уволиться до конца контракта];
+  => nrel_themis_query_marker: [досрочно расторгнуть трудовой договор];
+  => nrel_related_articles: by_act_hk9900296_article_40;
+  => nrel_related_articles: by_act_hk9900296_article_41;
+  => nrel_themis_case_check: [Сверьте вид договора, дату получения нанимателем заявления и наличие соглашения или документов, подтверждающих причину досрочного ухода.];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Условия прекращения бессрочного и срочного трудового договора по инициативе работника.] (* <- lang_ru;; *);;
+    *);;
+  *);;
+
+concept_dismissal_pay_belarus
+  => nrel_main_idtf: [окончательный расчёт при увольнении] (* <- lang_ru;; *);
+  => nrel_themis_query_marker: [расчёт при увольнении];
+  => nrel_themis_query_marker: [не выплатили расчёт];
+  => nrel_themis_query_marker: [уволили и не заплатили];
+  => nrel_themis_query_marker: [после увольнения не заплатили];
+  => nrel_themis_query_marker: [неиспользованный отпуск при увольнении];
+  => nrel_related_articles: by_act_hk9900296_article_77;
+  => nrel_related_articles: by_act_hk9900296_article_179;
+  => nrel_themis_case_check: [Проверьте дату увольнения, работали ли вы в этот день, дату требования о расчёте и какие суммы не выплачены. Отдельно проверьте остаток дней отпуска.];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Сроки окончательного расчёта и компенсация за неиспользованный трудовой отпуск при увольнении.] (* <- lang_ru;; *);;
+    *);;
+  *);;
+
+concept_annual_leave_belarus
+  => nrel_main_idtf: [продолжительность и разделение трудового отпуска] (* <- lang_ru;; *);
+  => nrel_themis_query_marker: [разделить отпуск];
+  => nrel_themis_query_marker: [отпуск частями];
+  => nrel_themis_query_marker: [дней основного отпуска];
+  => nrel_themis_query_marker: [отпуск по неделе];
+  => nrel_themis_query_marker: [отпуск на части];
+  => nrel_themis_query_marker: [разбить отпуск];
+  => nrel_related_articles: by_act_hk9900296_article_155;
+  => nrel_related_articles: by_act_hk9900296_article_174;
+  => nrel_themis_case_check: [Сверьте, речь ли о трудовом отпуске, сколько дней вам положено и согласованы ли части отпуска. Проверьте правила разделения в локальных актах и коллективном договоре.];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Продолжительность основного трудового отпуска и условия его разделения на части.] (* <- lang_ru;; *);;
+    *);;
+  *);;
+
+belarus_legal_article -> by_act_hk9900296_article_40;;
+by_act_hk9900296 => nrel_article: by_act_hk9900296_article_40;;
+
+by_act_hk9900296_article_40
+  => nrel_main_idtf: [Статья 40. Расторжение трудового договора, заключённого на неопределённый срок, по желанию работника] (* <- lang_ru;; *);
+  => nrel_themis_source_citation: [Трудовой кодекс Республики Беларусь, статья 40, части первая и вторая.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900296];
+  => nrel_themis_practical_summary: [При бессрочном трудовом договоре работник может по общему правилу уйти по собственному желанию, письменно предупредив нанимателя за один месяц. По соглашению сторон или в случаях, указанных в коллективном договоре, договор может закончиться раньше.];;
+
+belarus_legal_article -> by_act_hk9900296_article_41;;
+by_act_hk9900296 => nrel_article: by_act_hk9900296_article_41;;
+
+by_act_hk9900296_article_41
+  => nrel_main_idtf: [Статья 41. Расторжение срочного трудового договора по требованию работника] (* <- lang_ru;; *);
+  => nrel_themis_source_citation: [Трудовой кодекс Республики Беларусь, статья 41, часть первая.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900296];
+  => nrel_themis_practical_summary: [Для срочного трудового договора предусмотрено досрочное расторжение по требованию работника при уважительных причинах, препятствующих работе, либо при нарушении нанимателем трудового законодательства, коллективного или трудового договора.];;
+
+belarus_legal_article -> by_act_hk9900296_article_77;;
+by_act_hk9900296 => nrel_article: by_act_hk9900296_article_77;;
+
+by_act_hk9900296_article_77
+  => nrel_main_idtf: [Статья 77. Сроки окончательного расчёта при увольнении] (* <- lang_ru;; *);
+  => nrel_themis_source_citation: [Трудовой кодекс Республики Беларусь, статья 77, части первая и вторая.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900296];
+  => nrel_themis_practical_summary: [Причитающиеся при увольнении выплаты по общему правилу производятся не позднее дня увольнения. Для выплат, рассчитываемых по итогам отчётного периода, есть исключение. Если работник в день увольнения не работал или договор расторгнут в день окончания предварительного испытания, соответствующие суммы выплачиваются не позднее следующего дня после требования о расчёте. При споре о размере в установленный срок выплачивают неоспариваемую сумму.];;
+
+belarus_legal_article -> by_act_hk9900296_article_155;;
+by_act_hk9900296 => nrel_article: by_act_hk9900296_article_155;;
+
+by_act_hk9900296_article_155
+  => nrel_main_idtf: [Статья 155. Продолжительность основного отпуска] (* <- lang_ru;; *);
+  => nrel_themis_source_citation: [Трудовой кодекс Республики Беларусь, статья 155, часть первая.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900296];
+  => nrel_themis_practical_summary: [Минимальная продолжительность основного отпуска по общему правилу составляет 24 календарных дня. Законодательными актами могут устанавливаться иные правила.];;
+
+belarus_legal_article -> by_act_hk9900296_article_174;;
+by_act_hk9900296 => nrel_article: by_act_hk9900296_article_174;;
+
+by_act_hk9900296_article_174
+  => nrel_main_idtf: [Статья 174. Разделение трудового отпуска на части. Отзыв из отпуска] (* <- lang_ru;; *);
+  => nrel_themis_source_citation: [Трудовой кодекс Республики Беларусь, статья 174, часть первая.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900296];
+  => nrel_themis_practical_summary: [По договорённости работника и нанимателя трудовой отпуск может быть разделён на две части, если коллективный договор, соглашение или иной локальный акт не предусматривают другой порядок. Одна часть должна составлять не менее 14 календарных дней.];;
+
+belarus_legal_article -> by_act_hk9900296_article_179;;
+by_act_hk9900296 => nrel_article: by_act_hk9900296_article_179;;
+
+by_act_hk9900296_article_179
+  => nrel_main_idtf: [Статья 179. Денежная компенсация за неиспользованный трудовой отпуск при увольнении] (* <- lang_ru;; *);
+  => nrel_themis_source_citation: [Трудовой кодекс Республики Беларусь, статья 179, части первая и третья.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900296];
+  => nrel_themis_practical_summary: [При увольнении работнику выплачивают компенсацию за неиспользованный трудовой отпуск, в том числе за его неиспользованную часть. Если рабочий год отработан не полностью, компенсацию рассчитывают пропорционально отработанному времени.];;

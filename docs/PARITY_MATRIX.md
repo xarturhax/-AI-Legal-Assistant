@@ -1,5 +1,11 @@
 # Матрица совместимости
 
+Themis обрабатывает 12 бытовых тем в существующем разделе юридического поиска.
+Пояснения и ссылки на статьи читаются из OSTIS и отображаются вместе с контекстом
+вопроса. Карточки статей показывают SC-идентификатор, происхождение текста и
+официальную ссылку, если она есть в KB.
+[Темы, примеры и скриншоты](LEGAL_KB_COVERAGE.md)
+
 Общие просьбы без предмета запроса теперь возвращают уточняющий вопрос и пустую
 выдачу. Live E2E подтверждают это для Q35, Q36 и ещё одной общей просьбы.
 Частичное описание арендного жилья с неизвестными условиями договора и запрос
@@ -27,7 +33,7 @@ Baseline с живым OSTIS при недоступном адресе Ollama �
 | Гость | /guest_mode, сессия | /guest_mode, открытые страницы | S4, guest |
 | Вход, регистрация, проверка | /auth /reg /verification, агенты регистрации | те же + /recover | S4, auth |
 | Профиль и настройки | /api/profile /api/settings, cabinet agents | те же, /cabinet | S4, ownership |
-| Юридические запросы | /requests /requests_results, action_user_request | /requests, /api/legal/query | S2–S3, live_ostis/live_stack |
+| Юридические запросы | /requests /requests_results, action_user_request | /requests, /api/legal/query | S2–S3, live_ostis/live_stack, пояснения по бытовым темам |
 | Справочник | /directory /directory_results, search-module | /directory, /api/legal/concepts | S2, live_ostis |
 | Статьи | /article/<id>, SC + статический fallback одного кодекса | /article/<id>, /api/legal/sources/<id> | S2/S5, live_ostis |
 | История | /api/history, cabinet agents | тот же | S4, ownership/persistence |
@@ -45,10 +51,10 @@ Baseline с живым OSTIS при недоступном адресе Ollama �
 - Аккаунты, профиль, настройки, заметки, календарь и файловая персистентность:
   [test_accounts.py](../backend/tests/unit/test_accounts.py), PASS на настоящей SQLite.
   Docker stop/start и перенос прежних SC-пользователей не проверены/не выполнялись.
-- Юридический поиск, справочник и статьи: код реализован, тесты
-  [test_ostis.py](../backend/tests/integration/test_ostis.py) дают 2 FAIL без службы;
-  [test_stack.py](../backend/tests/e2e/test_stack.py) даёт 503 без OSTIS.
-  Подтверждённых юридических результатов в этой среде нет.
+- Юридический поиск, справочник и статьи подтверждены проверками с реальными
+  OSTIS и Ollama. [Интеграция OSTIS](../backend/tests/integration/test_ostis.py) ·
+  [Бытовые запросы](../backend/tests/e2e/test_expanded_situations.py) ·
+  [Отчёт проверок](TEST_REPORT.md)
 - Форум, сообщения/оценки/поиск: [test_community.py](../backend/tests/unit/test_community.py), PASS.
   Персональные/похожие рекомендации, обратная связь, метки и поиск близких формулировок:
   [test_recommendations.py](../backend/tests/unit/test_recommendations.py), PASS на настоящей SQLite.

@@ -129,6 +129,9 @@ body { margin: 0; }
 .c-source-title h3 { font: 29px/1.5 var(--c-display); letter-spacing: -.03em; overflow-wrap: anywhere; }
 .c-source-title > span { color: #657460; font-size: 11px; padding-top: 12px; }
 .c-source-excerpt { font-size: 16px; line-height: 1.9; max-width: 76ch; overflow-wrap: anywhere; }
+.c-case-provision { margin-bottom: 18px; }
+.c-case-provision > p + p { margin-top: 4px; font-size: 13px; }
+.c-case-guidance h4 { font: 22px/1.55 var(--c-display); margin-bottom: 5px; }
 .c-source-link { display: inline-block; margin-top: 20px; font-size: 13px; }
 .c-situation { align-self: start; padding: 0 0 28px; }
 .c-situation h3 { font: 26px/1.5 var(--c-display); letter-spacing: -.025em; }

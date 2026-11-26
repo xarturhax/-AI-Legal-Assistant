@@ -140,6 +140,43 @@ class Memory:
             self.relation(node, "nrel_article", reverse=True) or self.relation(node, "nrel_article")
         )
 
+    def source_url(self, node):
+        return next(
+            (
+                url
+                for _, url in self.texts(node, "nrel_themis_source_url", russian=False)
+                if url.startswith(("https://etalonline.by/", "https://pravo.by/"))
+            ),
+            None,
+        )
+
+    def case_guidance(self, node):
+        checks = self.texts(node, "nrel_themis_case_check", russian=False)
+        if not checks:
+            return None
+        provisions = []
+        for article in self.relation(node, "nrel_related_articles")[:8]:
+            summaries = self.texts(article, "nrel_themis_practical_summary", russian=False)
+            citations = self.texts(article, "nrel_themis_source_citation", russian=False)
+            identifier = self.system_identifier(article)
+            url = self.source_url(article)
+            if identifier and summaries and citations and url:
+                provisions.append(
+                    {
+                        "id": identifier,
+                        "text": summaries[0][1],
+                        "text_link": summaries[0][0].value,
+                        "citation": citations[0][1],
+                        "official_url": url,
+                    }
+                )
+        if provisions:
+            return {
+                "checks": [text for _, text in checks],
+                "provisions": sorted(provisions, key=lambda provision: provision["id"]),
+            }
+        return None
+
     def source(self, node):
         if not node or not self.legal(node):
             return None
@@ -149,6 +186,13 @@ class Memory:
         if not titles:
             return None
         text, text_status = readable_definition(definitions)
+        text_kind = "source"
+        if not text:
+            summary = self.texts(node, "nrel_themis_practical_summary", russian=False)
+            if summary:
+                definitions = summary
+                text, text_status = readable_definition(summary)
+                text_kind = "summary"
         if identifier and "_article_" in identifier:
             text = re.sub(r"(?<=\.)\s*(?=\d{1,3}\. [А-ЯЁ])", "\n\n", text)
         related = []
@@ -181,15 +225,6 @@ class Memory:
                 }
             )
         citations = self.texts(node, "nrel_themis_source_citation", russian=False)
-        urls = self.texts(node, "nrel_themis_source_url", russian=False)
-        official_url = next(
-            (
-                url
-                for _, url in urls
-                if url.startswith(("https://etalonline.by/", "https://pravo.by/"))
-            ),
-            None,
-        )
         return {
             "source_system": "ostis",
             "sc_identifier": identifier,
@@ -199,15 +234,17 @@ class Memory:
             "excerpt": text[:1600],
             "text": text,
             "text_status": text_status,
+            "text_kind": text_kind,
             "source_exists": True,
             "source_relevant": None,
             "legal_applicability": None,
             "source_document": origins or None,
             "source_citation": citations[0][1] if citations else None,
-            "official_url": official_url,
+            "official_url": self.source_url(node),
             "revision": None,
             "currency": "Редакция и актуальность правового текста не подтверждены.",
             "related": related,
+            "case_guidance": self.case_guidance(node),
             "provenance": {
                 "title_links": [a.value for a, _ in titles],
                 "text_links": [a.value for a, _ in definitions],
@@ -260,13 +297,22 @@ class Memory:
         legal_class = self.key("belarus_legal_term")
         if not legal_class:
             raise RuntimeError("Отсутствует онтология юридических терминов.")
-        terms = set()
+        terms, topic_markers = set(), {}
         nodes = self.members(legal_class)
+        topic_class = self.key("themis_situation_topic")
+        topics = {node.value for node in self.members(topic_class)} if topic_class else set()
         for node in nodes:
+            markers = (
+                [text for _, text in self.texts(node, "nrel_themis_query_marker", russian=False)]
+                if node.value in topics
+                else []
+            )
             for _, title in self.texts(node):
                 if normalized := normalize_search_term(title):
                     terms.add(normalized)
-        return {"terms": sorted(terms), "concept_count": len(nodes)}
+                    if markers:
+                        topic_markers[normalized] = markers
+        return {"terms": sorted(terms), "concept_count": len(nodes), "topic_markers": topic_markers}
 
     def user_request(self, term, timeout=8):
         names = (

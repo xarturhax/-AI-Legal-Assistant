@@ -1,0 +1,56 @@
+belarus_legal_term -> concept_return_undamaged_goods_belarus;;
+themis_situation_topic -> concept_return_undamaged_goods_belarus;;
+
+belarus_legal_term -> concept_warranty_repair_belarus;;
+themis_situation_topic -> concept_warranty_repair_belarus;;
+
+concept_return_undamaged_goods_belarus
+  => nrel_main_idtf: [обмен или возврат товара надлежащего качества] (* <- lang_ru;; *);
+  => nrel_themis_query_marker: [не подошёл размер];
+  => nrel_themis_query_marker: [не подошла по размеру];
+  => nrel_themis_query_marker: [вернуть товар без брака];
+  => nrel_themis_query_marker: [товар надлежащего качества];
+  => nrel_themis_query_marker: [вернуть исправный товар];
+  => nrel_related_articles: by_act_h10200090_article_28;
+  => nrel_themis_case_check: [Сверьте категорию товара с перечнем исключений, дату получения, был ли товар в употреблении, сохранились ли его свойства и упаковка, если товар был в ней продан.];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Обмен или возврат непродовольственной покупки без недостатков, сроки и ограничения.] (* <- lang_ru;; *);;
+    *);;
+  *);;
+
+concept_warranty_repair_belarus
+  => nrel_main_idtf: [срок гарантийного ремонта товара] (* <- lang_ru;; *);
+  => nrel_themis_query_marker: [срок гарантийного ремонта];
+  => nrel_themis_query_marker: [гарантийный ремонт затянулся];
+  => nrel_themis_query_marker: [задержали гарантийный ремонт];
+  => nrel_themis_query_marker: [долго ремонтируют по гарантии];
+  => nrel_themis_query_marker: [сколько длится гарантийный ремонт];
+  => nrel_themis_query_marker: [гарантийный ремонт];
+  => nrel_related_articles: by_act_h10200090_article_22;
+  => nrel_themis_case_check: [Сверьте дату предъявления требования об устранении недостатка, документ о его принятии и наличие письменного соглашения о продлении срока ремонта.];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Сроки бесплатного устранения недостатков товара и документ, подтверждающий ремонт.] (* <- lang_ru;; *);;
+    *);;
+  *);;
+
+belarus_legal_article -> by_act_h10200090_article_22;;
+by_act_h10200090 => nrel_article: by_act_h10200090_article_22;;
+
+by_act_h10200090_article_22
+  => nrel_main_idtf: [Статья 22. Безвозмездное устранение недостатков товара] (* <- lang_ru;; *);
+  => nrel_themis_source_citation: [Закон Республики Беларусь от 9 января 2002 г. № 90-З «О защите прав потребителей», статья 22, пункты 1 и 5.];
+  => nrel_themis_source_url: [https://pravo.by/document/?guid=3871&p0=H10200090];
+  => nrel_themis_practical_summary: [Недостатки товара при предъявлении требования о безвозмездном устранении обычно должны устранить незамедлительно. Если это невозможно, срок ограничен 14 днями со дня предъявления требования. Письменное соглашение с потребителем позволяет продлить срок максимум до 30 дней. При бесплатном ремонте ремонтная организация оформляет запись в гарантийном талоне либо отдельный документ при его отсутствии.];;
+
+belarus_legal_article -> by_act_h10200090_article_28;;
+by_act_h10200090 => nrel_article: by_act_h10200090_article_28;;
+
+by_act_h10200090_article_28
+  => nrel_main_idtf: [Статья 28. Право потребителя на обмен и возврат товара надлежащего качества] (* <- lang_ru;; *);
+  => nrel_themis_source_citation: [Закон Республики Беларусь от 9 января 2002 г. № 90-З «О защите прав потребителей», статья 28, пункты 1–3.];
+  => nrel_themis_source_url: [https://pravo.by/document/?guid=3871&p0=H10200090];
+  => nrel_themis_practical_summary: [Непродовольственный товар надлежащего качества по общему правилу можно вернуть или обменять в течение 14 дней с передачи, если продавец не объявил более длительный срок. Товар должен быть неиспользованным, с сохранёнными потребительскими свойствами, а покупка у этого продавца должна подтверждаться. Если товар продан в потребительской упаковке, вернуть нужно и её. Для отдельных категорий возврат и обмен исключены.];;

@@ -20,6 +20,22 @@
   {% set context = result.situation if not directory and result.situation and (result.situation['items'] or result.situation.needs_clarification) else none %}
   <div class="c-research-columns{% if context %} c-with-context{% endif %}">
     <div class="c-materials">
+      {% if not directory and result.answer.guidance %}
+        <section class="c-source c-case-guidance" aria-labelledby="case-guidance-title">
+          <div class="c-source-title"><h3 id="case-guidance-title">Что следует из найденных норм Беларуси</h3></div>
+          {% for case in result.answer.guidance %}
+            {% for provision in case.provisions %}
+              <div class="c-case-provision">
+                <p class="c-source-excerpt">{{ provision.text }}</p>
+                <p><a href="{{ url_for('legal.source', identifier=provision.id) }}">{{ provision.citation }}</a>
+                  · <a href="{{ provision.official_url }}" target="_blank" rel="noopener noreferrer">Официальный текст</a></p>
+              </div>
+            {% endfor %}
+            <h4>Что проверить в вашей ситуации</h4>
+            {% for check in case.checks %}<p class="c-source-excerpt">{{ check }}</p>{% endfor %}
+          {% endfor %}
+        </section>
+      {% endif %}
       <div class="c-source-register">
       {% for item in result.matches %}
         <article class="c-source">
@@ -36,7 +52,7 @@
       </div>
       {% if result.trace or result.matches %}
         <details class="c-detail"><summary>Как получен результат</summary>
-          {% if result.interpretation and result.search_terms %}<p>Термины, подобранные LLM — {{ result.search_terms | join(', ') }}</p>{% endif %}
+          {% if result.interpretation and result.search_terms %}<p>Термины, по которым выполнен поиск — {{ result.search_terms | join(', ') }}</p>{% endif %}
           {% if result.unmatched_terms %}<p>Термины без совпадения — {{ result.unmatched_terms | join(', ') }}</p>{% endif %}
           {% for item in result.matches %}<p>{{ item.title }} · <code>{{ item.sc_identifier or item.sc_address }}</code> · {{ item.currency }}</p>{% endfor %}
           {% if result.trace %}<pre>{{ result.trace | tojson(indent=2) }}</pre>{% endif %}
@@ -46,7 +62,7 @@
     {% if context %}
       <aside class="c-situation"><h3>Контекст ситуации</h3>
         {% if context['items'] %}<dl class="c-situation-list">{% for item in context['items'] %}<div><dt>{{ item.text }}</dt><dd><span class="{{ 'c-linked' if item.status == 'linked' else 'c-unlinked' }}">{{ 'связано с источниками OSTIS' if item.status == 'linked' else 'связь с OSTIS не найдена' }}</span>{% for source_id in item.source_ids %} <a href="{{ url_for('legal.source', identifier=source_id) }}">Источник</a>{% endfor %}</dd></div>{% endfor %}</dl>{% endif %}
-        {% if context.needs_clarification %}<div class="c-clarification"><h4>Уточните обстоятельства</h4><ul>{% for question in context.clarification_questions %}<li>{{ question }}</li>{% endfor %}</ul></div>{% endif %}
+        {% if context.needs_clarification and not result.answer.guidance %}<div class="c-clarification"><h4>Уточните обстоятельства</h4><ul>{% for question in context.clarification_questions %}<li>{{ question }}</li>{% endfor %}</ul></div>{% endif %}
       </aside>
     {% endif %}
   </div>

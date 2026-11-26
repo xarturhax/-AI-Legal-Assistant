@@ -7,11 +7,27 @@ STOP_WORDS = set(
         "найти расскажи объясни про можно ли у не"
     ).split()
 )
+DEFINITION_QUESTION = re.compile(
+    r"\b(?:что (?:такое|означает)|кто так(?:ой|ая|ие)|"
+    r"как (?:называют|называется|называются|назвать))\b"
+)
 
 
 def normalize_search_term(value):
     value = " ".join(unicodedata.normalize("NFKC", value).casefold().split())
     return value if re.fullmatch(r"[а-яёa-z][а-яёa-z ,()\-]{1,199}", value) else None
+
+
+def matching_text(value):
+    return " ".join(unicodedata.normalize("NFKC", value).casefold().replace("ё", "е").split())
+
+
+def contains_phrase(text, phrase):
+    return bool(phrase) and re.search(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text) is not None
+
+
+def is_definition_question(query):
+    return DEFINITION_QUESTION.search(matching_text(query)) is not None
 
 
 def query_phrase(query):

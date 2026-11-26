@@ -1,0 +1,25 @@
+belarus_legal_term -> concept_education_document_duplicate_belarus;;
+themis_situation_topic -> concept_education_document_duplicate_belarus;;
+
+concept_education_document_duplicate_belarus
+  => nrel_main_idtf: [дубликат документа об образовании] (* <- lang_ru;; *);
+  => nrel_themis_query_marker: [потерял диплом];
+  => nrel_themis_query_marker: [потеряла диплом];
+  => nrel_themis_query_marker: [утерял диплом];
+  => nrel_themis_query_marker: [дубликат диплома];
+  => nrel_themis_query_marker: [испорчен аттестат];
+  => nrel_themis_query_marker: [восстановить диплом];
+  => nrel_themis_query_marker: [потерял аттестат];
+  => nrel_related_articles: by_act_hk1100243_article_95;
+  => nrel_themis_case_check: [Сверьте вид утраченного документа, учебное заведение и год выдачи. Порядок обращения, документы и сроки уточните по административной процедуре для этого вида документа.];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Выдача дубликатов дипломов, аттестатов и иных документов об образовании или обучении при их утрате или порче.] (* <- lang_ru;; *);;
+    *);;
+  *);;
+
+by_act_hk1100243_article_95
+  => nrel_themis_source_citation: [Кодекс Республики Беларусь об образовании, статья 95, пункты 1–4.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk1100243];
+  => nrel_themis_practical_summary: [При потере или порче документа об образовании, приложения к нему или документа об обучении выдаётся соответствующий дубликат с той же силой. Если потерян или испорчен дубликат, допускается повторная выдача. Порядок выдачи устанавливает законодательство об административных процедурах.];;

@@ -53,6 +53,62 @@ def test_context_does_not_link_substrings_as_different_concepts():
     assert plan["items"][0]["terms"] == []
 
 
+def test_context_deduplicates_facts_and_links_a_grounded_topic_marker():
+    fragment = "продавец отказывается возвращать деньги"
+    term = "возврат товара ненадлежащего качества"
+    interpretation = Interpretation.model_validate(
+        {
+            "intent": "rights",
+            "domain_hints": [],
+            "search_terms": [],
+            "entities": [{"name": "продавец", "type": "participant", "original_text": fragment}],
+            "facts": [
+                {"key": "request", "value": fragment, "present_in_user_text": True},
+                {"key": "receipt", "value": "да", "present_in_user_text": True},
+                {"key": "condition", "value": "нет", "present_in_user_text": True},
+                {"key": "fragment", "value": "давец", "present_in_user_text": True},
+            ],
+            "missing_information": [],
+            "needs_clarification": False,
+        }
+    )
+    plan = situation_plan(
+        interpretation,
+        f"Купил телефон, {fragment}. Чека нет.",
+        [term],
+        topic_markers={term: [fragment]},
+    )
+    assert plan["items"] == [{"kind": "entity", "text": fragment, "terms": [term]}]
+    assert [fact.present_in_user_text for fact in interpretation.facts] == [
+        True,
+        False,
+        False,
+        False,
+    ]
+
+
+def test_case_topic_stays_linked_when_the_model_omits_the_matching_words():
+    term = "общение с ребёнком отдельно проживающего родителя"
+    interpretation = Interpretation(
+        intent="rights",
+        domain_hints=[],
+        search_terms=[],
+        entities=[],
+        facts=[],
+        missing_information=[],
+        needs_clarification=False,
+    )
+    plan = situation_plan(
+        interpretation,
+        "Мне не даёт видеться  с ребенком. Какие правила?",
+        [term],
+        topic_markers={term: ["видеться с ребёнком"]},
+    )
+    linked = link_situation(plan, [{"id": "case", "matched_terms": [term]}])
+    assert linked["items"][0]["text"] == "видеться  с ребенком"
+    assert linked["items"][0]["source_ids"] == ["case"]
+
+
 @pytest.mark.mock
 def test_context_extends_search_even_with_empty_model_search_terms():
     class ContextInterpreter:

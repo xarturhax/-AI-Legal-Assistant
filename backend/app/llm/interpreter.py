@@ -5,8 +5,8 @@ from pydantic import ValidationError
 
 from app.config import local_service_url
 from app.errors import ServiceError
-from app.llm.prompts import DIRECTORY_PROMPT, SYSTEM_PROMPT
-from app.llm.schemas import DirectoryTerms, Interpretation
+from app.llm.prompts import DIRECTORY_PROMPT, SOURCE_RELEVANCE_PROMPT, SYSTEM_PROMPT
+from app.llm.schemas import DirectoryTerms, Interpretation, SourceRelevance
 
 
 class OllamaInterpreter:
@@ -48,7 +48,27 @@ class OllamaInterpreter:
             needs_clarification=False,
         )
 
-    def _complete(self, query, vocabulary, output_type, system_prompt, tokens):
+    def relevant_sources(self, query, sources):
+        question = {
+            "question": query,
+            "sources": [
+                {"number": n, "title": source["title"], "excerpt": source["excerpt"][:480]}
+                for n, source in enumerate(sources, start=1)
+            ],
+        }
+        return self._complete(
+            json.dumps(question, ensure_ascii=False),
+            None,
+            SourceRelevance,
+            SOURCE_RELEVANCE_PROMPT,
+            420,
+            timeout=min(self.timeout, 30),
+            attempts=1,
+        ).relevant
+
+    def _complete(
+        self, query, vocabulary, output_type, system_prompt, tokens, *, timeout=None, attempts=2
+    ):
         if not self.ready():
             raise ServiceError(
                 "Локальная модель недоступна. Выберите классический поиск.", "llm_unavailable"
@@ -74,9 +94,9 @@ class OllamaInterpreter:
                 {"role": "user", "content": user_content},
             ],
         }
-        for attempt in range(2):
+        for attempt in range(attempts):
             try:
-                with httpx.Client(timeout=self.timeout, trust_env=False) as connection:
+                with httpx.Client(timeout=timeout or self.timeout, trust_env=False) as connection:
                     response = connection.post(self.base_url + "/api/chat", json=payload)
                     response.raise_for_status()
                     content = response.json()["message"]["content"]
@@ -103,8 +123,8 @@ class OllamaInterpreter:
                 ValueError,
                 TypeError,
             ) as error:
-                if attempt:
+                if attempt + 1 == attempts:
                     raise ServiceError(
-                        "Модель дважды вернула некорректный JSON.", "llm_format", 502
+                        "Модель вернула некорректный JSON.", "llm_format", 502
                     ) from error
         raise AssertionError("Недостижимая ветка")

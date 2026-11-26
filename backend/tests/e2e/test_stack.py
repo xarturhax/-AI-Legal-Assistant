@@ -37,4 +37,7 @@ def test_directory_llm_searches_ostis_templates(app):
     assert response.status_code == 200, response.json
     assert response.json["runtime"]["llm_used"] and not response.json["runtime"]["mock"]
     assert any(m["id"] == "concept_rental_housing_belarus" for m in response.json["matches"])
-    assert {event["method"] for event in response.json["trace"]} == {"sc_template_search"}
+    assert {event["method"] for event in response.json["trace"]} == {
+        "sc_template_search",
+        "source_relevance",
+    }

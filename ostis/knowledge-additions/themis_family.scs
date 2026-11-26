@@ -1,0 +1,84 @@
+belarus_legal_term -> concept_child_support_belarus;;
+themis_situation_topic -> concept_child_support_belarus;;
+
+belarus_legal_term -> concept_marriage_dissolution_belarus;;
+themis_situation_topic -> concept_marriage_dissolution_belarus;;
+
+belarus_legal_term -> concept_parent_child_contact_belarus;;
+themis_situation_topic -> concept_parent_child_contact_belarus;;
+
+concept_child_support_belarus
+  => nrel_main_idtf: [алименты на несовершеннолетних детей] (* <- lang_ru;; *);
+  => nrel_themis_query_marker: [алименты на ребёнка];
+  => nrel_themis_query_marker: [взыскать алименты];
+  => nrel_themis_query_marker: [не платит алименты];
+  => nrel_themis_query_marker: [подать на алименты];
+  => nrel_themis_query_marker: [алименты на двух детей];
+  => nrel_themis_query_marker: [алименты на одного ребёнка];
+  => nrel_related_articles: by_act_hk9900278_article_91;
+  => nrel_related_articles: by_act_hk9900278_article_92;
+  => nrel_themis_case_check: [Уточните возраст и число детей, есть ли соглашение, брачный договор или решение суда, а также известны ли доходы и другие обстоятельства, влияющие на размер алиментов.];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Обязанность родителей содержать детей, соглашение об алиментах и общие правила их взыскания.] (* <- lang_ru;; *);;
+    *);;
+  *);;
+
+concept_marriage_dissolution_belarus
+  => nrel_main_idtf: [порядок расторжения брака] (* <- lang_ru;; *);
+  => nrel_themis_query_marker: [развод через загс];
+  => nrel_themis_query_marker: [развестись через загс];
+  => nrel_themis_query_marker: [подать на развод];
+  => nrel_themis_query_marker: [расторгнуть брак через загс];
+  => nrel_themis_query_marker: [развод без суда];
+  => nrel_themis_query_marker: [можно ли развестись];
+  => nrel_related_articles: by_act_hk9900278_article_351;
+  => nrel_related_articles: by_act_hk9900278_article_36;
+  => nrel_themis_case_check: [Проверьте согласие обоих супругов, наличие общих несовершеннолетних детей и спора об имуществе. Эти обстоятельства определяют, какой порядок следует проверять.];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Условия расторжения брака органом ЗАГС и общие правила судебного расторжения брака.] (* <- lang_ru;; *);;
+    *);;
+  *);;
+
+concept_parent_child_contact_belarus
+  => nrel_main_idtf: [общение с ребёнком отдельно проживающего родителя] (* <- lang_ru;; *);
+  => nrel_themis_query_marker: [не даёт видеться с ребёнком];
+  => nrel_themis_query_marker: [порядок общения с ребёнком];
+  => nrel_themis_query_marker: [не разрешает видеться с ребёнком];
+  => nrel_themis_query_marker: [общение с ребёнком после развода];
+  => nrel_related_articles: by_act_hk9900278_article_77;
+  => nrel_themis_case_check: [Уточните, есть ли Соглашение о детях, судебное решение или ограничения общения и какой порядок фактически соблюдается.];
+  <- rrel_key_sc_element: ... (*
+    <- definition;;
+    <= nrel_sc_text_translation: ... (*
+      -> rrel_example: [Общение с ребёнком и участие в воспитании отдельно проживающего родителя с учётом интересов ребёнка.] (* <- lang_ru;; *);;
+    *);;
+  *);;
+
+by_act_hk9900278_article_91
+  => nrel_themis_source_citation: [Кодекс Республики Беларусь о браке и семье, статья 91, части первая, вторая и шестая.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900278];
+  => nrel_themis_practical_summary: [Родители обязаны содержать своих несовершеннолетних детей. Когда содержание не предоставляется, алименты могут взыскиваться через суд. Кодекс предусматривает и соглашение об уплате алиментов при соблюдении условий его заключения.];;
+
+by_act_hk9900278_article_92
+  => nrel_themis_source_citation: [Кодекс Республики Беларусь о браке и семье, статья 92, части первая и вторая.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900278];
+  => nrel_themis_practical_summary: [Если размер алиментов на несовершеннолетних не определён брачным договором или предусмотренным законом соглашением, закон устанавливает общие доли от заработка и другого дохода. Это 25 процентов на одного ребёнка, 33 процента на двух и 50 процентов на троих и более. Для трудоспособных родителей предусмотрены минимумы, а сумма может быть изменена судом при указанных в статье обстоятельствах.];;
+
+by_act_hk9900278_article_351
+  => nrel_themis_source_citation: [Кодекс Республики Беларусь о браке и семье, статья 35¹, части первая и вторая.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900278];
+  => nrel_themis_practical_summary: [Через орган ЗАГС брак может расторгаться по взаимному согласию, если у супругов нет общих несовершеннолетних детей и спора об имуществе. При обращении супруги подтверждают эти обстоятельства.];;
+
+by_act_hk9900278_article_36
+  => nrel_themis_source_citation: [Кодекс Республики Беларусь о браке и семье, статья 36, часть первая.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900278];
+  => nrel_themis_practical_summary: [Суд рассматривает иск о расторжении брака в порядке искового производства.];;
+
+by_act_hk9900278_article_77
+  => nrel_themis_source_citation: [Кодекс Республики Беларусь о браке и семье, статья 77, части первая и вторая.];
+  => nrel_themis_source_url: [https://etalonline.by/document/?regnum=hk9900278];
+  => nrel_themis_practical_summary: [Отдельно проживающий родитель имеет право общаться с ребёнком и обязан участвовать в его воспитании. Другой родитель по общему правилу не должен препятствовать этому. Суд может ограничить общение, если оно противоречит интересам ребёнка либо нарушается соглашение о детях или судебное решение.];;
