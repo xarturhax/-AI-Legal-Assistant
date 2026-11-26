@@ -1,5 +1,4 @@
 "use strict";
-document.documentElement.classList.add("js-enabled");
 
 // Desktop-навигация использует native details и работает без JavaScript.
 const sectionMenu = document.querySelector(".c-sections");
@@ -21,7 +20,6 @@ document.querySelectorAll("[data-loading-form]").forEach((form) => {
       return;
     }
     form.dataset.submitting = "true";
-    form.classList.add("is-loading");
     form.setAttribute("aria-busy", "true");
     form.querySelector(".loading-status").hidden = false;
     const button = event.submitter || form.querySelector("button");
@@ -31,19 +29,8 @@ document.querySelectorAll("[data-loading-form]").forEach((form) => {
 window.addEventListener("pageshow", () => {
   document.querySelectorAll("[data-loading-form]").forEach((form) => {
     delete form.dataset.submitting;
-    form.classList.remove("is-loading");
     form.removeAttribute("aria-busy");
     form.querySelector(".loading-status").hidden = true;
     form.querySelectorAll("[aria-disabled]").forEach((button) => button.removeAttribute("aria-disabled"));
   });
 });
-
-// CSRF остаётся обязательным и для JSON-запросов из собственных страниц.
-window.localApi = async function (url, method = "GET", body) {
-  const headers = {"X-CSRFToken": document.querySelector('meta[name="csrf-token"]').content};
-  if (body !== undefined) headers["Content-Type"] = "application/json";
-  const response = await fetch(url, {method, headers, body: body === undefined ? undefined : JSON.stringify(body)});
-  const result = await response.json();
-  if (!response.ok) throw new Error(result.error?.message || "Не удалось выполнить запрос.");
-  return result;
-};
